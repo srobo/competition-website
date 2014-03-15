@@ -1,0 +1,19 @@
+//TITLE: 2014 Competition League
+//ANGULAR_CONTROLLER: LeaguePoints
+
+# League Status
+
+Up to date with scores from match {{latest_match}}.
+
+<table>
+    <tr>
+        <th>Position</th>
+        <th>Points</th>
+        <th>Team</th>
+    </tr>
+    <tr ng-repeat="item in league_points" id="{{item.tla}}">
+        <td>{{item.pos}}</td>
+        <td>{{item.points}}</td>
+        <td>{{item.tla}}</td>
+    </tr>
+</table>
