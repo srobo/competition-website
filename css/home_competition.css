@@ -1,0 +1,57 @@
+div.content div#competition {
+	border-bottom:1px solid silver;
+	position:relative;
+	margin-bottom:20px;
+	margin-top:-20px;
+	overflow:hidden;
+	/* mostly to avoid the bumpy up & down as things load */
+	min-height:350px;
+}
+
+div.content div#boxWrapper div.box:first-of-type {
+	width:660px;
+}
+
+div#header {
+	float:right;
+	width:960px;
+}
+
+div#header div#navwrapper {
+	float:right;
+	margin-top:50px;
+	margin-right:30px;
+	font-size:30px;
+	font-weight:bold;
+}
+
+div#header a {
+	float:left;
+	margin-top:20px;
+	margin-left:20px;
+}
+
+div#header ul {
+	clear:both;
+	display:block;
+	margin-top:-8px;
+}
+
+div#header ul li {
+	float:left;
+	margin-left:20px;
+}
+
+div#header ul li a {
+	text-decoration:none;
+	color:#8b8884;
+	padding:8px;
+	letter-spacing:1px;
+	margin-top:0px;
+	margin-left:0px;
+	display:block;
+}
+
+div#header ul li a:hover, div#header ul li a:focus {
+	color:#DE6400;
+}
