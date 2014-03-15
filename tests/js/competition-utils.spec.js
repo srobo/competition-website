@@ -24,10 +24,12 @@ describe("The league sorter", function() {
 		expect(league).toEqual(expected);
 	});
 	it("should handle ties", function() {
-		var raw = { 'ABC': 2.0, 'DEF': 2.0 };
+		var raw = { 'ABC': 12.0, 'DEF': 5.0, 'GHI': 5.0, 'KLM': 2.0 };
 		var expected = [
-			{ 'tla': 'ABC', 'pos': 1, 'points': 2 },
-			{ 'tla': 'DEF', 'pos': '', 'points': '' },
+			{ 'tla': 'ABC', 'pos': 1, 'points': 12 },
+			{ 'tla': 'DEF', 'pos': 2, 'points': 5 },
+			{ 'tla': 'GHI', 'pos': '', 'points': 5 },
+			{ 'tla': 'KLM', 'pos': 4, 'points': 2 },
 		];
 		var league = utils.league_sorter(raw);
 		expect(league).toEqual(expected);
@@ -41,7 +43,7 @@ describe("The league sorter", function() {
 		var raw_2 = { 'ABC': 2.0, 'DEF': 2.0 };
 		var expected_2 = [
 			{ 'tla': 'ABC', 'pos': 1, 'points': 2 },
-			{ 'tla': 'DEF', 'pos': '', 'points': '' },
+			{ 'tla': 'DEF', 'pos': '', 'points': 2 },
 		];
 		var league_1 = utils.league_sorter(raw_1);
 		expect(league_1).toEqual(expected_1);

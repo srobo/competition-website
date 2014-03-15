@@ -9,7 +9,6 @@ var league_sorter = function() {
         for (var i=0; i<rows.length; i++) {
             var row = rows[i];
             if (row.points == last_score) {
-                row.points = '';
                 row.pos = '';
             } else {
                 last_score = row.points;
