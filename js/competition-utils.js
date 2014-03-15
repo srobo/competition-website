@@ -43,7 +43,25 @@ var league_sorter = function() {
     };
 }();
 
+var gamepoints_sorter = function() {
+    var sort_helper = function(a, b) {
+        return a.tla.localeCompare(b.tla);
+    };
+
+    return function(points) {
+        var rows = [];
+
+        for (var tla in points) {
+            var pts = points[tla];
+            rows.push({'tla': tla, 'points': pts});
+        }
+        rows.sort(sort_helper);
+        return rows;
+    };
+}();
+
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
     exports.league_sorter = league_sorter;
+    exports.gamepoints_sorter = gamepoints_sorter;
 }
