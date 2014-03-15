@@ -25,13 +25,14 @@ describe("The league sorter", function() {
 	});
 	it("should handle ties", function() {
 		var raw = { 'ABC': 12.0, 'DEF': 5.0, 'GHI': 5.0, 'KLM': 2.0 };
+		var game = { 'DEF': 25, 'GHI': 3 };
 		var expected = [
 			{ 'tla': 'ABC', 'pos': 1, 'points': 12 },
 			{ 'tla': 'DEF', 'pos': 2, 'points': 5 },
 			{ 'tla': 'GHI', 'pos': '', 'points': 5 },
 			{ 'tla': 'KLM', 'pos': 4, 'points': 2 },
 		];
-		var league = utils.league_sorter(raw);
+		var league = utils.league_sorter(raw, null, game);
 		expect(league).toEqual(expected);
 	});
 	it("should be re-usable", function() {
@@ -41,14 +42,18 @@ describe("The league sorter", function() {
 			{ 'tla': 'DEF', 'pos': 2, 'points': 3.5 },
 		];
 		var raw_2 = { 'ABC': 2.0, 'DEF': 2.0 };
+		var game_2 = { 'ABC': 25, 'DEF': 5 };
 		var expected_2 = [
 			{ 'tla': 'ABC', 'pos': 1, 'points': 2 },
 			{ 'tla': 'DEF', 'pos': '', 'points': 2 },
 		];
 		var league_1 = utils.league_sorter(raw_1);
 		expect(league_1).toEqual(expected_1);
-		var league_2 = utils.league_sorter(raw_2);
+		var league_2 = utils.league_sorter(raw_2, null, game_2);
 		expect(league_2).toEqual(expected_2);
+		// repeat 1, with no ties
+		var league_3 = utils.league_sorter(raw_1);
+		expect(league_3).toEqual(expected_1);
 	});
 	it("should include a cutoff row if there are enough teams", function() {
 		var raw = { 'ABC': 12.0, 'DEF': 5.0 };
@@ -67,6 +72,19 @@ describe("The league sorter", function() {
 			{ 'tla': 'DEF', 'pos': 2, 'points': 5 },
 		];
 		var league = utils.league_sorter(raw, 2);
+		expect(league).toEqual(expected);
+	});
+	it("should handle ties at the cutoff position", function() {
+		var league = { 'ABC': 12.0, 'DEF': 5.0, 'GHI': 5.0, 'KLM': 2.0 };
+		var game = { 'DEF': 3, 'GHI': 25 };
+		var expected = [
+			{ 'tla': 'ABC', 'pos': 1, 'points': 12 },
+			{ 'tla': 'GHI', 'pos': 2, 'points': 5 },
+			{ 'tla': '-', 'pos': '-', 'points': '-' },
+			{ 'tla': 'DEF', 'pos': '', 'points': 5 },
+			{ 'tla': 'KLM', 'pos': 4, 'points': 2 },
+		];
+		var league = utils.league_sorter(league, 2, game);
 		expect(league).toEqual(expected);
 	});
 });
