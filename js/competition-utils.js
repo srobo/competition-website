@@ -60,8 +60,37 @@ var gamepoints_sorter = function() {
     };
 }();
 
+var convert_matches = function() {
+    return function(matches) {
+        var output = [];
+        for (var num in matches) {
+            output.push(match_converter(matches[num]));
+        }
+        return output;
+    };
+}();
+
+var match_converter = function() {
+    var convert_time = function(time_str) {
+        var date = new Date(time_str);
+        return date.toTimeString().substring(0, 8);
+    };
+    return function(match) {
+        var output = { 'teams': [] };
+        for (var arena in match) {
+            var detail = match[arena];
+            output.number = detail.num;
+            output.time = convert_time(detail.start_time);
+            output.teams = output.teams.concat(detail.teams);
+        }
+        return output;
+    };
+}();
+
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
     exports.league_sorter = league_sorter;
     exports.gamepoints_sorter = gamepoints_sorter;
+    exports.match_converter = match_converter;
+    exports.convert_matches = convert_matches;
 }

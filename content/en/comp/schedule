@@ -1,0 +1,38 @@
+//TITLE: 2014 Match Schedule
+//ANGULAR_CONTROLLER: MatchSchedule
+
+<!--
+<style type="text/css">
+.corner-0 { background-color: {{corners[0].colour}}; }
+.corner-1 { background-color: {{corners[1].colour}}; }
+.corner-2 { background-color: {{corners[2].colour}}; }
+.corner-3 { background-color: {{corners[3].colour}}; }
+</style>
+-->
+
+# Match Schedule
+
+Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
+
+<table>
+    <thead>
+        <tr>
+            <th rowspan="2">Time  </th>
+            <th rowspan="2">Match </th>
+            <th data-ng-repeat="arena in arenas" colspan="4">Arena {{arena}}</th>
+        </tr>
+        <tr>
+            <th data-ng-repeat-start="arena in arenas">Corner 0</th>
+            <th>Corner 1</th>
+            <th>Corner 2</th>
+            <th data-ng-repeat-end>Corner 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="match in matches" id="match-{{match.number}}">
+            <td>{{match.time}}</td>
+            <td>{{match.number}}</td>
+            <td data-ng-repeat="team in match.teams">{{team}}</td>
+        </tr>
+    </tbody>
+</table>

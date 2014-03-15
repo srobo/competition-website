@@ -121,3 +121,39 @@ describe("The game points sorter", function() {
 		expect(game).toEqual(expected);
 	});
 });
+
+describe("The match schedule converter sorter helpers", function() {
+	it("should be defined", function() {
+		expect(utils.match_converter).toBeDefined();
+		expect(utils.convert_matches).toBeDefined();
+	});
+	var input = {
+		'A': {
+			'arena': 'A',
+			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+			'num': 0,
+			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+			'teams': [ 'CLY', 'TTN', 'SCC', 'DSF' ]
+		},
+		'B': {
+			'arena': 'B',
+			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+			'num': 0,
+			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+			'teams': [ 'GRS', 'QMC', 'GRD', 'BRK' ]
+		}
+	};
+	var expected = {
+		'number': 0,
+		'time': '00:00:00',
+		'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
+	};
+it("should flatten and simplify match descriptions", function() {
+		var match = utils.match_converter(input);
+		expect(match).toEqual(expected);
+	});
+	it("should flatten and simplify the collection of matches", function() {
+		var matches = utils.convert_matches({0: input});
+		expect(matches).toEqual([expected]);
+	});
+});
