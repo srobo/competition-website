@@ -10,7 +10,8 @@ var league_sorter = function() {
             return b_game - a_game;
         }
         return val;
-    }
+    };
+
     var display_convert = function(rows, cutoff) {
         var last_score = 0;
         var last_pos = 1;
@@ -26,7 +27,8 @@ var league_sorter = function() {
         if (cutoff != null && rows.length > cutoff) {
             rows.splice(cutoff, 0, {'tla': '-', 'points': '-', 'pos': '-'});
         }
-    }
+    };
+
     return function(league_points, cutoff, game_points) {
         var rows = [];
         _game_points = game_points;
