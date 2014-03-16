@@ -1,8 +1,11 @@
 
 /* Schedule page */
+#comp_schedule th[rowspan] {
+	vertical-align:middle;
+}
 #comp_schedule colgroup.arena {
-	width: 150px;
+	width:150px;
 }
 #comp_schedule tbody tr.current {
-	background-color: #FFFFB0;
+	background-color:#FFFFB0;
 }
