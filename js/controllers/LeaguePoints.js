@@ -15,6 +15,7 @@ app.controller("LeaguePoints", function($scope, $resource) {
     var updateState = function() {
         Points.get(function(points) {
             $scope.league_points = league_sorter(points.league_points, $scope.knockout_max, points.game_points);
+            $scope.game_points = gamepoints_sorter(points.game_points);
         });
         Teams.get(function(teams) {
             $scope.teams = teams;
