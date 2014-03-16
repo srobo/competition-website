@@ -19,6 +19,8 @@ app.controller("LeaguePoints", function($scope, $resource) {
 
     KnockoutInfo.get(function(knockout) {
         $scope.knockout_max = knockout.max_entrants;
+        // refresh every 10s
+        setInterval(updateState, 10000);
         updateState();
     });
 });

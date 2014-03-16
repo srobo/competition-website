@@ -39,6 +39,11 @@ app.controller("MatchSchedule", function($scope, $resource) {
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
         var CurrentMatch = $resource(root + "/matches/" + nodes.arenas[0] + "/current");
-        updateState(CurrentMatch);
+        var update = function() {
+            updateState(CurrentMatch);
+        };
+        // refresh every 10s
+        setInterval(update, 10000);
+        update();
     });
 });
