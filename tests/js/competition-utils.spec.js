@@ -157,3 +157,48 @@ describe("The match schedule converter sorter helpers", function() {
 		expect(matches).toEqual([expected]);
 	});
 });
+
+describe("The match team filterer", function() {
+	it("should be defined", function() {
+		expect(utils.matches_for_team).toBeDefined();
+	});
+	var match_0 = {
+		'number': 0,
+		'time': '00:00:00',
+		'teams': [ 'MAI', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
+	};
+	var match_1 = {
+		'number': 1,
+		'time': '00:05:00',
+		'teams': [ 'MAI2', 'QMS', 'LSS', 'EMM', 'GRS', 'BDF', 'NHS', 'MEA' ]
+	};
+	var input = [match_0, match_1];
+	it("should return all when null team is given", function() {
+		var matches = utils.matches_for_team(input, null);
+		expect(matches).toBe(input);
+	});
+	it("should return all when no team is given", function() {
+		var matches = utils.matches_for_team(input);
+		expect(matches).toBe(input);
+	});
+	it("should return all when empty team is given", function() {
+		var matches = utils.matches_for_team(input, '');
+		expect(matches).toBe(input);
+	});
+	it("should return all matches containing the given team", function() {
+		var matches = utils.matches_for_team(input, 'GRS');
+		expect(matches).toEqual(input);
+	});
+	it("should return only matches containing the given team", function() {
+		var matches = utils.matches_for_team(input, 'EMM');
+		expect(matches).toEqual([match_1]);
+	});
+	it("should return only matches containing the exact team", function() {
+		var matches = utils.matches_for_team(input, 'MAI');
+		expect(matches).toEqual([match_0]);
+	});
+	it("should return nothing when no results", function() {
+		var matches = utils.matches_for_team(input, 'ABC');
+		expect(matches).toEqual([]);
+	});
+});

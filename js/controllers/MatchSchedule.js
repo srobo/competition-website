@@ -1,5 +1,5 @@
 
-var app = angular.module('app', ["ngResource"]);
+var app = angular.module('app', ["ngResource", "competitionFilters"]);
 
 app.controller("MatchSchedule", function($scope, $resource) {
 
@@ -8,8 +8,8 @@ app.controller("MatchSchedule", function($scope, $resource) {
 
     var Arenas = $resource(root + "/arenas");
     var Matches = $resource(root + "/matches/all");
+    var Teams = $resource(SRWEB_ROOT + "teams-data.php");
 
-    // TODO: work out if we actuall want colours here -- they're rather bright
     $scope.corners = [];
     var load_corner = function (cornerId) {
         $resource(root + "/corner/" + cornerId).get(function(corner) {
@@ -19,6 +19,14 @@ app.controller("MatchSchedule", function($scope, $resource) {
     for (var c=0; c<4; c++) {
         load_corner(c);
     }
+
+    var updateTeams = function() {
+        //$('#schedule-filter select').chosen();
+        Teams.get(function(teams) {
+            $scope.teams = teams;
+          //  $('#schedule-filter select').trigger("chosen:updated");
+        });
+    };
 
     var updateState = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
@@ -46,4 +54,8 @@ app.controller("MatchSchedule", function($scope, $resource) {
         setInterval(update, 10000);
         update();
     });
+
+    updateTeams();
+    // refresh teams every minute
+    setInterval(updateTeams, 60000);
 });

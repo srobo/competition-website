@@ -87,10 +87,28 @@ var match_converter = function() {
     };
 }();
 
+var matches_for_team = function() {
+    return function(input, team) {
+        if (team == null || team.length == 0) {
+            return input;
+        }
+        var output = [];
+        for (var i=0; i<input.length; i++) {
+            var match = input[i];
+            // contains
+            if (match.teams.indexOf(team) >= 0) {
+                output.push(match);
+            }
+        }
+        return output;
+    };
+}();
+
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
     exports.league_sorter = league_sorter;
     exports.gamepoints_sorter = gamepoints_sorter;
     exports.match_converter = match_converter;
     exports.convert_matches = convert_matches;
+    exports.matches_for_team = matches_for_team;
 }

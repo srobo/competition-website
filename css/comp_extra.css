@@ -1,5 +1,11 @@
 
 /* Schedule page */
+#comp_schedule #schedule-filter {
+	float:right;
+}
+#comp_schedule #schedule-filter select {
+	width:350px;
+}
 #comp_schedule th[rowspan] {
 	vertical-align:middle;
 }

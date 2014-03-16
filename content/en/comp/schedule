@@ -1,16 +1,25 @@
 //TITLE: 2014 Match Schedule
 //ANGULAR_CONTROLLER: MatchSchedule
 
-<!--
 <style type="text/css">
-.corner-0 { background-color: {{corners[0].colour}}; }
-.corner-1 { background-color: {{corners[1].colour}}; }
-.corner-2 { background-color: {{corners[2].colour}}; }
-.corner-3 { background-color: {{corners[3].colour}}; }
+td.match:nth-child(4n+3) { background-color: {{corners[0].colour}}; }
+td.match:nth-child(4n+4) { background-color: {{corners[1].colour}}; }
+td.match:nth-child(4n+5) { background-color: {{corners[2].colour}}; }
+td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
 </style>
--->
 
 # League Match Schedule
+
+<div id="schedule-filter">
+    Show matches for:
+    <select data-ng-model="chosenTeam">
+        <option value="">All Teams</option>
+        <option data-ng-repeat="(tla, info) in teams"
+                value="{{tla}}">
+            {{tla|teamName:teams}}
+        </option>
+    </select>
+</div>
 
 Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
@@ -41,12 +50,15 @@ Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-repeat="match in session.matches"
+        <tr data-ng-repeat="match in session.matches|containsTeam:chosenTeam"
             data-ng-class="{current: match.number==current_match}"
             id="match-{{match.number}}">
             <td>{{match.time}}</td>
             <td>{{match.number}}</td>
-            <td data-ng-repeat="team in match.teams">{{team}}</td>
+            <td data-ng-repeat="team in match.teams"
+                data-ng-class="{match: team==chosenTeam}">
+                {{team}}
+            </td>
         </tr>
     </tbody>
 </table>

@@ -13,3 +13,9 @@ competitionFilters.filter('teamName', function($log) {
         return tla + ": " + name;
     };
 });
+
+/// Find matches which the given team is in
+competitionFilters.filter('containsTeam', function() {
+    // implemented in competition-utils.js
+    return matches_for_team;
+});
