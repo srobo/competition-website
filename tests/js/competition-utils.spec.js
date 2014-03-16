@@ -148,7 +148,7 @@ describe("The match schedule converter sorter helpers", function() {
 		'time': '00:00:00',
 		'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
 	};
-it("should flatten and simplify match descriptions", function() {
+	it("should flatten and simplify match descriptions", function() {
 		var match = utils.match_converter(input);
 		expect(match).toEqual(expected);
 	});
