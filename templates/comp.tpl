@@ -8,8 +8,9 @@
 	<meta name="keywords" content="{getFromContent get='keywords'}" />
 	<meta name="description" content="{getFromContent get='description'}" />
 	<link rel="stylesheet" type="text/css" href="{$root_uri}css/main.css" />
-	<link rel="stylesheet" type="text/css" href="{$root_uri}css/content_extra.css" />
+	<link rel="stylesheet" type="text/css" href="{$root_uri}css/comp.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="{$root_uri}css/print.css" />
+	<link rel="stylesheet" type="text/css" href="{$root_uri}css/comp_extra.css" />
 	<link rel="alternate" type="application/rss+xml" title="SR RSS" href="{$root_uri}feed.php" />
 	<link rel="shortcut icon" href="{$root_uri}images/template/favicon.ico" />
 

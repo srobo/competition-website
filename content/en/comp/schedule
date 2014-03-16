@@ -15,6 +15,13 @@
 Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
 <table>
+    <colgroup class="meta" span="2" />
+    <colgroup class="arena" data-ng-repeat="arena in arenas">
+        <col class="corner-0" />
+        <col class="corner-1" />
+        <col class="corner-2" />
+        <col class="corner-3" />
+    </colgroup>
     <thead>
         <tr>
             <th rowspan="2">Time  </th>
@@ -29,7 +36,9 @@ Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-repeat="match in matches" id="match-{{match.number}}">
+        <tr data-ng-repeat="match in matches"
+            data-ng-class="{current: match.number==current_match}"
+            id="match-{{match.number}}">
             <td>{{match.time}}</td>
             <td>{{match.number}}</td>
             <td data-ng-repeat="team in match.teams">{{team}}</td>

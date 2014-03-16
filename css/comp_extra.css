@@ -1,0 +1,8 @@
+
+/* Schedule page */
+#comp_schedule colgroup.arena {
+	width: 150px;
+}
+#comp_schedule tbody tr.current {
+	background-color: #FFFFB0;
+}
