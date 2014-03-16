@@ -6,11 +6,13 @@
 Up to date with scores from match {{latest_match}}.
 
 <table>
-    <tr>
-        <th>Position</th>
-        <th>Points</th>
-        <th>Team</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Points</th>
+            <th>Team</th>
+        </tr>
+    </thead>
     <tr data-ng-repeat="item in league_points" id="{{item.tla}}">
         <td>{{item.pos}}</td>
         <td>{{item.points}}</td>
