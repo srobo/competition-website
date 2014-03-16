@@ -10,13 +10,18 @@
 </style>
 -->
 
-# Match Schedule
+# League Match Schedule
 
 Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
+<div class="match-session" markdown="1"
+     data-ng-repeat="session in sessions">
+
+## {{session.when}}
+
 <table>
     <colgroup class="meta" span="2" />
-    <colgroup class="arena" data-ng-repeat="arena in arenas">
+    <colgroup class="arena" data-ng-repeat="arena in session.arenas">
         <col class="corner-0" />
         <col class="corner-1" />
         <col class="corner-2" />
@@ -26,17 +31,17 @@ Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
         <tr>
             <th rowspan="2">Time  </th>
             <th rowspan="2">Match </th>
-            <th data-ng-repeat="arena in arenas" colspan="4">Arena {{arena}}</th>
+            <th data-ng-repeat="arena in session.arenas" colspan="4">Arena {{arena}}</th>
         </tr>
         <tr>
-            <th data-ng-repeat-start="arena in arenas">Corner 0</th>
+            <th data-ng-repeat-start="arena in session.arenas">Corner 0</th>
             <th>Corner 1</th>
             <th>Corner 2</th>
             <th data-ng-repeat-end>Corner 3</th>
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-repeat="match in matches"
+        <tr data-ng-repeat="match in session.matches"
             data-ng-class="{current: match.number==current_match}"
             id="match-{{match.number}}">
             <td>{{match.time}}</td>
@@ -45,3 +50,5 @@ Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
         </tr>
     </tbody>
 </table>
+
+</div>

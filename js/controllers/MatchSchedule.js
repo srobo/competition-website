@@ -26,7 +26,13 @@ app.controller("MatchSchedule", function($scope, $resource) {
         });
 
         Matches.get(function(nodes) {
-            $scope.matches = convert_matches(nodes.matches);
+            // TODO: proper sessions support
+            matches = convert_matches(nodes.matches);
+            $scope.sessions = [{
+                'when': 'Someday, 0 Month 2014, morning',
+                'arenas': $scope.arenas,
+                'matches': matches
+            }];
         });
     };
 
