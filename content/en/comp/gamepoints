@@ -5,6 +5,8 @@
 
 Up to date with scores from match {{latest_match}}.
 
+<!--- Add dynamic sorting rather than the fixed sorting by name? -->
+
 <table>
     <thead>
         <tr>
