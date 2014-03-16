@@ -12,7 +12,11 @@ td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
 
 <div id="schedule-filter">
     Show matches for:
-    <select data-ng-model="chosenTeam">
+    <!--- NB: local width style as otherwise Select2 doesn't get it right -->
+    <select data-ng-model="chosenTeam"
+            data-ui-select2
+            style="width:350px;"
+            >
         <option value="">All Teams</option>
         <option data-ng-repeat="(tla, info) in teams"
                 value="{{tla}}">

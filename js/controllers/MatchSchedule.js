@@ -1,5 +1,5 @@
 
-var app = angular.module('app', ["ngResource", "competitionFilters"]);
+var app = angular.module('app', ["ngResource", "competitionFilters", "ui.select2"]);
 
 app.controller("MatchSchedule", function($scope, $resource) {
 
@@ -21,10 +21,8 @@ app.controller("MatchSchedule", function($scope, $resource) {
     }
 
     var updateTeams = function() {
-        //$('#schedule-filter select').chosen();
         Teams.get(function(teams) {
             $scope.teams = teams;
-          //  $('#schedule-filter select').trigger("chosen:updated");
         });
     };
 
