@@ -153,7 +153,7 @@ describe("The match schedule converter sorter helpers", function() {
 		expect(match).toEqual(expected);
 	});
 	it("should flatten and simplify the collection of matches", function() {
-		var matches = utils.convert_matches({0: input});
+		var matches = utils.convert_matches([input]);
 		expect(matches).toEqual([expected]);
 	});
 });

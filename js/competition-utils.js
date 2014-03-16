@@ -63,8 +63,8 @@ var gamepoints_sorter = function() {
 var convert_matches = function() {
     return function(matches) {
         var output = [];
-        for (var num in matches) {
-            output.push(match_converter(matches[num]));
+        for (var i=0; i<matches.length; i++) {
+            output.push(match_converter(matches[i]));
         }
         return output;
     };
