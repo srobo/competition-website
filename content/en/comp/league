@@ -16,6 +16,6 @@ Up to date with scores from match {{latest_match}}.
     <tr data-ng-repeat="item in league_points" id="{{item.tla}}">
         <td>{{item.pos}}</td>
         <td>{{item.points}}</td>
-        <td>{{item.tla}}</td>
+        <td>{{item.tla|teamName:teams}}</td>
     </tr>
 </table>
