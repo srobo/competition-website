@@ -19,8 +19,8 @@
 	</script>
 
 	<script type="text/javascript" src="{$root_uri}js/competition-utils.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-resource.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-resource.min.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/competition-filters.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/controllers/{getFromContent get='angular_controller'}.js"></script>
 
