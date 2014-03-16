@@ -28,8 +28,8 @@ app.controller("MatchSchedule", function($scope, $resource) {
             }
         });
 
-        Matches.get(function(matches) {
-            $scope.matches = convert_matches(matches);
+        Matches.get(function(nodes) {
+            $scope.matches = convert_matches(nodes.matches);
         });
     };
 
