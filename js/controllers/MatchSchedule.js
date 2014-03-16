@@ -21,11 +21,8 @@ app.controller("MatchSchedule", function($scope, $resource) {
     }
 
     var updateState = function(CurrentMatch) {
-        CurrentMatch.get(function(match){
-            for (var arena in match) {
-                $scope.current_match = match[arena].num;
-                break;
-            }
+        CurrentMatch.get(function(match) {
+            $scope.current_match = match.number;
         });
 
         Matches.get(function(nodes) {
