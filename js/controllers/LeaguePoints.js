@@ -2,12 +2,9 @@
 var app = angular.module('app', ["ngResource", "competitionFilters"]);
 
 app.controller("LeaguePoints", function($scope, $resource) {
-
-    // TODO: inject this url somehow
-    var root = "http://localhost/comp-api";
-    var Points = $resource(root + "/scores/league");
+    var Points = $resource(API_ROOT + "/scores/league");
     var Teams = $resource(SRWEB_ROOT + "teams-data.php");
-    var KnockoutInfo = $resource(root + "/knockout/max_entrants");
+    var KnockoutInfo = $resource(API_ROOT + "/knockout/max_entrants");
 
     $scope.knockout_max = null;
     var updateState = function() {

@@ -17,6 +17,7 @@
 
 	<script type="text/javascript">
 		var SRWEB_ROOT = "{$root_uri}";
+		var API_ROOT = "/comp-api";
 	</script>
 
 	<script type="text/javascript" src="{$root_uri}js/competition-utils.js"></script>

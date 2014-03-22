@@ -2,17 +2,13 @@
 var app = angular.module('app', ["ngResource", "competitionFilters", "ui.select2"]);
 
 app.controller("MatchSchedule", function($scope, $resource) {
-
-    // TODO: inject this url somehow
-    var root = "http://localhost/comp-api";
-
-    var Arenas = $resource(root + "/arenas");
-    var Matches = $resource(root + "/matches/all");
+    var Arenas = $resource(API_ROOT + "/arenas");
+    var Matches = $resource(API_ROOT + "/matches/all");
     var Teams = $resource(SRWEB_ROOT + "teams-data.php");
 
     $scope.corners = [];
     var load_corner = function (cornerId) {
-        $resource(root + "/corner/" + cornerId).get(function(corner) {
+        $resource(API_ROOT + "/corner/" + cornerId).get(function(corner) {
             $scope.corners[cornerId] = corner;
         });
     };
@@ -44,7 +40,7 @@ app.controller("MatchSchedule", function($scope, $resource) {
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
-        var CurrentMatch = $resource(root + "/matches/" + nodes.arenas[0] + "/current");
+        var CurrentMatch = $resource(API_ROOT + "/matches/" + nodes.arenas[0] + "/current");
         var update = function() {
             updateState(CurrentMatch);
         };
