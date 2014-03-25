@@ -127,32 +127,42 @@ describe("The match schedule converter sorter helpers", function() {
 		expect(utils.match_converter).toBeDefined();
 		expect(utils.convert_matches).toBeDefined();
 	});
-	var input = {
-		'A': {
-			'arena': 'A',
-			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
-			'num': 0,
-			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
-			'teams': [ 'CLY', 'TTN', 'SCC', 'DSF' ]
-		},
-		'B': {
-			'arena': 'B',
-			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
-			'num': 0,
-			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
-			'teams': [ 'GRS', 'QMC', 'GRD', 'BRK' ]
-		}
-	};
-	var expected = {
-		'number': 0,
-		'time': '00:00:00',
-		'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
-	};
+	var input, expected;
+	beforeEach(function() {
+		input = {
+			'A': {
+				'arena': 'A',
+				'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+				'num': 0,
+				'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+				'teams': [ 'CLY', 'TTN', 'SCC', 'DSF' ]
+			},
+			'B': {
+				'arena': 'B',
+				'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+				'num': 0,
+				'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+				'teams': [ 'GRS', 'QMC', 'GRD', 'BRK' ]
+			}
+		};
+		expected = {
+			'number': 0,
+			'time': '00:00:00',
+			'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
+		};
+	});
 	it("should flatten and simplify match descriptions", function() {
 		var match = utils.match_converter(input);
 		expect(match).toEqual(expected);
 	});
 	it("should flatten and simplify the collection of matches", function() {
+		var matches = utils.convert_matches([input]);
+		expect(matches).toEqual([expected]);
+	});
+	it("should have correct teams alignment even when there are not the maximum number", function() {
+		input.A.teams = input.A.teams.slice(0, 2);
+		input.B.teams = input.B.teams.slice(0, 3);
+		expected.teams = input.A.teams.concat(['-', '-'], input.B.teams, ['-']);
 		var matches = utils.convert_matches([input]);
 		expect(matches).toEqual([expected]);
 	});

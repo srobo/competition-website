@@ -1,4 +1,6 @@
 
+var TEAMS_PER_ARENA = 4;
+
 var league_sorter = function() {
     var _game_points = null;
 
@@ -71,9 +73,18 @@ var convert_matches = function() {
 }();
 
 var match_converter = function() {
+    var teams_per_arena = TEAMS_PER_ARENA;
     var convert_time = function(time_str) {
         var date = new Date(time_str);
         return date.toTimeString().substring(0, 8);
+    };
+    var ensure_whole_arena = function(teams) {
+        var output = teams.concat([]);
+        var missing = teams_per_arena - output.length;
+        for (; missing > 0; missing--) {
+            output = output.concat(['-']);
+        }
+        return output;
     };
     return function(match) {
         var output = { 'teams': [] };
@@ -81,7 +92,8 @@ var match_converter = function() {
             var detail = match[arena];
             output.number = detail.num;
             output.time = convert_time(detail.start_time);
-            output.teams = output.teams.concat(detail.teams);
+            var arena_teams = ensure_whole_arena(detail.teams);
+            output.teams = output.teams.concat(arena_teams);
         }
         return output;
     };
