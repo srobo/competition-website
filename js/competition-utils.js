@@ -76,7 +76,7 @@ var match_converter = function() {
     var teams_per_arena = TEAMS_PER_ARENA;
     var convert_time = function(time_str) {
         var date = new Date(time_str);
-        return date.toTimeString().substring(0, 8);
+        return date;
     };
     var ensure_whole_arena = function(teams) {
         var output = teams.concat([]);

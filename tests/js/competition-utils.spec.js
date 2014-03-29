@@ -147,7 +147,7 @@ describe("The match schedule converter sorter helpers", function() {
 		};
 		expected = {
 			'number': 0,
-			'time': '00:00:00',
+			'time': new Date('2014-03-15 00:00:00'),
 			'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
 		};
 	});
