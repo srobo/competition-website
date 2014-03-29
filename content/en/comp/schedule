@@ -32,7 +32,7 @@ Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
 ## {{session.description}}
 
-<table>
+<table class="schedule">
     <colgroup class="meta" span="2" />
     <colgroup class="arena" data-ng-repeat="arena in session.arenas">
         <col class="corner-0" />
