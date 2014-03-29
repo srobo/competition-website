@@ -3,12 +3,12 @@
 
 # League Status
 
-Up to date with scores from match {{latest_match}}.
+This page shows the current status of the league, with teams positioned by
+the number of league points they have earned from their matches.
+Ties are resolved by comparing the total number of [game points](/comp/gamepoints)
+tied teams have earned in their league matches.
 
-<!--- TODO:
-* Explain what this is, and how it differs from the game points
-* Add a link to the game points
--->
+Up to date with scores from match {{latest_match}}.
 
 <table>
     <thead>

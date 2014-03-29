@@ -3,11 +3,15 @@
 
 # Game Points Totals
 
+This page shows the total number of game points scored by each team,
+summed over all of their league matches.
+For the current league points scores (including the league ranking),
+see the [league points](/comp/league) page.
+
 Up to date with scores from match {{latest_match}}.
 
 <!--- TODO:
 * Add dynamic sorting rather than the fixed sorting by name?
-* Explain what this is, and how it differs from the league points
 -->
 
 <table>
