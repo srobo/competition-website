@@ -10,5 +10,6 @@
 	width:150px;
 }
 #comp_schedule tbody tr.current {
+	/* TODO: make darker */
 	background-color:#FFFFB0;
 }

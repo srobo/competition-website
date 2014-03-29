@@ -5,7 +5,10 @@
 
 Up to date with scores from match {{latest_match}}.
 
-<!--- Add dynamic sorting rather than the fixed sorting by name? -->
+<!--- TODO:
+* Add dynamic sorting rather than the fixed sorting by name?
+* Explain what this is, and how it differs from the league points
+-->
 
 <table>
     <thead>

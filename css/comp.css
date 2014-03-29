@@ -1,5 +1,6 @@
 
 tbody tr:nth-child(odd) {
+	/* TODO: make darker */
 	background-color: #E8E8E8;
 }
 tbody tr:hover {

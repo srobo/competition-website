@@ -5,6 +5,11 @@
 
 Up to date with scores from match {{latest_match}}.
 
+<!--- TODO:
+* Explain what this is, and how it differs from the game points
+* Add a link to the game points
+-->
+
 <table>
     <thead>
         <tr>
