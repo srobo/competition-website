@@ -55,3 +55,7 @@ div#header ul li a {
 div#header ul li a:hover, div#header ul li a:focus {
 	color:#DE6400;
 }
+
+table.schedule td:nth-child(2) {
+	text-align:center;
+}
