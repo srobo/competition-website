@@ -30,7 +30,7 @@ Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 <div class="match-session" markdown="1"
      data-ng-repeat="session in sessions">
 
-## {{session.when}}
+## {{session.description}}
 
 <table>
     <colgroup class="meta" span="2" />

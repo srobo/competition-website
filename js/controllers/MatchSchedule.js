@@ -31,7 +31,7 @@ app.controller("MatchSchedule", function($scope, $resource) {
             // TODO: proper sessions support
             matches = convert_matches(nodes.matches);
             $scope.sessions = [{
-                'when': 'Someday, 0 Month 2014, morning',
+                'description': 'Someday, 0 Month 2014, morning',
                 'arenas': $scope.arenas,
                 'matches': matches
             }];
