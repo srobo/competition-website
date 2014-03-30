@@ -8,7 +8,12 @@ summed over all of their league matches.
 For the current league points scores (including the league ranking),
 see the [league points](/comp/league) page.
 
+<span data-ng-if="latest_match != null">
 Up to date with scores from match {{latest_match}}.
+</span>
+<span data-ng-if="latest_match == null">
+No scores have been recorded yet.
+</span>
 
 <!--- TODO:
 * Add dynamic sorting rather than the fixed sorting by name?
