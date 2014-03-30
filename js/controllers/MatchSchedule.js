@@ -3,7 +3,7 @@ var app = angular.module('app', ["ngResource", "competitionFilters", "ui.select2
 
 app.controller("MatchSchedule", function($scope, $resource) {
     var Arenas = $resource(API_ROOT + "/arenas");
-    var Matches = $resource(API_ROOT + "/matches/all");
+    var Matches = $resource(API_ROOT + "/matches/periods");
     var Teams = $resource(SRWEB_ROOT + "teams-data.php");
 
     $scope.corners = [];
@@ -28,13 +28,17 @@ app.controller("MatchSchedule", function($scope, $resource) {
         });
 
         Matches.get(function(nodes) {
-            // TODO: proper sessions support
-            matches = convert_matches(nodes.matches);
-            $scope.sessions = [{
-                'description': 'Someday, 0 Month 2014, morning',
-                'arenas': $scope.arenas,
-                'matches': matches
-            }];
+            var sessions = [];
+            for (var i=0; i<nodes.periods.length; i++) {
+                var period = nodes.periods[i];
+                var matches = convert_matches(period.matches);
+                sessions.push({
+                    'description': period.description,
+                    'arenas': $scope.arenas,
+                    'matches': matches
+                });
+            }
+            $scope.sessions = sessions;
         });
     };
 
