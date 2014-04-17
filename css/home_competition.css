@@ -59,3 +59,20 @@ div#header ul li a:hover, div#header ul li a:focus {
 table.schedule td:nth-child(2) {
 	text-align:center;
 }
+
+div#competition div.info-box {
+	float:left;
+	position:relative;
+}
+
+div#competition span.more-link {
+	position:absolute;
+	right:0;
+	margin-top:20px;
+	margin-right:100px;
+}
+
+div#competition div.info-box span.more-link {
+	left:190px;
+	margin-top:29px;
+}
