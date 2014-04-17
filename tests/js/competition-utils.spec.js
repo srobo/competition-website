@@ -166,6 +166,19 @@ describe("The match schedule converter sorter helpers", function() {
 		var matches = utils.convert_matches([input]);
 		expect(matches).toEqual([expected]);
 	});
+	it("should put a suitable character in empty corners", function() {
+		input.A.teams[0] = null;
+		input.A.teams[3] = null;
+		input.B.teams[1] = null;
+		var expected_a = input.A.teams.concat([]);
+		expected_a[0] = '-';
+		expected_a[3] = '-';
+		var expected_b = input.B.teams.concat([]);
+		expected_b[1] = '-';
+		expected.teams = expected_a.concat(expected_b);
+		var matches = utils.convert_matches([input]);
+		expect(matches).toEqual([expected]);
+	});
 });
 
 describe("The match team filterer", function() {
