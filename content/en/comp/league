@@ -30,6 +30,9 @@ No scores have been recorded yet.
     <tr data-ng-repeat="item in league_points" id="{{item.tla}}">
         <td>{{item.pos}}</td>
         <td>{{item.points}}</td>
-        <td>{{item.tla|teamName:teams}}</td>
+        <td>
+            <a href="/teams/{{item.tla}}" title="Find out more about team {{item.tla}}">{{item.tla}}</a>:
+            {{item.tla|teamName:teams:true}}
+        </td>
     </tr>
 </table>

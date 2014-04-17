@@ -3,13 +3,17 @@ var competitionFilters = angular.module('competitionFilters', []);
 
 /// Replaces a plain TLA with an actual team name
 competitionFilters.filter('teamName', function($log) {
-    return function(tla, teams) {
+    return function(tla, teams, name_only) {
         if (teams == null || !(tla in teams)) {
             $log.warn('No information for team: ' + tla);
             return tla;
         }
+        name_only = name_only || false;
         var info = teams[tla];
         var name = info.team_name || info.college.name;
+        if (name_only) {
+            return name;
+        }
         return tla + ": " + name;
     };
 });
