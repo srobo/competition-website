@@ -13,3 +13,69 @@
 	/* TODO: make darker */
 	background-color:#FFFFB0;
 }
+
+/* Knockouts page */
+#knockouts div.round {
+	padding-bottom:15px;
+	padding-top:15px;
+	text-align:center;
+}
+#knockouts div.round:nth-child(odd) {
+	/* TODO: make darker */
+	background-color: #E8E8E8;
+}
+#knockouts div.round:nth-last-child(3) div.match {
+	/* Quarters */
+	font-size:1.2em;
+	line-height:1em;
+	width:180px;
+}
+#knockouts div.round:nth-last-child(3) div.match li {
+	width:80px;
+}
+#knockouts div.round:nth-last-child(2) div.match {
+	/* Semis */
+	font-size:1.5em;
+	line-height:1em;
+	width:200px;
+}
+#knockouts div.round:nth-last-child(2) div.match li {
+	width:90px;
+}
+#knockouts div.round:nth-last-child(1) div.match {
+	/* Finals */
+	font-size:2em;
+	line-height:1em;
+	width:260px;
+}
+#knockouts div.round:nth-last-child(1) div.match li {
+	width:120px;
+}
+
+#knockouts div.match {
+	display:inline-block;
+	margin:5px 0;
+	width:140px;
+}
+#knockouts div.match:nth-child(2n+1) {
+	margin-left:10px;
+}
+#knockouts div.match:nth-child(2n) {
+	margin-right:10px;
+}
+#knockouts div.match ul {
+	list-style-type:none;
+	margin:0 10px;
+}
+#knockouts div.match li {
+	float:left;
+	text-align: center;
+	width:60px;
+}
+#knockouts div.match li:nth-child(2) {
+	float:right;
+}
+#knockouts div.match li:nth-child(3) {
+	clear:both;
+	float:right;
+}

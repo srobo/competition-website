@@ -8,6 +8,8 @@ the number of league points they have earned from their matches.
 Ties are resolved by comparing the total number of [game points](/comp/gamepoints)
 tied teams have earned in their league matches.
 
+The positions of the teams within the league are used to seed the [knockouts](/comp/knockout).
+
 <span data-ng-if="latest_match != null">
 Up to date with scores from match {{latest_match}}.
 </span>
