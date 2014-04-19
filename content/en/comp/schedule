@@ -8,7 +8,12 @@ td.match:nth-child(4n+5) { background-color: {{corners[2].colour}}; }
 td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
 </style>
 
-# League Match Schedule
+# Match Schedule
+
+This page shows the schedule of matches for the competition.
+During most of the sessions teams earn [league points](/comp/league),
+which are used to seed the the [knockout](/comp/knockout "An alternative, tree style, view of the knockouts") rounds.
+The knockout rounds occur during the [last session](#last-session) of the competition
 
 <div id="schedule-filter">
     Show matches for:
@@ -33,10 +38,14 @@ td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
     </label>
 </div>
 
-Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
+<span data-ng-if="current_match != null">
+The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
+</span>
 
 <div class="match-session" markdown="1"
      data-ng-repeat="session in sessions">
+
+<a id="last-session" data-ng-if="$last"></a>
 
 ## {{session.description}}
 
