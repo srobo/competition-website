@@ -165,7 +165,7 @@ var unspent_matches = function() {
                 var new_session = {
                     'description': session.description,
                     'arenas': session.arenas,
-                    'matches': filter_matches(session.matches, then)
+                    'matches': matches
                 };
                 output.push(new_session);
             }
