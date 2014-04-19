@@ -132,6 +132,11 @@ var unspent_matches = function() {
     var filter_matches = function(matches, when) {
         // todo: binary search?
 
+        if (matches.length == 0) {
+            // nothing to do
+            return matches;
+        }
+
         if (matches[0].time > when) {
             // all in future
             return matches;

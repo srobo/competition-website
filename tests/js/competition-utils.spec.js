@@ -296,4 +296,13 @@ describe("The unspent match filterer", function() {
 		}];
 		expect(output).toEqual(expected);
 	});
+	it("should not error about an already empty session", function() {
+		sessions.push({
+			'arenas': arenas,
+			'matches': []
+		});
+		var output = utils.unspent_matches(sessions, true);
+		var expected = [sessions[0]];
+		expect(output).toEqual(expected);
+	});
 });
