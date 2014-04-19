@@ -31,7 +31,6 @@
 	/* Quarters */
 	font-size:1.2em;
 	line-height:1em;
-	width:180px;
 }
 #knockouts div.round:nth-last-child(3) div.match li {
 	width:80px;
@@ -40,7 +39,6 @@
 	/* Semis */
 	font-size:1.5em;
 	line-height:1em;
-	width:200px;
 }
 #knockouts div.round:nth-last-child(2) div.match li {
 	width:90px;
@@ -49,7 +47,6 @@
 	/* Finals */
 	font-size:2em;
 	line-height:1em;
-	width:260px;
 }
 #knockouts div.round:nth-last-child(1) div.match li {
 	width:120px;
@@ -58,7 +55,6 @@
 #knockouts div.match {
 	display:inline-block;
 	margin:5px 0;
-	width:140px;
 }
 #knockouts div.match:nth-child(2n+1) {
 	margin-left:10px;
