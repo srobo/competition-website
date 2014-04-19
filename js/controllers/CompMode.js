@@ -19,14 +19,23 @@ app.controller("CompMode", function($scope, $resource) {
     // Idealy this would be a filter in the template, but that didn't want
     // to work easily.
     var all_matches = [];
-    var current_match = 0;
+    var next_match = 0;
     var refresh = function() {
-        $scope.matches = all_matches.slice(current_match, current_match+10);
+        var low = Math.max(0, next_match-2);
+        $scope.matches = all_matches.slice(low, low+10);
     };
 
-    var updateState = function(CurrentMatch) {
-        CurrentMatch.get(function(match) {
-            current_match = match.number;
+    var updateState = function(MatchState) {
+        MatchState.get(function(matches) {
+            matches = matches.matches;
+            for (var i=0; i<matches.length; i++) {
+                var match = matches[i];
+                if (match.query == "next") {
+                    next_match = match.number;
+                } else if (match.query == "current") {
+                    $scope.current_match = match.number;
+                }
+            }
             refresh();
         });
 
@@ -43,9 +52,9 @@ app.controller("CompMode", function($scope, $resource) {
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
-        var CurrentMatch = $resource(API_ROOT + "/matches/" + nodes.arenas[0] + "/current");
+        var MatchState = $resource(API_ROOT + "/matches/" + nodes.arenas[0] + "?numbers=current,next");
         var update = function() {
-            updateState(CurrentMatch);
+            updateState(MatchState);
         };
         // refresh every 10s
         setInterval(update, 10000);

@@ -20,3 +20,7 @@ table.schedule td:nth-child(2) {
 table.schedule td {
 	text-align:center;
 }
+table.schedule tbody tr.current {
+	/* TODO: make darker */
+	background-color:#FFFFB0;
+}
