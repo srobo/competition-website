@@ -7,14 +7,13 @@ All the teams in this year's competition will enter the knockout stages.
 Teams are placed into the initial knockout rounds based on their [league points](/comp/league).
 From there, the top two robots in each match will progress to the next round.
 
-<span data-ng-if="latest_scored_match != null">
+<span data-ng-if="latest_scored_match != null && knockout_started">
 Up to date with scores from match {{latest_scored_match}}.
 </span>
 
 <span data-ng-if="!knockout_started">
 The knockouts have not yet started.
-The seedings displayed here show the current state of the league,
-and will change as that progresses.
+See the [match schedule](/comp/schedule) for information about the current match.
 </span>
 
 <div id="knockouts">
