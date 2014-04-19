@@ -77,14 +77,10 @@ var convert_matches = function() {
     };
 }();
 
-var match_converter = function() {
+var ensure_whole_arena = function() {
     var teams_per_arena = TEAMS_PER_ARENA;
     var empty_corner_symbol = EMPTY_CORNER_SYMBOL;
-    var convert_time = function(time_str) {
-        var date = new Date(time_str);
-        return date;
-    };
-    var ensure_whole_arena = function(teams) {
+    return function(teams) {
         var output = teams.concat([]);
         for (var i=0; i<output.length; i++) {
             if (!output[i]) {
@@ -96,6 +92,13 @@ var match_converter = function() {
             output = output.concat([empty_corner_symbol]);
         }
         return output;
+    };
+}();
+
+var match_converter = function() {
+    var convert_time = function(time_str) {
+        var date = new Date(time_str);
+        return date;
     };
     return function(match) {
         var output = { 'teams': [] };
