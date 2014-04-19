@@ -25,30 +25,7 @@ app.controller("KnockoutMatches", function($scope, $resource) {
         });
 
         Matches.get(function(nodes) {
-            $scope.rounds = nodes.rounds;
-            for (var i=0; i<$scope.rounds.length; i++) {
-                var round = $scope.rounds[i];
-                var prefix = null;
-                var rounds_after_this = $scope.rounds.length - i - 1;
-
-                for (var j=0; j<round.length; j++) {
-                    var match = round[j];
-                    match.time = new Date(match.start_time);
-                    match.description = "Match " + match.num;
-                    if (rounds_after_this == 2) {
-                        match.description = "Quarter " + j + " (#" + match.num + ")";
-                    }
-                    if (rounds_after_this == 1) {
-                        match.description = "Semi " + j + " (#" + match.num + ")";
-                    }
-                    if (rounds_after_this == 0) {
-                        match.description = "Final (match " + match.num + ")";
-                    }
-                    while (match.teams.length != 4) {
-                        match.teams.push('-');
-                    }
-                }
-            }
+            $scope.rounds = process_knockouts(nodes.rounds);
             $scope.knockout_started = nodes.started;
         });
     };

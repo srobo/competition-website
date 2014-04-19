@@ -306,3 +306,45 @@ describe("The unspent match filterer", function() {
 		expect(output).toEqual(expected);
 	});
 });
+
+describe("The knockout round processor match filterer", function() {
+	it("should be defined", function() {
+		expect(utils.process_knockouts).toBeDefined();
+		expect(utils.process_knockout_round).toBeDefined();
+	});
+	var round, expected;
+	beforeEach(function() {
+		// a round is a collection of games
+		var teams_a = [ 'CLY', 'TTN', 'SCC', 'DSF' ];
+		var teams_b = [ 'GRS', 'QMC', 'GRD', 'BRK' ];
+		round = [{
+			'arena': 'A',
+			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+			'num': 0,
+			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+			'teams': teams_a
+		},{
+			'arena': 'B',
+			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+			'num': 0,
+			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+			'teams': teams_b
+		}];
+		// it gets converted to a collection of match describing objects
+		expected = [{
+			'description': "Final (#0)",
+			'time': new Date('2014-03-15 00:00:00'),
+			'games': [{
+					'arena': 'A',
+					'teams': teams_a
+				}, {
+					'arena': 'B',
+					'teams': teams_b
+				}]
+		}];
+	});
+	it("should suitably convert the data", function() {
+		var output = utils.process_knockout_round(round, 0);
+		expect(output).toEqual(expected);
+	});
+});

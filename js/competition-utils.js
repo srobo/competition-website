@@ -182,6 +182,84 @@ var unspent_matches = function() {
     };
 }();
 
+var process_knockout_round = function() {
+    var describe_match = function(num_in_round, match_num, rounds_after_this) {
+        var description = "Match " + match_num;
+        if (rounds_after_this == 2) {
+            description = "Quarter " + num_in_round + " (#" + match_num + ")";
+        }
+        if (rounds_after_this == 1) {
+            description = "Semi " + num_in_round + " (#" + match_num + ")";
+        }
+        if (rounds_after_this == 0) {
+            description = "Final (#" + match_num + ")";
+        }
+        return description;
+    };
+    var build_game = function(info) {
+        return {
+            "arena": info.arena,
+            "teams": ensure_whole_arena(info.teams)
+        };
+    };
+    var group_games = function(games) {
+        // group the given games by number, assuming they're in order.
+        var game_groups = [];
+        var last_group = null;
+        var last_num = null;
+
+        for (var i=0; i<games.length; i++) {
+            var game = games[i];
+            if (last_num == game.num) {
+                last_group.push(game);
+            } else {
+                last_group = [game];
+                last_num   = game.num;
+                game_groups.push(last_group);
+            }
+        }
+
+        return game_groups;
+    }
+    return function(round, rounds_after_this) {
+
+        var game_groups = group_games(round);
+
+        var matches = [];
+        for (var i=0; i<game_groups.length; i++) {
+            var match_games = game_groups[i];
+            var number, time;
+            var game_details = [];
+            for (var j=0; j<match_games.length; j++) {
+                var game = match_games[j];
+                if (j == 0) {
+                    number = game.num;
+                    time = new Date(game.start_time);
+                }
+                game_details.push(build_game(game));
+            }
+
+            matches.push({
+                'description': describe_match(i, number, rounds_after_this),
+                'time': time,
+                'games': game_details
+            });
+        }
+        return matches;
+    };
+}();
+
+var process_knockouts = function() {
+    return function(rounds) {
+        var output = [];
+        for (var i=0; i<rounds.length; i++) {
+            var rounds_after_this = rounds.length - i - 1;
+            output.push(process_knockout_round(rounds[i], rounds_after_this));
+        }
+        return output;
+    }
+}();
+
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
     exports.league_sorter = league_sorter;
@@ -190,4 +268,6 @@ if (typeof(exports) != 'undefined') {
     exports.convert_matches = convert_matches;
     exports.matches_for_team = matches_for_team;
     exports.unspent_matches = unspent_matches;
+    exports.process_knockouts = process_knockouts;
+    exports.process_knockout_round = process_knockout_round;
 }

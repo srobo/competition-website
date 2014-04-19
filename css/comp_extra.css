@@ -52,29 +52,40 @@
 	width:120px;
 }
 
-#knockouts div.match {
+#knockouts div.match,
+/* Special case -- 4 items on the Quarters line since they're all in the same arena
+ * Needed to overrrle the border:none in the 3n+1 below, not because it's actually
+ * any different
+ */
+#knockouts div.round:nth-last-child(3) div.match:nth-child(4) {
+	border-left:1px solid lightGrey;
 	display:inline-block;
-	margin:5px 0;
+	padding:5px 0;
 }
-#knockouts div.match:nth-child(2n+1) {
-	margin-left:10px;
+#knockouts div.match:nth-child(3n+1) {
+	border:none;
 }
-#knockouts div.match:nth-child(2n) {
-	margin-right:10px;
+#knockouts div.match span {
+	display:block;
 }
-#knockouts div.match ul {
+
+#knockouts div.game {
+	display:inline-block;
+	padding:0 10px;
+}
+#knockouts div.game ul {
 	list-style-type:none;
 	margin:0 10px;
 }
-#knockouts div.match li {
+#knockouts div.game li {
 	float:left;
 	text-align: center;
-	width:60px;
+	width:50px;
 }
-#knockouts div.match li:nth-child(2) {
+#knockouts div.game li:nth-child(2) {
 	float:right;
 }
-#knockouts div.match li:nth-child(3) {
+#knockouts div.game li:nth-child(3) {
 	clear:both;
 	float:right;
 }
