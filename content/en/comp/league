@@ -17,10 +17,6 @@ Up to date with scores from match {{latest_match}}.
 No scores have been recorded yet.
 </span>
 
-<!--- TODO:
-* Make the knockout cut off line clearer -- at the moment it's entirely non-obvious what it is
--->
-
 <table>
     <thead>
         <tr>
