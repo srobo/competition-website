@@ -3,6 +3,13 @@
 #comp_schedule #schedule-filter {
 	float:right;
 }
+#comp_schedule #schedule-filter input[type=checkbox] {
+	margin-bottom:2px;
+	vertical-align:bottom;
+}
+#comp_schedule div.match-session {
+	clear:both;
+}
 #comp_schedule th[rowspan] {
 	vertical-align:middle;
 }

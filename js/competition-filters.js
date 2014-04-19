@@ -23,3 +23,9 @@ competitionFilters.filter('containsTeam', function() {
     // implemented in competition-utils.js
     return matches_for_team;
 });
+
+/// Exclude matches which have already happened
+competitionFilters.filter('unspentMatches', function() {
+    // implemented in competition-utils.js
+    return unspent_matches;
+});

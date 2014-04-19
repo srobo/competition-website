@@ -23,6 +23,14 @@ td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
             {{tla|teamName:teams}}
         </option>
     </select>
+    <label>
+        Hide old matches:
+        <input type="checkbox"
+               data-ng-model="hideOldMatches"
+               data-ng-checked="hideOldMatches"
+               data-ng-change="onHideOldMatches(hideOldMatches)"
+            />
+    </label>
 </div>
 
 Current match is <a href="#match-{{current_match}}">{{current_match}}</a>.

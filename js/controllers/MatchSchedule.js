@@ -1,10 +1,18 @@
 
-var app = angular.module('app', ["ngResource", "competitionFilters", "ui.select2"]);
+var app = angular.module('app', ["ngResource", "ngCookies", "competitionFilters", "ui.select2"]);
 
-app.controller("MatchSchedule", function($scope, $resource) {
+app.controller("MatchSchedule", function($scope, $resource, $cookieStore) {
     var Arenas = $resource(API_ROOT + "/arenas");
     var Matches = $resource(API_ROOT + "/matches/periods");
     var Teams = $resource(SRWEB_ROOT + "teams-data.php");
+
+    var sessions_cache = {};
+    $scope.onHideOldMatches = function(value) {
+        $cookieStore.put("hideOldMatches", value);
+        $scope.sessions = sessions_cache[value];
+    };
+    // treat undefined (the default) as true
+    $scope.hideOldMatches = !($cookieStore.get("hideOldMatches") === false);
 
     $scope.corners = [];
     var load_corner = function (cornerId) {
@@ -38,7 +46,9 @@ app.controller("MatchSchedule", function($scope, $resource) {
                     'matches': matches
                 });
             }
-            $scope.sessions = sessions;
+            sessions_cache[false] = sessions;
+            sessions_cache[true] = unspent_matches(sessions, true);
+            $scope.sessions = sessions_cache[$scope.hideOldMatches];
         });
     };
 

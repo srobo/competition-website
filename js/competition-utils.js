@@ -2,6 +2,10 @@
 var TEAMS_PER_ARENA = 4;
 var EMPTY_CORNER_SYMBOL = '-';
 
+// age of match (by start time) to be hidden when the user wants
+// to hide 'old' matches
+var MAX_MATCH_AGE = 15 * 60; // 15 minutes in seconds
+
 var league_sorter = function() {
     var _game_points = null;
 
@@ -123,6 +127,53 @@ var matches_for_team = function() {
     };
 }();
 
+var unspent_matches = function() {
+    var max_age = MAX_MATCH_AGE;
+    var filter_matches = function(matches, when) {
+        // todo: binary search?
+
+        if (matches[0].time > when) {
+            // all in future
+            return matches;
+        }
+
+        if (matches[matches.length-1].time < when) {
+            // all in past
+            return [];
+        }
+
+        var output = [];
+        for (var i=0; i<matches.length; i++) {
+            var match = matches[i];
+            if (match.time > when) {
+                output.push(match);
+            }
+        }
+        return output;
+    };
+    return function(sessions, hideOldMatches) {
+        if (sessions == null || !hideOldMatches) {
+            return sessions;
+        }
+        var output = [];
+        var then = new Date();
+        then.setTime(then.getTime() - 1000*max_age);
+        for (var i=0; i<sessions.length; i++) {
+            var session = sessions[i];
+            var matches = filter_matches(session.matches, then);
+            if (matches.length != 0) {
+                var new_session = {
+                    'description': session.description,
+                    'arenas': session.arenas,
+                    'matches': filter_matches(session.matches, then)
+                };
+                output.push(new_session);
+            }
+        }
+        return output;
+    };
+}();
+
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
     exports.league_sorter = league_sorter;
@@ -130,4 +181,5 @@ if (typeof(exports) != 'undefined') {
     exports.match_converter = match_converter;
     exports.convert_matches = convert_matches;
     exports.matches_for_team = matches_for_team;
+    exports.unspent_matches = unspent_matches;
 }

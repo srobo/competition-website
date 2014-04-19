@@ -225,3 +225,75 @@ describe("The match team filterer", function() {
 		expect(matches).toEqual([]);
 	});
 });
+
+describe("The unspent match filterer", function() {
+	it("should be defined", function() {
+		expect(utils.unspent_matches).toBeDefined();
+	});
+	var arenas, matches, sessions;
+	beforeEach(function() {
+		arenas = ['A', 'B'];
+		matches = [{
+				'number': 0,
+				'time': new Date(), // now
+				'teams': [ 'ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'VWX' ]
+			}, {
+				'number': 1,
+				'time': new Date(),
+				'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
+			}, {
+				'number': 2,
+				'time': new Date(),
+				'teams': [ 'CLY2', 'TTN2', 'SCC2', 'DSF2', 'GRS2', 'QMC2', 'GRD2', 'BRK2' ]
+		}];
+		sessions = [{
+			'arenas': arenas,
+			'matches': matches
+		}];
+	});
+	var adjust = function(date, howMuch) {
+		date.setTime(date.getTime() + 1000*howMuch);
+	};
+	it("should return all when no filtering is requested", function() {
+		var output = utils.unspent_matches(sessions, false);
+		expect(output).toBe(sessions);
+	});
+	it("should return all when filtering is not requested", function() {
+		var output = utils.unspent_matches(sessions);
+		expect(output).toBe(sessions);
+	});
+	it("should return only matches in the future", function() {
+		var sessions_clone = sessions.concat([]);
+		adjust(matches[0].time, -3600);
+		adjust(matches[1].time, +3600);
+		adjust(matches[2].time, +3600);
+		var output = utils.unspent_matches(sessions, true);
+		var expected = [{
+			'arenas': arenas,
+			'matches': [matches[1], matches[2]]
+		}];
+		expect(output).toEqual(expected);
+
+		// ensure we've not modified the original
+		expect(sessions).toEqual(sessions_clone);
+		expect(output).toNotBe(sessions);
+	});
+	it("should exclude sessions entirely in the past", function() {
+		adjust(matches[0].time, -3600);
+		adjust(matches[1].time, +3600);
+		adjust(matches[2].time, +3600);
+		var input = [{
+			'arenas': arenas,
+			'matches': [matches[0]]
+		}, {
+			'arenas': arenas,
+			'matches': [matches[1], matches[2]]
+		}];
+		var output = utils.unspent_matches(input, true);
+		var expected = [{
+			'arenas': arenas,
+			'matches': [matches[1], matches[2]]
+		}];
+		expect(output).toEqual(expected);
+	});
+});
