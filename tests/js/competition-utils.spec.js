@@ -332,6 +332,7 @@ describe("The knockout round processor match filterer", function() {
 		}];
 		// it gets converted to a collection of match describing objects
 		expected = [{
+			'number': 0,
 			'description': "Final (#0)",
 			'time': new Date('2014-03-15 00:00:00'),
 			'games': [{

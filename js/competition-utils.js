@@ -240,6 +240,7 @@ var process_knockout_round = function() {
             }
 
             matches.push({
+                'number': number,
                 'description': describe_match(i, number, rounds_after_this),
                 'time': time,
                 'games': game_details
