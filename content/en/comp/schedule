@@ -41,6 +41,8 @@ The knockout rounds occur during the [last session](#last-session) of the compet
 The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 </span>
 
+<div id="full_schedule">
+
 <div class="match-session" markdown="1"
      data-ng-repeat="session in sessions">
 
@@ -84,4 +86,7 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
     </tbody>
 </table>
 
+</div>
+
+<!-- full_schedule -->
 </div>
