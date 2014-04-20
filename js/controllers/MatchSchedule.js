@@ -28,16 +28,9 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corner
 
     // update the data only when the state changes
     State.change(function() {
-        MatchPeriods.get(function(nodes) {
-            var sessions = [];
-            for (var i=0; i<nodes.periods.length; i++) {
-                var period = nodes.periods[i];
-                var matches = convert_matches(period.matches);
-                sessions.push({
-                    'description': period.description,
-                    'arenas': $scope.arenas,
-                    'matches': matches
-                });
+        MatchPeriods.getSessions(function(sessions) {
+            for (var i=0; i<sessions.length; i++) {
+                sessions[i].arenas = $scope.arenas;
             }
             sessions_cache[false] = sessions;
             sessions_cache[true] = unspent_matches(sessions, true);

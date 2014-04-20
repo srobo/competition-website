@@ -47,7 +47,25 @@ app.factory("AllMatches", function($resource) {
 });
 
 app.factory("MatchPeriods", function($resource) {
-    return $resource(API_ROOT + "/matches/periods");
+    var build_sessions = function(nodes) {
+        var sessions = [];
+        for (var i=0; i<nodes.periods.length; i++) {
+            var period = nodes.periods[i];
+            var matches = convert_matches(period.matches);
+            sessions.push({
+                'description': period.description,
+                'matches': matches
+            });
+        }
+        return sessions;
+    };
+    return $resource(API_ROOT + "/matches/periods", {}, {
+        getSessions: {method: "GET", interceptor: {
+            response: function(response) {
+                return build_sessions(response.data);
+            }
+        }}
+    });
 });
 
 app.factory("KnockoutMatches", function($resource) {
