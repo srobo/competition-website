@@ -7,7 +7,7 @@ app.controller("KnockoutMatches", function($scope, $resource) {
     var Points = $resource(API_ROOT + "/scores/league");
     var Teams = $resource(SRWEB_ROOT + "teams-data.php");
 
-    $scope.unknowable = "???";
+    $scope.unknowable = UNKNOWABLE_TEAM;
 
     var updateTeams = function() {
         Teams.get(function(teams) {
