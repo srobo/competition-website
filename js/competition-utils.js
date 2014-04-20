@@ -132,7 +132,7 @@ var match_converter = function() {
 
 var matches_for_team = function() {
     return function(input, team) {
-        if (team == null || team.length == 0) {
+        if (input == null || team == null || team.length == 0) {
             return input;
         }
         var output = [];

@@ -196,6 +196,10 @@ describe("The match team filterer", function() {
 		'teams': [ 'MAI2', 'QMS', 'LSS', 'EMM', 'GRS', 'BDF', 'NHS', 'MEA' ]
 	};
 	var input = [match_0, match_1];
+	it("should return a suitable value when no input is given", function() {
+		var matches = utils.matches_for_team();
+		expect(matches).toEqual(null);
+	});
 	it("should return all when null team is given", function() {
 		var matches = utils.matches_for_team(input, null);
 		expect(matches).toBe(input);
