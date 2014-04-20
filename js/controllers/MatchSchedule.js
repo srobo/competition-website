@@ -1,10 +1,7 @@
 
-var app = angular.module('app', ["ngResource", "ngCookies", "competitionFilters", "ui.select2"]);
+var app = angular.module('app', ["ngCookies", "competitionFilters", "competitionResources", "ui.select2"]);
 
-app.controller("MatchSchedule", function($scope, $resource, $cookieStore) {
-    var Arenas = $resource(API_ROOT + "/arenas");
-    var Matches = $resource(API_ROOT + "/matches/periods");
-    var Teams = $resource(SRWEB_ROOT + "teams-data.php");
+app.controller("MatchSchedule", function($scope, $cookieStore, Arenas, Corners, CurrentMatchFactory, MatchPeriods, Teams) {
 
     var sessions_cache = {};
     $scope.onHideOldMatches = function(value) {
@@ -15,14 +12,9 @@ app.controller("MatchSchedule", function($scope, $resource, $cookieStore) {
     $scope.hideOldMatches = !($cookieStore.get("hideOldMatches") === false);
 
     $scope.corners = [];
-    var load_corner = function (cornerId) {
-        $resource(API_ROOT + "/corner/" + cornerId).get(function(corner) {
-            $scope.corners[cornerId] = corner;
-        });
-    };
-    for (var c=0; c<4; c++) {
-        load_corner(c);
-    }
+    Corners.load(function(cornerId, corner) {
+        $scope.corners[cornerId] = corner;
+    });
 
     var updateTeams = function() {
         Teams.get(function(teams) {
@@ -35,7 +27,7 @@ app.controller("MatchSchedule", function($scope, $resource, $cookieStore) {
             $scope.current_match = match.number;
         });
 
-        Matches.get(function(nodes) {
+        MatchPeriods.get(function(nodes) {
             var sessions = [];
             for (var i=0; i<nodes.periods.length; i++) {
                 var period = nodes.periods[i];
@@ -54,7 +46,7 @@ app.controller("MatchSchedule", function($scope, $resource, $cookieStore) {
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
-        var CurrentMatch = $resource(API_ROOT + "/matches/" + nodes.arenas[0] + "/current");
+        var CurrentMatch = CurrentMatchFactory(nodes.arenas[0]);
         var update = function() {
             updateState(CurrentMatch);
         };

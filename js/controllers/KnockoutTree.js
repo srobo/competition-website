@@ -1,11 +1,7 @@
 
-var app = angular.module('app', ["ngResource", "competitionFilters"]);
+var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, $resource) {
-    var Arenas = $resource(API_ROOT + "/arenas");
-    var Matches = $resource(API_ROOT + "/matches/knockouts");
-    var Points = $resource(API_ROOT + "/scores/league");
-    var Teams = $resource(SRWEB_ROOT + "teams-data.php");
+app.controller("KnockoutTree", function($scope, Arenas, CurrentMatchFactory, KnockoutMatches, LeagueScores, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
 
@@ -20,11 +16,11 @@ app.controller("KnockoutTree", function($scope, $resource) {
             $scope.current_match = match.number;
         });
 
-        Points.get(function(points) {
+        LeagueScores.get(function(points) {
             $scope.latest_scored_match = points.last_scored;
         });
 
-        Matches.get(function(nodes) {
+        KnockoutMatches.get(function(nodes) {
             $scope.rounds = process_knockouts(nodes.rounds);
             $scope.knockout_started = nodes.started;
         });
@@ -32,7 +28,7 @@ app.controller("KnockoutTree", function($scope, $resource) {
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
-        var CurrentMatch = $resource(API_ROOT + "/matches/" + nodes.arenas[0] + "/current");
+        var CurrentMatch = CurrentMatchFactory(nodes.arenas[0]);
         var update = function() {
             updateState(CurrentMatch);
         };

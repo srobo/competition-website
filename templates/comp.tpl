@@ -28,6 +28,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/lib/angular-ui-select2/src/select2.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/competition-filters.js"></script>
+	<script type="text/javascript" src="{$root_uri}js/competition-resources.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/controllers/{getFromContent get='angular_controller'}.js"></script>
 
 	{include file=tracking.tpl}
