@@ -1,11 +1,17 @@
 
+var UNKNOWABLE_TEAM = "???";
 var competitionFilters = angular.module('competitionFilters', []);
 
 /// Replaces a plain TLA with an actual team name
 competitionFilters.filter('teamName', function($log) {
+    var empty_corner_symbol = EMPTY_CORNER_SYMBOL;
+    var unknowable_team = UNKNOWABLE_TEAM;
+
     return function(tla, teams, name_only) {
         if (teams == null || !(tla in teams)) {
-            $log.warn('No information for team: ' + tla);
+            if (tla != empty_corner_symbol && tla != unknowable_team) {
+                $log.warn('No information for team: ' + tla);
+            }
             return tla;
         }
         name_only = name_only || false;
