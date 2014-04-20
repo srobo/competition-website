@@ -1,13 +1,7 @@
 
-var app = angular.module('app', ["ngResource", "competitionFilters"]);
+var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("CompMode", function($scope, $resource) {
-    var Arenas = $resource(API_ROOT + "/arenas");
-    var Points = $resource(API_ROOT + "/scores/league");
-    var Teams = $resource(SRWEB_ROOT + "teams-data.php");
-    // TODO: consider getting only the matches of interest,
-    // once there's an easy way to do this for all arenas at once.
-    var Matches = $resource(API_ROOT + "/matches/all");
+app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, MatchesFactory, Teams) {
 
     var updateTeams = function() {
         Teams.get(function(teams) {
@@ -39,12 +33,14 @@ app.controller("CompMode", function($scope, $resource) {
             refresh();
         });
 
-        Matches.get(function(nodes) {
+        // TODO: consider getting only the matches of interest,
+        // once there's an easy way to do this for all arenas at once.
+        AllMatches.get(function(nodes) {
             all_matches = convert_matches(nodes.matches);
             refresh();
         });
 
-        Points.get(function(points) {
+        LeagueScores.get(function(points) {
             var league_points = league_sorter(points.league_points, null, points.game_points);
             $scope.league_points = league_points.slice(0, 10);
         });
@@ -52,7 +48,7 @@ app.controller("CompMode", function($scope, $resource) {
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
-        var MatchState = $resource(API_ROOT + "/matches/" + nodes.arenas[0] + "?numbers=current,next");
+        var MatchState = MatchesFactory(nodes.arenas[0], "current,next");
         var update = function() {
             updateState(MatchState);
         };
