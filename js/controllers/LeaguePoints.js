@@ -3,7 +3,6 @@ var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
 app.controller("LeaguePoints", function($scope, LeagueScores, Teams) {
 
-    $scope.knockout_max = null;
     var updateState = function() {
         LeagueScores.get(function(points) {
             $scope.league_points = league_sorter(points.league_points, null, points.game_points);
