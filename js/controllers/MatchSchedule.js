@@ -16,11 +16,9 @@ app.controller("MatchSchedule", function($scope, $cookieStore, Arenas, Corners, 
         $scope.corners[cornerId] = corner;
     });
 
-    var updateTeams = function() {
-        Teams.get(function(teams) {
-            $scope.teams = teams;
-        });
-    };
+    Teams.follow(function(teams) {
+        $scope.teams = teams;
+    });
 
     var updateState = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
@@ -54,8 +52,4 @@ app.controller("MatchSchedule", function($scope, $cookieStore, Arenas, Corners, 
         setInterval(update, 10000);
         update();
     });
-
-    updateTeams();
-    // refresh teams every minute
-    setInterval(updateTeams, 60000);
 });

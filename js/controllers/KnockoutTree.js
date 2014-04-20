@@ -5,11 +5,9 @@ app.controller("KnockoutTree", function($scope, Arenas, CurrentMatchFactory, Kno
 
     $scope.unknowable = UNKNOWABLE_TEAM;
 
-    var updateTeams = function() {
-        Teams.get(function(teams) {
-            $scope.teams = teams;
-        });
-    };
+    Teams.follow(function(teams) {
+        $scope.teams = teams;
+    });
 
     var updateState = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
@@ -36,8 +34,4 @@ app.controller("KnockoutTree", function($scope, Arenas, CurrentMatchFactory, Kno
         setInterval(update, 10000);
         update();
     });
-
-    updateTeams();
-    // refresh teams every minute
-    setInterval(updateTeams, 60000);
 });

@@ -3,11 +3,9 @@ var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
 app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, MatchesFactory, Teams) {
 
-    var updateTeams = function() {
-        Teams.get(function(teams) {
-            $scope.teams = teams;
-        });
-    };
+    Teams.follow(function(teams) {
+        $scope.teams = teams;
+    });
 
     // because this changes as a result of two things, do our own updating.
     // Idealy this would be a filter in the template, but that didn't want
@@ -56,8 +54,4 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
         setInterval(update, 10000);
         update();
     });
-
-    updateTeams();
-    // refresh teams every minute
-    setInterval(updateTeams, 60000);
 });

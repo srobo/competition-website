@@ -6,6 +6,23 @@ var EMPTY_CORNER_SYMBOL = '-';
 // to hide 'old' matches
 var MAX_MATCH_AGE = 15 * 60; // 15 minutes in seconds
 
+var create_follower = function() {
+    return function($interval, resource, delay) {
+        return {
+            "get": function(cb) {
+                resource.get(cb);
+            },
+            "follow": function(cb, delay_override) {
+                var fetch = function() {
+                    resource.get(cb);
+                };
+                $interval(fetch, delay_override || delay);
+                fetch();
+            }
+        };
+    };
+}();
+
 var league_sorter = function() {
     var _game_points = null;
 

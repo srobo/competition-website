@@ -1,8 +1,9 @@
 
 var app = angular.module('competitionResources', ["ngResource"]);
 
-app.factory("Teams", function($resource) {
-    return $resource(SRWEB_ROOT + "/teams-data.php");
+app.factory("Teams", function($interval, $resource) {
+    var resource = $resource(SRWEB_ROOT + "/teams-data.php");
+    return create_follower($interval, resource, 60*1000);
 });
 
 app.factory("Arenas", function($resource) {
