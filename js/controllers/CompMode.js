@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, MatchesFactory, Teams) {
+app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, MatchesFactory, State, Teams) {
 
     Teams.follow(function(teams) {
         $scope.teams = teams;
@@ -17,6 +17,8 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
         $scope.matches = all_matches.slice(low, low+10);
     };
 
+    // update our current/next information all the time
+    // it will change as time passes, even if the state revision doesn't
     var updateState = function(MatchState) {
         MatchState.get(function(matches) {
             matches = matches.matches;
@@ -30,7 +32,10 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
             }
             refresh();
         });
+    };
 
+    // update the data only when the state changes
+    State.change(function() {
         // TODO: consider getting only the matches of interest,
         // once there's an easy way to do this for all arenas at once.
         AllMatches.get(function(nodes) {
@@ -42,7 +47,7 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
             var league_points = league_sorter(points.league_points, null, points.game_points);
             $scope.league_points = league_points.slice(0, 10);
         });
-    };
+    });
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;

@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueScores, MatchesFactory, Teams) {
+app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueScores, MatchesFactory, State, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
@@ -10,6 +10,8 @@ app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueS
         $scope.teams = teams;
     });
 
+    // update our current/next information all the time
+    // it will change as time passes, even if the state revision doesn't
     var updateState = function(MatchState) {
         MatchState.get(function(matches) {
             matches = matches.matches;
@@ -28,7 +30,10 @@ app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueS
             $scope.knockout_started = current.type == KNOCKOUT_TYPE ||
                             (current.error && next.type == KNOCKOUT_TYPE);
         });
+    };
 
+    // update the data only when the state changes
+    State.change(function() {
         LeagueScores.get(function(points) {
             $scope.latest_scored_match = points.last_scored;
         });
@@ -36,7 +41,7 @@ app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueS
         KnockoutMatches.get(function(nodes) {
             $scope.rounds = process_knockouts(nodes.rounds);
         });
-    };
+    });
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;

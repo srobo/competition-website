@@ -7,6 +7,20 @@ app.factory("Teams", function($interval, $resource) {
     return create_follower($interval, resource, 60*1000);
 });
 
+app.factory("State", function($interval, $resource) {
+    var resource = $resource(API_ROOT + "/state");
+    var follower = create_follower($interval, resource, 10*1000);
+    return { change: function(cb) {
+        var state = null;
+        follower.follow(function(nodes) {
+            if (state != nodes.state) {
+                state = nodes.state;
+                cb(nodes);
+            }
+        });
+    }};
+});
+
 app.factory("Arenas", function($resource) {
     return $resource(API_ROOT + "/arenas");
 });
