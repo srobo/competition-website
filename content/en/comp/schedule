@@ -31,9 +31,8 @@ The knockout rounds occur during the [last session](#last-session) of the compet
     <label>
         Hide old matches:
         <input type="checkbox"
-               data-ng-model="hideOldMatches"
-               data-ng-checked="hideOldMatches"
-               data-ng-change="onHideOldMatches(hideOldMatches)"
+               data-ng-model="$storage.hideOldMatches"
+               data-ng-checked="$storage.hideOldMatches"
             />
     </label>
 </div>
