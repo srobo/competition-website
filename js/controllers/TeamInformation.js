@@ -4,8 +4,10 @@ var app = angular.module('app', ["ngStorage", "competitionFilters", "competition
 app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corners, CurrentMatchFactory, LeagueScores, MatchPeriods, State, Teams) {
 
     $scope.$storage = $localStorage;
-
     $scope.corners = [];
+    $scope.sessions = [];
+    $scope.points = {};
+
     Corners.load(function(cornerId, corner) {
         $scope.corners[cornerId] = corner;
     });
@@ -18,6 +20,7 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
     var updateState = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
             $scope.current_match = match.number;
+            $scope.current_session = get_current_session($scope.sessions, match.number);
         });
     };
 
@@ -67,4 +70,31 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
         setInterval(update, 10000);
         update();
     });
+});
+
+app.filter("matchesAfter", function() {
+    return function(matches, current) {
+        if (matches == null || current == null) {
+            return matches;
+        }
+        var first = matches[0].number;
+        var difference = current - first;
+        return matches.slice(difference);
+    };
+});
+
+app.filter("indexToArena", function() {
+    return function(teams, team, arenas) {
+        var idx = teams.indexOf(team);
+        var arenaId = Math.floor(idx / 4);
+        return arenas[arenaId];
+    };
+});
+
+app.filter("indexToCorner", function() {
+    return function(teams, team, arenas) {
+        var idx = teams.indexOf(team);
+        var corner = idx % 4;
+        return corner;
+    };
 });

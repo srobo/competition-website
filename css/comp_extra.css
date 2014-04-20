@@ -21,6 +21,16 @@
 #comp_team #team-chooser {
 	float:right;
 }
+#comp_team #upcoming-matches {
+	float:right;
+	width:350px;
+}
+#comp_team #upcoming-matches table {
+	margin:0 auto;
+}
+#comp_team #upcoming-matches table th {
+	padding:0 5px;
+}
 
 /* Knockouts page */
 #knockouts div.round {

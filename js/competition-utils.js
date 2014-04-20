@@ -23,6 +23,31 @@ var create_follower = function() {
     };
 }();
 
+var get_current_session = function() {
+    return function(sessions, current) {
+        for (var i=0; i<sessions.length; i++) {
+            var session = sessions[i];
+            var matches = session.matches;
+
+            if (matches.length == 0) {
+                continue;
+            }
+
+            var first_match = matches[0];
+            if (first_match.number > current) {
+                continue;
+            }
+
+            var last_match = matches[matches.length-1];
+            if (last_match.number < current) {
+                continue;
+            }
+
+            return session;
+        }
+    };
+}();
+
 var league_sorter = function() {
     var _game_points = null;
 

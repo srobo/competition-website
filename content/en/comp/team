@@ -28,10 +28,37 @@ td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
 This page shows the information for a specific team at the competition.
 
 <!-- container -->
-<div data-ng-if="$storage.chosenTeam">
+<div data-ng-if="$storage.chosenTeam" markdown="1">
 
 <div id="upcoming-matches">
+
+<table class="upcoming" data-ng-init="max=5">
+    <caption>Next {{max}} matches this session</caption>
+    <thead>
+        <tr>
+            <th>Time  </th>
+            <th>Match </th>
+            <th>Arena </th>
+            <th>Corner</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="match in current_session.matches|matchesAfter:current_match|containsTeam:$storage.chosenTeam|limitTo:max">
+            <td>{{match.time|date:'HH:mm:ss'}}</td>
+            <td>{{match.number}}</td>
+            <td>{{match.teams|indexToArena:$storage.chosenTeam:arenas}}</td>
+            <td class="corner"
+                data-ng-init="corner = (match.teams|indexToCorner:$storage.chosenTeam)"
+                style="background-color: {{corners[corner].colour}};">
+                {{corner}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 </div>
+
+Find out what the team say about themselves on their [status page](/teams/{{$storage.chosenTeam}}).
 
 <div id="scores" markdown="1">
 
