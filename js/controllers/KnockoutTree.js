@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["ngResource", "competitionFilters"]);
 
-app.controller("KnockoutMatches", function($scope, $resource) {
+app.controller("KnockoutTree", function($scope, $resource) {
     var Arenas = $resource(API_ROOT + "/arenas");
     var Matches = $resource(API_ROOT + "/matches/knockouts");
     var Points = $resource(API_ROOT + "/scores/league");
