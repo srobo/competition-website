@@ -1,17 +1,32 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, Arenas, CurrentMatchFactory, KnockoutMatches, LeagueScores, Teams) {
+app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueScores, MatchesFactory, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
+    var KNOCKOUT_TYPE = "knockout";
 
     Teams.follow(function(teams) {
         $scope.teams = teams;
     });
 
-    var updateState = function(CurrentMatch) {
-        CurrentMatch.get(function(match) {
-            $scope.current_match = match.number;
+    var updateState = function(MatchState) {
+        MatchState.get(function(matches) {
+            matches = matches.matches;
+            var current, next;
+            for (var i=0; i<matches.length; i++) {
+                var match = matches[i];
+                if (match.query == "next") {
+                    next = match;
+                } else if (match.query == "current") {
+                    current = match;
+                }
+            }
+            $scope.current_match = current.number;
+            // either in a knockout match, or
+            // no current match and the next one is a knockout
+            $scope.knockout_started = current.type == KNOCKOUT_TYPE ||
+                            (current.error && next.type == KNOCKOUT_TYPE);
         });
 
         LeagueScores.get(function(points) {
@@ -20,15 +35,14 @@ app.controller("KnockoutTree", function($scope, Arenas, CurrentMatchFactory, Kno
 
         KnockoutMatches.get(function(nodes) {
             $scope.rounds = process_knockouts(nodes.rounds);
-            $scope.knockout_started = nodes.started;
         });
     };
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
-        var CurrentMatch = CurrentMatchFactory(nodes.arenas[0]);
+        var MatchState = MatchesFactory(nodes.arenas[0], "current,next");
         var update = function() {
-            updateState(CurrentMatch);
+            updateState(MatchState);
         };
         // refresh every 10s
         setInterval(update, 10000);
