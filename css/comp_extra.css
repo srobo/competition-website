@@ -17,6 +17,11 @@
 	width:150px;
 }
 
+/* Team page */
+#comp_team #team-chooser {
+	float:right;
+}
+
 /* Knockouts page */
 #knockouts div.round {
 	padding-bottom:15px;
