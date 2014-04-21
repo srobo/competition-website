@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
 
-app.controller("MatchPointsCtrl", function($scope, $localStorage, Arenas, MatchesFactory, Teams) {
+app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, MatchesFactory, Teams) {
 
     $scope.$storage = $localStorage;
 
@@ -67,4 +67,32 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, Arenas, Matche
     });
 
     $scope.$watch("chosenMatches", updateMatches);
+
+
+    var all_matches = {};
+    AllMatches.get(function(matches) {
+        all_matches = matches.matches;
+        updateChosen($scope.$storage.chosenTeam);
+    });
+
+    var updateChosen = function(team) {
+        if (all_matches == null || team == null) {
+            return;
+        }
+
+        var match_numbers = [];
+        for (var i=0; i<all_matches.length; i++) {
+            var match = all_matches[i];
+            for (var arena in match) {
+                var game = match[arena];
+                // contains
+                if (game.teams.indexOf(team) != -1) {
+                    match_numbers.push(game.num);
+                }
+            }
+        }
+        $scope.chosenMatches = match_numbers;
+    };
+
+    $scope.$watch("$storage.chosenTeam", updateChosen);
 });
