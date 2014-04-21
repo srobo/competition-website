@@ -15,7 +15,7 @@ var only_integers = function() {
     };
 }();
 
-app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, Corners, MatchesFactory, Teams) {
+app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, Corners, MatchesFactory, State, Teams) {
 
     $scope.$storage = $localStorage;
 
@@ -70,6 +70,10 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
 
     Arenas.get(function(nodes) {
         $scope.arenas = nodes.arenas;
+        updateMatches($scope.chosenMatches);
+    });
+
+    State.change(function() {
         updateMatches($scope.chosenMatches);
     });
 
