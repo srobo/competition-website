@@ -1,17 +1,8 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
 
-app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, MatchesFactory, Teams) {
-
-    $scope.$storage = $localStorage;
-
-    Teams.follow(function(teams) {
-        $scope.teams = teams;
-    });
-
-    var fetchedMatches = $scope.fetchedMatches = {};
-
-    var only_integers = function(list) {
+var only_integers = function() {
+    return function(list) {
         var list = list || [];
         var output = [];
         for (var i=0; i<list.length; i++) {
@@ -22,6 +13,17 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
         }
         return output;
     };
+}();
+
+app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, MatchesFactory, Teams) {
+
+    $scope.$storage = $localStorage;
+
+    Teams.follow(function(teams) {
+        $scope.teams = teams;
+    });
+
+    var fetchedMatches = $scope.fetchedMatches = {};
 
     var updateMatches = function(match_numbers) {
         var match_numbers = only_integers(match_numbers);
@@ -95,4 +97,24 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
     };
 
     $scope.$watch("$storage.chosenTeam", updateChosen);
+});
+
+app.filter('matchSort', function() {
+    var keys = function(dict) {
+        var output = [];
+        for (var key in dict) {
+            output.push(key);
+        }
+        return output;
+    };
+    return function(matches_map) {
+        var numbers = only_integers(keys(matches_map));
+        // JavaScript is insane
+        numbers.sort(function(a,b){return a - b});
+        var output = [];
+        for (var i=0; i<numbers.length; i++) {
+            output.push(matches_map[numbers[i]]);
+        }
+        return output;
+    };
 });
