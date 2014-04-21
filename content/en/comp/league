@@ -10,6 +10,8 @@ tied teams have earned in their league matches.
 
 The positions of the teams within the league are used to seed the [knockouts](/comp/knockout).
 
+Details of the scores for each individual match are available on the [points page](/comp/points).
+
 <span data-ng-if="latest_match != null">
 Up to date with scores from match {{latest_match}}.
 </span>

@@ -5,8 +5,10 @@
 
 This page shows the total number of game points scored by each team,
 summed over all of their league matches.
+
 For the current league points scores (including the league ranking),
 see the [league points](/comp/league) page.
+To see the details of the scores for each individual match, see the [points page](/comp/points).
 
 <span data-ng-if="latest_match != null">
 Up to date with scores from match {{latest_match}}.
