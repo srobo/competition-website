@@ -7,7 +7,7 @@
     <!--- NB: local width style as otherwise Select2 doesn't get it right -->
     <select data-ng-model="$storage.chosenTeam"
             data-ui-select2
-            style="width:350px;"
+            style="width:350px;float:right;margin-right:7px;"
             >
         <option value="">Choose a team</option>
         <option data-ng-repeat="(tla, info) in teams"
