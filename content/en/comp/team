@@ -2,10 +2,10 @@
 //ANGULAR_CONTROLLER: TeamInformation
 
 <style type="text/css">
-td.match:nth-child(4n+3) { background-color: {{corners[0].colour}}; }
-td.match:nth-child(4n+4) { background-color: {{corners[1].colour}}; }
-td.match:nth-child(4n+5) { background-color: {{corners[2].colour}}; }
-td.match:nth-child(4n+6) { background-color: {{corners[3].colour}}; }
+td.match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
+td.match:nth-child(4n+4) { background-color: {{corners[1].colour|hexLighter:0.5}}; }
+td.match:nth-child(4n+5) { background-color: {{corners[2].colour|hexLighter:0.5}}; }
+td.match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
 </style>
 
 # Team Information
@@ -48,7 +48,7 @@ This page shows the information for a specific team at the competition.
             <td>{{match.number}}</td>
             <td>{{match.teams|indexToArena:$storage.chosenTeam:arenas}}</td>
             <td class="corner"
-                data-ng-init="corner = (match.teams|indexToCorner:$storage.chosenTeam)"
+                data-ng-init="corner = (match.teams|indexToCorner:$storage.chosenTeam|hexLighter:0.5)"
                 style="background-color: {{corners[corner].colour}};">
                 {{corner}}
             </td>

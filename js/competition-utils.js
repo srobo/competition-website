@@ -51,6 +51,27 @@ var get_current_session = function() {
     };
 }();
 
+var hex_to_rgba = function() {
+    var get_parts = function(hex) {
+        if (hex[0] == "#") {
+            hex = hex.substring(1);
+        }
+        var colours = [];
+        for (var i=0; i<6; i += 2) {
+            var part = hex.substring(i, i+2);
+            var int = parseInt(part, 16);
+            colours.push(int);
+        }
+        return colours;
+    };
+    return function(hex, alpha) {
+        var colours = get_parts(hex);
+        colours.push(alpha);
+        var rgba = "rgba(" + colours.join(", ") + ")";
+        return rgba;
+    };
+}();
+
 var league_sorter = function() {
     var _game_points = null;
 

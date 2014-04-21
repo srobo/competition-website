@@ -47,3 +47,14 @@ competitionFilters.filter('titleCase', function() {
         return parts.join(" ");
     }
 });
+
+/// Convert the text to title case
+competitionFilters.filter('hexLighter', function() {
+    // implemented in competition-utils.js
+    return function(hex, alpha) {
+        if (hex == null || alpha == null) {
+            return null;
+        }
+        return hex_to_rgba(hex, alpha);
+    };
+});

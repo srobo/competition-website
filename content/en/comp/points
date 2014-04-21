@@ -3,10 +3,10 @@
 
 <style type="text/css">
 /* first column is more headers */
-.scores .match:nth-child(2) { background-color: {{corners[0].colour}}; }
-.scores .match:nth-child(3) { background-color: {{corners[1].colour}}; }
-.scores .match:nth-child(4) { background-color: {{corners[2].colour}}; }
-.scores .match:nth-child(5) { background-color: {{corners[3].colour}}; }
+.scores .match:nth-child(2) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
+.scores .match:nth-child(3) { background-color: {{corners[1].colour|hexLighter:0.5}}; }
+.scores .match:nth-child(4) { background-color: {{corners[2].colour|hexLighter:0.5}}; }
+.scores .match:nth-child(5) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
 </style>
 
 # Match Points
