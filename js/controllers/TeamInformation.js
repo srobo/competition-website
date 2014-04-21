@@ -16,11 +16,15 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
         $scope.teams = teams;
     });
 
+    var updateSession = function() {
+        $scope.current_session = get_current_session($scope.sessions, $scope.current_match);
+    };
+
     // update our current match information all the time
-    var updateState = function(CurrentMatch) {
+    var updateMatch = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
             $scope.current_match = match.number;
-            $scope.current_session = get_current_session($scope.sessions, match.number);
+            updateSession();
         });
     };
 
@@ -52,6 +56,7 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
                 sessions[i].arenas = $scope.arenas;
             }
             $scope.sessions = sessions;
+            updateSession();
         });
 
         LeagueScores.get(function(points) {
@@ -64,7 +69,7 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
         $scope.arenas = nodes.arenas;
         var CurrentMatch = CurrentMatchFactory(nodes.arenas[0]);
         var update = function() {
-            updateState(CurrentMatch);
+            updateMatch(CurrentMatch);
         };
         // refresh every 10s
         setInterval(update, 10000);

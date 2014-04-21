@@ -25,6 +25,9 @@ var create_follower = function() {
 
 var get_current_session = function() {
     return function(sessions, current) {
+        if (current == null) {
+            return null;
+        }
         for (var i=0; i<sessions.length; i++) {
             var session = sessions[i];
             var matches = session.matches;
