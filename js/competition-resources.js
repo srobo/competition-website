@@ -4,12 +4,12 @@ var app = angular.module('competitionResources', ["ngResource"]);
 app.factory("Teams", function($interval, $resource) {
     // SRWEB_ROOT ends with a /, unlike API_ROOT.
     var resource = $resource(SRWEB_ROOT + "teams-data.php");
-    return create_follower($interval, resource, 60*1000);
+    return create_follower($interval, resource, 10*60*1000);
 });
 
 app.factory("State", function($interval, $resource) {
     var resource = $resource(API_ROOT + "/state");
-    var follower = create_follower($interval, resource, 10*1000);
+    var follower = create_follower($interval, resource, 30*1000);
     return { change: function(cb) {
         var state = null;
         follower.follow(function(nodes) {
