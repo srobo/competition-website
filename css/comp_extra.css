@@ -32,6 +32,29 @@
 	padding:0 5px;
 }
 
+/* Points page */
+#comp_points #match-chooser {
+	float:right;
+	margin-left:50px;
+}
+#comp_points div.points {
+	text-align:center;
+}
+#comp_points div.game {
+	display:inline-block;
+	padding:0 10px;
+}
+#comp_points div.game thead th {
+	padding:0 5px;
+}
+#comp_points div.game tbody th {
+	text-align:right;
+	border-bottom-width:1px;
+}
+#comp_points div.game tbody tr:last-child th {
+	border-bottom-width:0px;
+}
+
 /* Knockouts page */
 #knockouts div.round {
 	padding-bottom:15px;

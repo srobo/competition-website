@@ -1,0 +1,53 @@
+//TITLE: 2014 Match Points
+//ANGULAR_CONTROLLER: MatchPointsCtrl
+
+# Match Points
+
+<div id="match-chooser">
+    <!--- NB: local width style as otherwise Select2 doesn't get it right -->
+    <select data-ng-model="$storage.chosenTeam"
+            data-ui-select2
+            style="width:350px;"
+            >
+        <option value="">Choose a team</option>
+        <option data-ng-repeat="(tla, info) in teams"
+                value="{{tla}}">
+            {{tla|teamName:teams}}
+        </option>
+    </select>
+
+    <p>
+        Matches to show:
+        <input data-ng-model="chosenMatches"
+               data-ng-list
+               data-placeholder="enter matches" />
+    </p>
+</div>
+
+This page shows the league and game points earned during any match.
+Either choose a team or enter a comma separated list of matches in the box to the right.
+
+<div class="points" data-ng-repeat="match in fetchedMatches">
+    <h4>Match {{match.number}}</h4>
+    <div class="game"
+         data-ng-repeat="(arena, game) in match.games">
+        <h4>Arena {{arena}}</h4>
+        <table data-ng-if="game.scores">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th data-ng-repeat="tla in game.teams">
+                        {{tla}}
+                    </th>
+                </tr>
+            </thead>
+            <tr data-ng-repeat="(type, scores) in game.scores">
+                <th>{{type|titleCase}}</th>
+                <td data-ng-repeat="tla in game.teams">
+                    {{scores[tla]}}
+                </td>
+            </tr>
+        </table>
+        <p data-ng-if="!game.scores">No scores yet recorded for this game.</p>
+    </div>
+</div>

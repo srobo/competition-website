@@ -35,3 +35,15 @@ competitionFilters.filter('unspentMatches', function() {
     // implemented in competition-utils.js
     return unspent_matches;
 });
+
+/// Convert the text to title case
+competitionFilters.filter('titleCase', function() {
+    return function(string) {
+        var parts = string.split();
+        for (var i=0; i<parts.length; i++) {
+            var word = parts[i];
+            parts[i] = word[0].toUpperCase() + word.substring(1).toLowerCase();
+        }
+        return parts.join(" ");
+    }
+});
