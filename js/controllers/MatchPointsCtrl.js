@@ -11,16 +11,31 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, Arenas, Matche
 
     var fetchedMatches = $scope.fetchedMatches = {};
 
+    var only_integers = function(list) {
+        var list = list || [];
+        var output = [];
+        for (var i=0; i<list.length; i++) {
+            var maybeInt = parseInt(list[i]);
+            if (!isNaN(maybeInt)) {
+                output.push(maybeInt);
+            }
+        }
+        return output;
+    };
+
     var updateMatches = function(match_numbers) {
-        if (!match_numbers || match_numbers.length == 0) {
+        var match_numbers = only_integers(match_numbers);
+        if (match_numbers.length == 0) {
             return;
         }
 
         var tidyFetched = function() {
-            for (var num in fetchedMatches) {
+            for (var key in fetchedMatches) {
+                // match_numbers are all int
+                var num = parseInt(key);
                 // not contains
                 if (match_numbers.indexOf(num) == -1) {
-                    delete fetchedMatches[num];
+                    delete fetchedMatches[key];
                 }
             }
         };
