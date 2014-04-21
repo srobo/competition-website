@@ -15,9 +15,14 @@ var only_integers = function() {
     };
 }();
 
-app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, MatchesFactory, Teams) {
+app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, Corners, MatchesFactory, Teams) {
 
     $scope.$storage = $localStorage;
+
+    $scope.corners = [];
+    Corners.load(function(cornerId, corner) {
+        $scope.corners[cornerId] = corner;
+    });
 
     Teams.follow(function(teams) {
         $scope.teams = teams;

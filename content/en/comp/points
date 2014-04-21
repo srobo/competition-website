@@ -1,6 +1,14 @@
 //TITLE: 2014 Match Points
 //ANGULAR_CONTROLLER: MatchPointsCtrl
 
+<style type="text/css">
+/* first column is more headers */
+.scores .match:nth-child(2) { background-color: {{corners[0].colour}}; }
+.scores .match:nth-child(3) { background-color: {{corners[1].colour}}; }
+.scores .match:nth-child(4) { background-color: {{corners[2].colour}}; }
+.scores .match:nth-child(5) { background-color: {{corners[3].colour}}; }
+</style>
+
 # Match Points
 
 <div id="match-chooser">
@@ -32,18 +40,20 @@ Either choose a team or enter a comma separated list of matches in the box to th
     <div class="game"
          data-ng-repeat="(arena, game) in match.games">
         <h4>Arena {{arena}}</h4>
-        <table data-ng-if="game.scores">
+        <table class="scores" data-ng-if="game.scores">
             <thead>
                 <tr>
                     <th></th>
-                    <th data-ng-repeat="tla in game.teams">
+                    <th data-ng-repeat="tla in game.teams"
+                        data-ng-class="{match: tla==$storage.chosenTeam}">
                         {{tla}}
                     </th>
                 </tr>
             </thead>
             <tr data-ng-repeat="(type, scores) in game.scores">
                 <th>{{type|titleCase}}</th>
-                <td data-ng-repeat="tla in game.teams">
+                <td data-ng-repeat="tla in game.teams"
+                    data-ng-class="{match: tla==$storage.chosenTeam}">
                     {{scores[tla]}}
                 </td>
             </tr>
