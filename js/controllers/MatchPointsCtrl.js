@@ -32,9 +32,6 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
 
     var updateMatches = function(match_numbers) {
         var match_numbers = only_integers(match_numbers);
-        if (match_numbers.length == 0) {
-            return;
-        }
 
         var tidyFetched = function() {
             for (var key in fetchedMatches) {
@@ -46,6 +43,11 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
                 }
             }
         };
+        tidyFetched();
+
+        if (match_numbers.length == 0) {
+            return;
+        }
 
         var arenas = $scope.arenas || [];
         for (var i=0; i<arenas.length; i++) {
@@ -65,7 +67,6 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
                 tidyFetched();
             });
         }
-        tidyFetched();
     };
 
     Arenas.get(function(nodes) {
