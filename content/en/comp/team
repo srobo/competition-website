@@ -86,12 +86,7 @@ League Points: {{points.league_points[$storage.chosenTeam]}}<br />
 
 <table class="schedule">
     <colgroup class="meta" span="2" />
-    <colgroup class="arena" data-ng-repeat="arena in session.arenas">
-        <col class="corner-0" />
-        <col class="corner-1" />
-        <col class="corner-2" />
-        <col class="corner-3" />
-    </colgroup>
+    <colgroup class="arena" span="4" data-ng-repeat="arena in session.arenas" />
     <thead>
         <tr>
             <th rowspan="2">Time  </th>
