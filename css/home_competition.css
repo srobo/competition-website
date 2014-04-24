@@ -86,3 +86,39 @@ div#competition div.info-box span.more-link {
 	margin:5px 0;
 	width:320px;
 }
+
+#match-info {
+	float:left;
+	height:300px;
+	margin-left:30px;
+	text-align:center;
+	width:600px;
+}
+
+#match-info div.match {
+	padding:5px 0;
+}
+#match-info div.scored {
+	padding:0;
+}
+#match-info div.match:nth-child(3n+1) {
+	border:none;
+}
+#match-info table th {
+	padding:0 5px;
+}
+
+#match-info div.game {
+	display:inline-block;
+}
+#match-info div.game.headings {
+	/* Something causes an extra 4px of gap on the left.
+	 * I've no idea what, but it's there in both Firefox & Chrome. */
+	margin:0 5px 0 1px;
+}
+#match-info div.game.headings table tbody th {
+	border-top-width:2px;
+	border-top-style:solid;
+	border-bottom:none;
+	padding:2px 10px;
+}

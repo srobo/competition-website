@@ -78,7 +78,10 @@ app.factory("CurrentMatchFactory", function($resource) {
 
 app.factory("MatchesFactory", function($resource) {
     return function(arena, numbers) {
-        var args = {arenaId: arena, numbers: numbers};
-        return $resource(API_ROOT + "/matches/:arenaId?numbers=:numbers", args);
+        if (Object.prototype.toString.call(numbers) === '[object Array]' ) {
+            numbers = numbers.join(',');
+        }
+        var encoded_numbers = encodeURIComponent(numbers);
+        return $resource(API_ROOT + "/matches/" + arena + "?numbers=" + encoded_numbers);
     }
 });

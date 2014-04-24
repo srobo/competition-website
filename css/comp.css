@@ -21,7 +21,7 @@ table.schedule td {
 	text-align:center;
 }
 table.schedule tbody tr.current,
-div.round div.match.current {
+div.match.current {
 	/* TODO: make darker */
 	background-color:#FFFFB0;
 }
