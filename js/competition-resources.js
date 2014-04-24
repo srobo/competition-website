@@ -26,15 +26,12 @@ app.factory("Arenas", function($resource) {
 });
 
 app.factory("Corners", function($resource) {
-    var load_corner = function(cb, cornerId) {
-        $resource(API_ROOT + "/corner/" + cornerId).get(function(corner) {
-            cb(cornerId, corner);
-        });
-    };
     return { load: function(cb) {
-        for (var c=0; c<4; c++) {
-            load_corner(cb, c);
-        }
+        $resource(API_ROOT + "/corners/").get(function(nodes) {
+            for (var cornerId in nodes.corners) {
+                cb(cornerId, nodes.corners[cornerId]);
+            }
+        });
     }};
 });
 
