@@ -76,3 +76,13 @@ div#competition div.info-box span.more-link {
 	left:190px;
 	margin-top:29px;
 }
+
+#streams #chooser {
+	margin:0;
+	text-align:center;
+}
+#streams #stream {
+	height:310px;
+	margin:5px 0;
+	width:320px;
+}
