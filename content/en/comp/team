@@ -48,8 +48,8 @@ This page shows the information for a specific team at the competition.
             <td>{{match.number}}</td>
             <td>{{match.teams|indexToArena:$storage.chosenTeam:arenas}}</td>
             <td class="corner"
-                data-ng-init="corner = (match.teams|indexToCorner:$storage.chosenTeam|hexLighter:0.5)"
-                style="background-color: {{corners[corner].colour}};">
+                data-ng-init="corner = (match.teams|indexToCorner:$storage.chosenTeam)"
+                style="background-color: {{corners[corner].colour|hexLighter:0.5}};">
                 {{corner}}
             </td>
         </tr>
