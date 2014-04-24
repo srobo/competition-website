@@ -72,6 +72,26 @@ var hex_to_rgba = function() {
     };
 }();
 
+var games_for_team = function() {
+    return function(all_matches, team) {
+        if (all_matches == null || team == null) {
+            return [];
+        }
+        var games = [];
+        for (var i=0; i<all_matches.length; i++) {
+            var match = all_matches[i];
+            for (var arena in match) {
+                var game = match[arena];
+                // contains
+                if (game.teams.indexOf(team) != -1) {
+                    games.push(game);
+                }
+            }
+        }
+        return games;
+    };
+}();
+
 var league_sorter = function() {
     var _game_points = null;
 

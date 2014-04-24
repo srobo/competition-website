@@ -28,88 +28,45 @@ td.match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}
 This page shows the information for a specific team at the competition.
 
 <!-- container -->
-<div data-ng-if="$storage.chosenTeam" markdown="1">
+<div id="per-team-details" data-ng-if="$storage.chosenTeam" markdown="1">
 
-<div id="upcoming-matches">
+Find out what the team say about themselves on their [status page](/teams/{{$storage.chosenTeam}}).
 
-<table class="upcoming" data-ng-init="max=5">
-    <caption>Next {{max}} matches this session</caption>
+<div id="upcoming-matches" class="matches" markdown="1">
+
+#### Upcoming Matches
+
+<p data-ng-if="next_game" markdown="1">
+**Next match (#{{next_game.num}}) starts in:** {{time_to_next_game}}
+</p>
+
+<table class="upcoming">
     <thead>
         <tr>
             <th>Time  </th>
             <th>Match </th>
             <th>Arena </th>
             <th>Corner</th>
+            <th>Against</th>
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-repeat="match in current_session.matches|matchesAfter:current_match|containsTeam:$storage.chosenTeam|limitTo:max">
-            <td>{{match.time|date:'HH:mm:ss'}}</td>
-            <td>{{match.number}}</td>
-            <td>{{match.teams|indexToArena:$storage.chosenTeam:arenas}}</td>
+        <tr data-ng-repeat="game in scheduled_games|gamesAfterNow">
+            <td title="Begins at {{game.time|date:'HH:mm:ss on EEEE, d MMMM'}}.">
+                {{game.time|date:'HH:mm:ss'}}
+            </td>
+            <td>{{game.num}}</td>
+            <td>{{game.arena}}</td>
             <td class="corner"
-                data-ng-init="corner = (match.teams|indexToCorner:$storage.chosenTeam)"
+                data-ng-init="corner = (game.teams|indexToCorner:$storage.chosenTeam)"
                 style="background-color: {{corners[corner].colour|hexLighter:0.5}};">
                 {{corner}}
             </td>
-        </tr>
-    </tbody>
-</table>
-
-</div>
-
-Find out what the team say about themselves on their [status page](/teams/{{$storage.chosenTeam}}).
-
-<div id="scores" markdown="1">
-
-<span data-ng-if="points.last_scored != null">
-Up to date with scores from match {{points.last_scored}}.
-</span>
-<span data-ng-if="points.last_scored == null">
-No scores have been recorded yet.
-</span>
-
-[League Position](/comp/league): {{league_position}}<br />
-League Points: {{points.league_points[$storage.chosenTeam]}}<br />
-[Game Points Total](/comp/gamepoints): {{points.game_points[$storage.chosenTeam]}}
-
-</div>
-
-<div id="full_schedule">
-
-<div class="match-session" markdown="1"
-     data-ng-repeat="session in sessions">
-
-<a id="last-session" data-ng-if="$last"></a>
-
-## {{session.description}}
-
-<table class="schedule">
-    <colgroup class="meta" span="2" />
-    <colgroup class="arena" span="4" data-ng-repeat="arena in session.arenas" />
-    <thead>
-        <tr>
-            <th rowspan="2">Time  </th>
-            <th rowspan="2">Match </th>
-            <th data-ng-repeat="arena in session.arenas" colspan="4">Arena {{arena}}</th>
-        </tr>
-        <tr>
-            <th data-ng-repeat-start="arena in session.arenas">Corner 0</th>
-            <th>Corner 1</th>
-            <th>Corner 2</th>
-            <th data-ng-repeat-end>Corner 3</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr data-ng-repeat="match in session.matches|containsTeam:$storage.chosenTeam"
-            data-ng-class="{current: match.number==current_match}"
-            id="match-{{match.number}}">
-            <td>{{match.time|date:'HH:mm:ss'}}</td>
-            <td>{{match.number}}</td>
-            <td data-ng-repeat="team in match.teams track by $index"
-                data-ng-class="{match: team==$storage.chosenTeam}"
-                title="{{team|teamName:teams}}">
-                {{team}}
+            <td>
+                <span data-ng-repeat="team in game.teams|otherTeams:$storage.chosenTeam"
+                      title="{{team|teamName:teams}}">
+                    {{team}}<span data-ng-if="!$last">,</span>
+                </span>
             </td>
         </tr>
     </tbody>
@@ -117,7 +74,36 @@ League Points: {{points.league_points[$storage.chosenTeam]}}<br />
 
 </div>
 
-<!-- full_schedule -->
+<div id="past-matches" class="matches" markdown="1">
+
+#### Points Earned
+
+**League postion:** {{league_position}} ([full ranking](/comp/league))
+
+<table class="past">
+    <thead>
+        <tr>
+            <th>Match</th>
+            <th>Game</th>
+            <th>League</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Totals</th>
+            <th>{{points.game_points[$storage.chosenTeam]}}</th>
+            <th>{{points.league_points[$storage.chosenTeam]}}</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr data-ng-repeat="game in detailed_games|gamesBeforeNow">
+            <td>{{game.number}}</td>
+            <td>{{game.scores.game[$storage.chosenTeam]}}</td>
+            <td>{{game.scores.league[$storage.chosenTeam]}}</td>
+        </tr>
+    </tbody>
+</table>
+
 </div>
 
 <!-- container -->

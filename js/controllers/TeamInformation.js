@@ -1,12 +1,12 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
 
-app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corners, CurrentMatchFactory, LeagueScores, MatchPeriods, State, Teams) {
+app.controller("TeamInformation", function($scope, $interval, $localStorage, AllMatches, Arenas, Corners, CurrentMatchFactory, LeagueScores, MatchesFactory, State, Teams) {
 
     $scope.$storage = $localStorage;
     $scope.corners = [];
-    $scope.sessions = [];
     $scope.points = {};
+    var all_matches = [];
 
     Corners.load(function(cornerId, corner) {
         $scope.corners[cornerId] = corner;
@@ -16,18 +16,7 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
         $scope.teams = teams;
     });
 
-    var updateSession = function() {
-        $scope.current_session = get_current_session($scope.sessions, $scope.current_match);
-    };
-
-    // update our current match information all the time
-    var updateMatch = function(CurrentMatch) {
-        CurrentMatch.get(function(match) {
-            $scope.current_match = match.number;
-            updateSession();
-        });
-    };
-
+    // work out the team's position in the league
     var get_postition = function(points, team) {
         var position = null;
         for (var i=0; i<points.length; i++) {
@@ -49,14 +38,87 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
 
     $scope.$watch("$storage.chosenTeam", update_position);
 
+    var describe_time_until = function(then) {
+        if (then == null) {
+            return null;
+        }
+        var now = new Date();
+        if (now > then) {
+            return null;
+        }
+        var difference = then.getTime() - now.getTime();
+        difference /= 1000;
+        difference = Math.round(difference);
+        var minutes = Math.floor(difference / 60);
+        var seconds = difference % 60;
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        var output = minutes + ":" + seconds;
+        return output;
+    };
+
+    $interval(function() {
+        if ($scope.next_game != null) {
+            $scope.time_to_next_game = describe_time_until($scope.next_game.time);
+        }
+    }, 100);
+
+    var update_matches = function(team) {
+        if (all_matches.length == 0) {
+            return;
+        }
+        var scheduled_games = games_for_team(all_matches, team);
+        var numbers_map = {}
+        var next_game = null;
+        var now = new Date();
+        for (var i=0; i<scheduled_games.length; i++) {
+            var game = scheduled_games[i];
+            var arena = game.arena;
+            if (!(arena in numbers_map)) {
+                numbers_map[arena] = [];
+            }
+            game.time = new Date(game.start_time);
+            numbers_map[arena].push(game.num);
+
+            if (now < game.time &&
+                (next_game == null || game.time < next_game.time)) {
+                next_game = game;
+            }
+        }
+
+        $scope.scheduled_games = scheduled_games;
+        $scope.detailed_games = {};
+        $scope.next_game = next_game;
+
+        var match_cmp = function(a, b) {
+            return a.num - b.num;
+        };
+        var games_map = {};
+        var per_arena = function(arena, map) {
+            var Matches = MatchesFactory(arena, map[arena]);
+            Matches.get(function(nodes) {
+                games_map[arena] = nodes.matches;
+                var games = [];
+                for (var arena in games_map) {
+                    games = games.concat(games_map[arena]);
+                }
+                games.sort(match_cmp);
+                $scope.detailed_games = games;
+            });
+        };
+        for (var arena in numbers_map) {
+            per_arena(arena, numbers_map);
+        }
+    };
+
+    $scope.$watch("$storage.chosenTeam", update_matches);
+
     // update the data only when the state changes
     State.change(function() {
-        MatchPeriods.getSessions(function(sessions){
-            for (var i=0; i<sessions.length; i++) {
-                sessions[i].arenas = $scope.arenas;
-            }
-            $scope.sessions = sessions;
-            updateSession();
+        AllMatches.get(function(nodes) {
+            all_matches = nodes.matches;
+            update_matches($scope.$storage.chosenTeam);
         });
 
         LeagueScores.get(function(points) {
@@ -64,27 +126,53 @@ app.controller("TeamInformation", function($scope, $localStorage, Arenas, Corner
             update_position($scope.$storage.chosenTeam);
         });
     });
-
-    Arenas.get(function(nodes) {
-        $scope.arenas = nodes.arenas;
-        var CurrentMatch = CurrentMatchFactory(nodes.arenas[0]);
-        var update = function() {
-            updateMatch(CurrentMatch);
-        };
-        // refresh every 10s
-        setInterval(update, 10000);
-        update();
-    });
 });
 
-app.filter("matchesAfter", function() {
-    return function(matches, current) {
-        if (matches == null || current == null) {
-            return matches;
+var games_time_filter = function() {
+    return function(games, predicate) {
+        if (games == null) {
+            return games;
         }
-        var first = matches[0].number;
-        var difference = current - first;
-        return matches.slice(difference);
+        var output = [];
+        for (var i=0; i<games.length; i++) {
+            var game = games[i];
+            if (predicate(game)) {
+                output.push(game);
+            }
+        }
+        return output;
+    };
+}();
+
+app.filter("gamesAfterNow", function() {
+    return function(games) {
+        var now = new Date();
+        return games_time_filter(games, function(game) {
+            return game.time > now;
+        });
+    };
+});
+
+app.filter("gamesBeforeNow", function() {
+    return function(games) {
+        var now = new Date();
+        return games_time_filter(games, function(game) {
+            return new Date(game.start_time) < now;
+        });
+    };
+});
+
+app.filter("otherTeams", function() {
+    var empty_corner_symbol = EMPTY_CORNER_SYMBOL;
+    return function(teams, team) {
+        var output = [];
+        for (var i=0; i<teams.length; i++) {
+            var t = teams[i];
+            if (t != null && t != team && t != empty_corner_symbol) {
+                output.push(t);
+            }
+        }
+        return output;
     };
 });
 

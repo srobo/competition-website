@@ -21,15 +21,23 @@
 #comp_team #team-chooser {
 	float:right;
 }
-#comp_team #upcoming-matches {
-	float:right;
-	width:350px;
+#comp_team #per-team-details {
+	text-align:center;
 }
-#comp_team #upcoming-matches table {
-	margin:0 auto;
+#comp_team div.matches {
+	display:inline-block;
+	margin:0 50px;
+	vertical-align:top;
 }
-#comp_team #upcoming-matches table th {
+#comp_team div.matches p {
+	margin-left:0;
+	text-align:center;
+}
+#comp_team div.matches table th {
 	padding:0 5px;
+}
+#comp_team #upcoming-matches td:last-child {
+	text-align:left;
 }
 
 /* Points page */

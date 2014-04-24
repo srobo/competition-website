@@ -92,17 +92,12 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
             return;
         }
 
+        var games = games_for_team(all_matches, team);
         var match_numbers = [];
-        for (var i=0; i<all_matches.length; i++) {
-            var match = all_matches[i];
-            for (var arena in match) {
-                var game = match[arena];
-                // contains
-                if (game.teams.indexOf(team) != -1) {
-                    match_numbers.push(game.num);
-                }
-            }
+        for (var i=0; i<games.length; i++) {
+            match_numbers.push(games[i].num);
         }
+
         $scope.chosenMatches = match_numbers;
     };
 
