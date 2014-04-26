@@ -24,24 +24,29 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
 
     // update our current/next information all the time
     // it will change as time passes, even if the state revision doesn't
+    var store_map = {
+        "previous": "previous_match",
+        "current": "current_match",
+        "next": "next_match",
+        "next+1": "upcoming_match"
+    };
     var updateState = function(MatchState, arena) {
         MatchState.get(function(matches) {
             matches = matches.matches;
             for (var i=0; i<matches.length; i++) {
                 var match = matches[i];
                 if (match.query == "next") {
-                    $scope.next_match[arena] = match;
                     next_match = match.number;
-                    $scope.next_match_number = match.number;
-                } else if (match.query == "next+1") {
-                    $scope.upcoming_match[arena] = match;
-                    $scope.upcoming_match_number = match.number;
-                } else if (match.query == "current") {
-                    $scope.current_match[arena] = match;
-                    $scope.current_match_number = match.number;
-                } else if (match.query == "previous") {
-                    $scope.previous_match[arena] = match;
-                    $scope.previous_match_number = match.number;
+                }
+                if (match.query in store_map) {
+                    var name = store_map[match.query];
+                    var item = null, num = null;
+                    if (!match.error) {
+                        item = match;
+                        num = match.number;
+                    }
+                    $scope[name][arena] = item;
+                    $scope[name + "_number"] = num;
                 }
             }
             refresh();
