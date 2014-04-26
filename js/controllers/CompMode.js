@@ -45,7 +45,13 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
                         item = match;
                         num = match.number;
                     }
-                    $scope[name][arena] = item;
+                    if ($scope[name].games == null) {
+                        $scope[name].games = {};
+                    }
+                    $scope[name].games[arena] = item;
+                    // TODO: avoid storing this in two places
+                    // done for the moment to achieve a minimal patch
+                    $scope[name].number = num;
                     $scope[name + "_number"] = num;
                 }
             }
