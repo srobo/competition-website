@@ -95,10 +95,10 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
             return a.num - b.num;
         };
         var games_map = {};
-        var per_arena = function(arena, map) {
-            var Matches = MatchesFactory(arena, map[arena]);
+        var per_arena = function(lookup_arena, map) {
+            var Matches = MatchesFactory(lookup_arena, map[lookup_arena]);
             Matches.get(function(nodes) {
-                games_map[arena] = nodes.matches;
+                games_map[lookup_arena] = nodes.matches;
                 var games = [];
                 for (var arena in games_map) {
                     games = games.concat(games_map[arena]);
