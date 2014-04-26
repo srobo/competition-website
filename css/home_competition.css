@@ -71,10 +71,33 @@ div#competition span.more-link {
 	margin-top:20px;
 	margin-right:100px;
 }
+div#competition span.top-links {
+	position:absolute;
+	margin-top:20px;
+}
+div#competition span#live-stream-link {
+	right:0;
+	margin-right:100px;
+	text-align:center;
+}
+div#competition span#more-link {
+	left:0;
+	margin-left:100px;
+}
 
 div#competition div.info-box span.more-link {
 	left:190px;
 	margin-top:29px;
+}
+
+div#competition div#leaderboard-container {
+	float:right;
+	margin-top:70px;
+	padding-right:40px;
+	width:300px;
+}
+div#competition div#leaderboard {
+	margin-right:50px;
 }
 
 #streams #chooser {
@@ -90,7 +113,6 @@ div#competition div.info-box span.more-link {
 #match-info {
 	float:left;
 	height:300px;
-	margin-left:30px;
 	text-align:center;
 	width:600px;
 }
@@ -110,6 +132,9 @@ div#competition div.info-box span.more-link {
 
 #match-info div.game {
 	display:inline-block;
+}
+#match-info div.game table tbody td {
+	min-width:35px;
 }
 #match-info div.game.headings {
 	/* Something causes an extra 4px of gap on the left.
