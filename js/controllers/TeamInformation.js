@@ -92,7 +92,7 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
         $scope.next_game = next_game;
 
         var match_cmp = function(a, b) {
-            return a.num - b.num;
+            return a.number - b.number;
         };
         var games_map = {};
         var per_arena = function(lookup_arena, map) {
