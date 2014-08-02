@@ -68,10 +68,10 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
     </thead>
     <tbody>
         <tr data-ng-repeat="match in session.matches|containsTeam:chosenTeam"
-            data-ng-class="{current: match.number==current_match}"
-            id="match-{{match.number}}">
+            data-ng-class="{current: match.num==current_match}"
+            id="match-{{match.num}}">
             <td>{{match.time|date:'HH:mm:ss'}}</td>
-            <td>{{match.number}}</td>
+            <td>{{match.num}}</td>
             <td data-ng-repeat="team in match.teams track by $index"
                 data-ng-class="{match: team==chosenTeam}"
                 title="{{team|teamName:teams}}">

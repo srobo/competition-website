@@ -22,7 +22,7 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corner
     // update our current match information all the time
     var updateState = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
-            $scope.current_match = match.number;
+            $scope.current_match = match.num;
         });
     };
 

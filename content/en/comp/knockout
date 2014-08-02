@@ -20,7 +20,7 @@ See the [match schedule](/comp/schedule) for information about the current match
     <div class="round" data-ng-repeat="round in rounds">
         <div class="match"
              data-ng-repeat="match in round"
-             data-ng-class="{current: match.number==current_match}"
+             data-ng-class="{current: match.num==current_match}"
              >
             <h4>{{match.description}}</h4>
             <span>{{match.time|date:'HH:mm:ss'}}</span>

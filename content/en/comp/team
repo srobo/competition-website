@@ -97,7 +97,7 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
     </tfoot>
     <tbody>
         <tr data-ng-repeat="game in detailed_games|gamesBeforeNow">
-            <td>{{game.number}}</td>
+            <td>{{game.num}}</td>
             <td>{{game.scores.game[$storage.chosenTeam]}}</td>
             <td>{{game.scores.league[$storage.chosenTeam]}}</td>
         </tr>

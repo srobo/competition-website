@@ -37,12 +37,12 @@ var get_current_session = function() {
             }
 
             var first_match = matches[0];
-            if (first_match.number > current) {
+            if (first_match.num > current) {
                 continue;
             }
 
             var last_match = matches[matches.length-1];
-            if (last_match.number < current) {
+            if (last_match.num < current) {
                 continue;
             }
 
@@ -190,7 +190,7 @@ var match_converter = function() {
         var output = { 'teams': [] };
         for (var arena in match) {
             var detail = match[arena];
-            output.number = detail.num;
+            output.num = detail.num;
             output.time = convert_time(detail.start_time);
             var arena_teams = ensure_whole_arena(detail.teams);
             output.teams = output.teams.concat(arena_teams);
@@ -326,7 +326,7 @@ var process_knockout_round = function() {
             }
 
             matches.push({
-                'number': number,
+                'num': number,
                 'description': describe_match(i, number, rounds_after_this),
                 'time': time,
                 'games': game_details

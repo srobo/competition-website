@@ -24,7 +24,7 @@ app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueS
                     current = match;
                 }
             }
-            $scope.current_match = current.number;
+            $scope.current_match = current.num;
             // either in a knockout match, or
             // no current match and the next one is a knockout
             $scope.knockout_started = current.type == KNOCKOUT_TYPE ||

@@ -36,14 +36,14 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
             for (var i=0; i<matches.length; i++) {
                 var match = matches[i];
                 if (match.query == "next") {
-                    next_match = match.number;
+                    next_match = match.num;
                 }
                 if (match.query in store_map) {
                     var name = store_map[match.query];
                     var item = null, num = null;
                     if (!match.error) {
                         item = match;
-                        num = match.number;
+                        num = match.num;
                     }
                     if ($scope[name].games == null) {
                         $scope[name].games = {};
@@ -51,7 +51,7 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
                     $scope[name].games[arena] = item;
                     // TODO: avoid storing this in two places
                     // done for the moment to achieve a minimal patch
-                    $scope[name].number = num;
+                    $scope[name].num = num;
                     $scope[name + "_number"] = num;
                 }
             }

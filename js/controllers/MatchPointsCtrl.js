@@ -56,13 +56,13 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
                 var matches = nodes.matches;
                 for (var j=0; j<matches.length; j++) {
                     var game = matches[j];
-                    if (!(game.number in fetchedMatches)) {
-                        fetchedMatches[game.number] = {
-                            "number": game.number,
+                    if (!(game.num in fetchedMatches)) {
+                        fetchedMatches[game.num] = {
+                            "num": game.num,
                             "games": {}
                         };
                     }
-                    fetchedMatches[game.number].games[game.arena] = game;
+                    fetchedMatches[game.num].games[game.arena] = game;
                 }
                 tidyFetched();
             });

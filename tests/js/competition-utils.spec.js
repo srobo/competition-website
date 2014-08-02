@@ -146,7 +146,7 @@ describe("The match schedule converter sorter helpers", function() {
 			}
 		};
 		expected = {
-			'number': 0,
+			'num': 0,
 			'time': new Date('2014-03-15 00:00:00'),
 			'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
 		};
@@ -186,12 +186,12 @@ describe("The match team filterer", function() {
 		expect(utils.matches_for_team).toBeDefined();
 	});
 	var match_0 = {
-		'number': 0,
+		'num': 0,
 		'time': '00:00:00',
 		'teams': [ 'MAI', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
 	};
 	var match_1 = {
-		'number': 1,
+		'num': 1,
 		'time': '00:05:00',
 		'teams': [ 'MAI2', 'QMS', 'LSS', 'EMM', 'GRS', 'BDF', 'NHS', 'MEA' ]
 	};
@@ -238,15 +238,15 @@ describe("The unspent match filterer", function() {
 	beforeEach(function() {
 		arenas = ['A', 'B'];
 		matches = [{
-				'number': 0,
+				'num': 0,
 				'time': new Date(), // now
 				'teams': [ 'ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'VWX' ]
 			}, {
-				'number': 1,
+				'num': 1,
 				'time': new Date(),
 				'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
 			}, {
-				'number': 2,
+				'num': 2,
 				'time': new Date(),
 				'teams': [ 'CLY2', 'TTN2', 'SCC2', 'DSF2', 'GRS2', 'QMC2', 'GRD2', 'BRK2' ]
 		}];
@@ -336,7 +336,7 @@ describe("The knockout round processor match filterer", function() {
 		}];
 		// it gets converted to a collection of match describing objects
 		expected = [{
-			'number': 0,
+			'num': 0,
 			'description': "Final (#0)",
 			'time': new Date('2014-03-15 00:00:00'),
 			'games': [{
