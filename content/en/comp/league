@@ -19,16 +19,24 @@ Up to date with scores from match {{latest_match}}.
 No scores have been recorded yet.
 </span>
 
-<table>
+<table class="sortable" data-ng-init="sortKey = 'pos'; alwaysPos = false">
     <thead>
-        <tr>
-            <th>Position</th>
+        <tr data-ng-class="{reverse:reverse}">
+            <th class="sorter"
+                data-ng-class="{active:sortKey == 'pos'}"
+                data-ng-click="sortKey = 'pos'; reverse = !reverse; alwaysPos = false">
+                Position
+            </th>
             <th>Points</th>
-            <th>Team</th>
+            <th class="sorter"
+                data-ng-class="{active:sortKey == 'tla'}"
+                data-ng-click="sortKey = 'tla'; reverse = !reverse; alwaysPos = true">
+                Team
+            </th>
         </tr>
     </thead>
-    <tr data-ng-repeat="item in league_points" id="{{item.tla}}">
-        <td>{{item.pos}}</td>
+    <tr data-ng-repeat="item in (filtered = (league_points | orderBy:sortKey:reverse))" id="{{item.tla}}">
+        <td><span data-ng-if="alwaysPos || item.pos != filtered[$index - 1].pos">{{item.pos}}</span></td>
         <td>{{item.points}}</td>
         <td>
             <a href="/teams/{{item.tla}}" title="Find out more about team {{item.tla}}">{{item.tla}}</a>:

@@ -111,7 +111,7 @@ var league_sorter = function() {
         for (var i=0; i<rows.length; i++) {
             var row = rows[i];
             if (row.points == last_score) {
-                row.pos = '';
+                row.pos = last_pos;
             } else {
                 last_score = row.points;
                 last_pos = row.pos = i+1;

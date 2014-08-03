@@ -25,3 +25,20 @@ div.match.current {
 	/* TODO: make darker */
 	background-color:#FFFFB0;
 }
+
+table.sortable th.sorter {
+	cursor:pointer;
+}
+table.sortable th.sorter:after {
+	content:" ◊";
+	margin-right:2px;
+}
+table.sortable th.active:after {
+	content:" ▴";
+	position:relative;
+	top:-0.4em;
+}
+table.sortable tr.reverse th.active:after {
+	content:" ▾";
+	top:0;
+}
