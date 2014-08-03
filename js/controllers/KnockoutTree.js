@@ -1,10 +1,15 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
+app.controller("KnockoutTree", function($scope, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
+
+    $scope.corners = [];
+    Corners.load(function(cornerId, corner) {
+        $scope.corners[cornerId] = corner;
+    });
 
     var knockout_period = {};
 
