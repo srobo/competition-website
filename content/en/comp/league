@@ -23,12 +23,16 @@ No scores have been recorded yet.
     <thead>
         <tr data-ng-class="{reverse:reverse}">
             <th class="sorter"
+                title="Click to sort by league position."
                 data-ng-class="{active:sortKey == 'pos'}"
                 data-ng-click="sortKey = 'pos'; reverse = !reverse; alwaysPos = false">
                 Position
             </th>
-            <th>Points</th>
+            <th title="The number of league points the team has earned.">
+                Points
+            </th>
             <th class="sorter"
+                title="Click to sort by team."
                 data-ng-class="{active:sortKey == 'tla'}"
                 data-ng-click="sortKey = 'tla'; reverse = !reverse; alwaysPos = true">
                 Team
