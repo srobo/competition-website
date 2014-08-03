@@ -17,6 +17,12 @@
 	width:150px;
 }
 
+/* League page */
+table th {
+	padding:0 5px;
+	vertical-align:middle;
+}
+
 /* Team page */
 #comp_team #team-chooser {
 	float:right;

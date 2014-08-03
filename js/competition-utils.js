@@ -136,23 +136,6 @@ var league_sorter = function() {
     };
 }();
 
-var gamepoints_sorter = function() {
-    var sort_helper = function(a, b) {
-        return a.tla.localeCompare(b.tla);
-    };
-
-    return function(points) {
-        var rows = [];
-
-        for (var tla in points) {
-            var pts = points[tla];
-            rows.push({'tla': tla, 'points': pts});
-        }
-        rows.sort(sort_helper);
-        return rows;
-    };
-}();
-
 var convert_matches = function() {
     return function(matches) {
         var output = [];
@@ -350,7 +333,6 @@ var process_knockouts = function() {
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
     exports.league_sorter = league_sorter;
-    exports.gamepoints_sorter = gamepoints_sorter;
     exports.match_converter = match_converter;
     exports.convert_matches = convert_matches;
     exports.matches_for_team = matches_for_team;

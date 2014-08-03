@@ -89,39 +89,6 @@ describe("The league sorter", function() {
 	});
 });
 
-describe("The game points sorter", function() {
-	it("should be defined", function() {
-		expect(utils.gamepoints_sorter).toBeDefined();
-	});
-	it("should sort inputs by tla", function() {
-		var raw = { 'ABC': 12, 'DEF': 3 };
-		var expected = [
-			{ 'tla': 'ABC', 'points': 12 },
-			{ 'tla': 'DEF', 'points': 3 },
-		];
-		var league = utils.gamepoints_sorter(raw);
-		expect(league).toEqual(expected);
-	});
-	it("should sort inputs by tla when not already in order", function() {
-		var raw = { 'DEF': 3, 'ABC': 12 };
-		var expected = [
-			{ 'tla': 'ABC', 'points': 12 },
-			{ 'tla': 'DEF', 'points': 3 },
-		];
-		var game = utils.gamepoints_sorter(raw);
-		expect(game).toEqual(expected);
-	});
-	it("should sort inputs by tla when regardless of points", function() {
-		var raw = { 'DEF': 12, 'ABC': 3 };
-		var expected = [
-			{ 'tla': 'ABC', 'points': 3 },
-			{ 'tla': 'DEF', 'points': 12 },
-		];
-		var game = utils.gamepoints_sorter(raw);
-		expect(game).toEqual(expected);
-	});
-});
-
 describe("The match schedule converter sorter helpers", function() {
 	it("should be defined", function() {
 		expect(utils.match_converter).toBeDefined();

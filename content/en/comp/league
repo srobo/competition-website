@@ -5,7 +5,7 @@
 
 This page shows the current status of the league, with teams positioned by
 the number of league points they have earned from their matches.
-Ties are resolved by comparing the total number of [game points](/comp/gamepoints)
+Ties are resolved by comparing the total number of game points
 tied teams have earned in their league matches.
 
 The positions of the teams within the league are used to seed the [knockouts](/comp/knockout).
@@ -29,7 +29,10 @@ No scores have been recorded yet.
                 Position
             </th>
             <th title="The number of league points the team has earned.">
-                Points
+                League<br />Points
+            </th>
+            <th title="The the total number of game points scored by each team, summed over all of their league matches.">
+                Game<br />Points
             </th>
             <th class="sorter"
                 title="Click to sort by team."
@@ -42,6 +45,7 @@ No scores have been recorded yet.
     <tr data-ng-repeat="item in (filtered = (teams | orderBy:sortKey:reverse))" id="{{item.tla}}">
         <td><span data-ng-if="alwaysPos || item.league_pos != filtered[$index - 1].league_pos">{{item.league_pos}}</span></td>
         <td>{{item.scores.league}}</td>
+        <td>{{item.scores.game}}</td>
         <td>
             <a href="/teams/{{item.tla}}" title="Find out more about team {{item.tla}}">{{item.tla}}</a>:
             {{item.name}}

@@ -35,7 +35,7 @@
 This page shows the league and game points earned during any match.
 Either choose a team or enter a comma separated list of matches in the box to the right.
 
-For a summary of all the teams' points, see either the [league](/comp/league) or [game points](/comp/gamepoints) pages.
+For a summary of all the teams' points, see the [league points](/comp/league) page.
 
 <div class="points" data-ng-repeat="match in fetchedMatches|matchSort">
     <h4>Match {{match.num}}</h4>
