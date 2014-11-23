@@ -78,7 +78,7 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
 
 #### Points Earned
 
-**League postion:** {{league_position}} ([full ranking](/comp/league))
+**League position:** {{league_position}} ([full ranking](/comp/league))
 
 <table class="past">
     <thead>
