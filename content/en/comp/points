@@ -20,7 +20,7 @@
         <option value="">Choose a team</option>
         <option data-ng-repeat="(tla, info) in teams"
                 value="{{tla}}">
-            {{tla|teamName:teams}}
+            {{info|teamName}}
         </option>
     </select>
 

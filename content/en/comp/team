@@ -20,7 +20,7 @@ td.match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}
         <option value=""></option>
         <option data-ng-repeat="(tla, info) in teams"
                 value="{{tla}}">
-            {{tla|teamName:teams}}
+            {{info|teamName}}
         </option>
     </select>
 </div>
@@ -64,7 +64,7 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
             </td>
             <td>
                 <span data-ng-repeat="team in game.teams|otherTeams:$storage.chosenTeam"
-                      title="{{team|teamName:teams}}">
+                      title="{{team|teamInfo:teams|teamName}}">
                     {{team}}<span data-ng-if="!$last">,</span>
                 </span>
             </td>

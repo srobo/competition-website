@@ -25,7 +25,7 @@ The knockout rounds occur during the [last session](#last-session) of the compet
         <option value="">All Teams</option>
         <option data-ng-repeat="(tla, info) in teams"
                 value="{{tla}}">
-            {{tla|teamName:teams}}
+            {{info|teamName}}
         </option>
     </select>
     <label>
