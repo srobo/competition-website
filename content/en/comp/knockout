@@ -30,7 +30,7 @@ See the [match schedule](/comp/schedule) for information about the current match
                     <li data-ng-repeat="tla in game.teams track by $index">
                         <a data-ng-href="/teams/{{tla}}"
                            data-ng-show="{{tla != unknowable && tla != '-'}}"
-                           title="Find out more about team {{tla|teamName:teams}}">
+                           title="Find out more about team {{tla|teamInfo:teams|teamName}}">
                            {{tla}}
                        </a>
                         <span data-ng-show="{{tla == unknowable || tla == '-'}}">
