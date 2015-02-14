@@ -16,7 +16,6 @@
 	<link rel="shortcut icon" href="{$root_uri}images/template/favicon.ico" />
 
 	<script type="text/javascript">
-		var SRWEB_ROOT = "{$root_uri}";
 		var API_ROOT = "/comp-api";
 	</script>
 

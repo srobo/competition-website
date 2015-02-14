@@ -19,13 +19,13 @@ Up to date with scores from match {{latest_match}}.
 No scores have been recorded yet.
 </span>
 
-<table class="sortable" data-ng-init="sortKey = 'pos'; alwaysPos = false">
+<table class="sortable" data-ng-init="sortKey = 'league_pos'; alwaysPos = false">
     <thead>
         <tr data-ng-class="{reverse:reverse}">
             <th class="sorter"
                 title="Click to sort by league position."
-                data-ng-class="{active:sortKey == 'pos'}"
-                data-ng-click="sortKey = 'pos'; reverse = !reverse; alwaysPos = false">
+                data-ng-class="{active:sortKey == 'league_pos'}"
+                data-ng-click="sortKey = 'league_pos'; reverse = !reverse; alwaysPos = false">
                 Position
             </th>
             <th title="The number of league points the team has earned.">
@@ -39,12 +39,12 @@ No scores have been recorded yet.
             </th>
         </tr>
     </thead>
-    <tr data-ng-repeat="item in (filtered = (league_points | orderBy:sortKey:reverse))" id="{{item.tla}}">
-        <td><span data-ng-if="alwaysPos || item.pos != filtered[$index - 1].pos">{{item.pos}}</span></td>
-        <td>{{item.points}}</td>
+    <tr data-ng-repeat="item in (filtered = (teams | orderBy:sortKey:reverse))" id="{{item.tla}}">
+        <td><span data-ng-if="alwaysPos || item.league_pos != filtered[$index - 1].league_pos">{{item.league_pos}}</span></td>
+        <td>{{item.scores.league}}</td>
         <td>
             <a href="/teams/{{item.tla}}" title="Find out more about team {{item.tla}}">{{item.tla}}</a>:
-            {{item.tla|teamName:teams:true}}
+            {{item.name}}
         </td>
     </tr>
 </table>
