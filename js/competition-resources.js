@@ -48,7 +48,7 @@ app.factory("LeagueScores", function($resource) {
 });
 
 app.factory("AllMatches", function($resource) {
-    return $resource(API_ROOT + "/matches/all");
+    return $resource(API_ROOT + "/matches");
 });
 
 app.factory("MatchPeriods", function($resource) {

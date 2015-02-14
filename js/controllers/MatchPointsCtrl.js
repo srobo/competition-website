@@ -15,7 +15,24 @@ var only_integers = function() {
     };
 }();
 
-app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, Corners, MatchesFactory, State, Teams) {
+var games_list_to_matches_map = function() {
+    return function(games_list) {
+        var matches_map = {};
+        for (var i=0; i<games_list.length; i++) {
+            var game = games_list[i];
+            if (!(game.num in matches_map)) {
+                matches_map[game.num] = {
+                    "num": game.num,
+                    "games": {}
+                };
+            }
+            matches_map[game.num].games[game.arena] = game;
+        }
+        return matches_map;
+    };
+}();
+
+app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Corners, State, Teams) {
 
     $scope.$storage = $localStorage;
 
@@ -24,75 +41,13 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
         $scope.corners[cornerId] = corner;
     });
 
-    Teams.follow(function(teams) {
-        $scope.teams = teams;
-    });
-
-    var fetchedMatches = $scope.fetchedMatches = {};
-
-    var updateMatches = function(match_numbers) {
-        var match_numbers = only_integers(match_numbers);
-
-        var tidyFetched = function() {
-            for (var key in fetchedMatches) {
-                // match_numbers are all int
-                var num = parseInt(key);
-                // not contains
-                if (match_numbers.indexOf(num) == -1) {
-                    delete fetchedMatches[key];
-                }
-            }
-        };
-        tidyFetched();
-
-        if (match_numbers.length == 0) {
-            return;
-        }
-
-        var arenas = $scope.arenas || [];
-        for (var i=0; i<arenas.length; i++) {
-            var Matches = MatchesFactory(arenas[i], match_numbers);
-            Matches.get(function(nodes) {
-                var matches = nodes.matches;
-                for (var j=0; j<matches.length; j++) {
-                    var game = matches[j];
-                    if (!(game.num in fetchedMatches)) {
-                        fetchedMatches[game.num] = {
-                            "num": game.num,
-                            "games": {}
-                        };
-                    }
-                    fetchedMatches[game.num].games[game.arena] = game;
-                }
-                tidyFetched();
-            });
-        }
-    };
-
-    Arenas.get(function(nodes) {
-        $scope.arenas = nodes.arenas;
-        updateMatches($scope.chosenMatches);
-    });
-
-    State.change(function() {
-        updateMatches($scope.chosenMatches);
-    });
-
-    $scope.$watch("chosenMatches", updateMatches);
-
-
-    var all_matches = {};
-    AllMatches.get(function(matches) {
-        all_matches = matches.matches;
-        updateChosen($scope.$storage.chosenTeam);
-    });
-
+    var games_list = [];
     var updateChosen = function(team) {
-        if (all_matches == null || team == null) {
+        if (games_list.length == 0 || team == null) {
             return;
         }
 
-        var games = games_for_team(all_matches, team);
+        var games = games_for_team(games_list, team);
         var match_numbers = [];
         for (var i=0; i<games.length; i++) {
             match_numbers.push(games[i].num);
@@ -102,18 +57,22 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
     };
 
     $scope.$watch("$storage.chosenTeam", updateChosen);
+
+    State.change(function() {
+        Teams.get(function(raw) {
+            $scope.teams = raw.teams;
+        });
+        AllMatches.get(function(matches) {
+            games_list = matches.matches;
+            $scope.matches = games_list_to_matches_map(games_list)
+            updateChosen($scope.$storage.chosenTeam);
+        });
+    });
 });
 
-app.filter('matchSort', function() {
-    var keys = function(dict) {
-        var output = [];
-        for (var key in dict) {
-            output.push(key);
-        }
-        return output;
-    };
-    return function(matches_map) {
-        var numbers = only_integers(keys(matches_map));
+app.filter('pickMatches', function() {
+    return function(matches_map, chosen_match_nums) {
+        var numbers = only_integers(chosen_match_nums);
         // JavaScript is insane
         numbers.sort(function(a,b){return a - b});
         var output = [];
