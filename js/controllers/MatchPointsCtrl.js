@@ -34,6 +34,7 @@ var games_list_to_matches_map = function() {
 
 app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Corners, State, Teams) {
 
+    $scope.empty_corner = EMPTY_CORNER_SYMBOL;
     $scope.$storage = $localStorage;
 
     $scope.corners = [];
