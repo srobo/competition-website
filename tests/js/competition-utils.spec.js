@@ -290,15 +290,23 @@ describe("The knockout round processor match filterer", function() {
 		var teams_b = [ 'GRS', 'QMC', 'GRD', 'BRK' ];
 		round = [{
 			'arena': 'A',
-			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
 			'num': 0,
-			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+			'times': {
+				'game': {
+					'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
+					'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
+				}
+			},
 			'teams': teams_a
 		},{
 			'arena': 'B',
-			'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
 			'num': 0,
-			'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
+			'times': {
+				'game': {
+					'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
+					'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
+				}
+			},
 			'teams': teams_b
 		}];
 		// it gets converted to a collection of match describing objects

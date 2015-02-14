@@ -74,7 +74,7 @@ app.factory("MatchPeriods", function($resource) {
 });
 
 app.factory("KnockoutMatches", function($resource) {
-    return $resource(API_ROOT + "/matches/knockouts");
+    return $resource(API_ROOT + "/knockout");
 });
 
 app.factory("CurrentMatchFactory", function($resource) {
