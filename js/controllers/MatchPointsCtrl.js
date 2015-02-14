@@ -60,9 +60,10 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Co
     $scope.$watch("$storage.chosenTeam", updateChosen);
 
     State.change(function() {
-        Teams.get(function(raw) {
-            $scope.teams = raw.teams;
+        Teams.get(function(nodes) {
+            $scope.teams = nodes.teams;
         });
+
         AllMatches.get(function(matches) {
             games_list = matches.matches;
             $scope.matches = games_list_to_matches_map(games_list)

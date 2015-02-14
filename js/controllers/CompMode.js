@@ -8,10 +8,6 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
     $scope.current_match = {};
     $scope.previous_match = {};
 
-    Teams.follow(function(teams) {
-        $scope.teams = teams;
-    });
-
     // because this changes as a result of two things, do our own updating.
     // Idealy this would be a filter in the template, but that didn't want
     // to work easily.
@@ -61,6 +57,10 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
 
     // update the data only when the state changes
     State.change(function() {
+        Teams.get(function(nodes) {
+            $scope.teams = nodes.teams;
+        });
+
         // TODO: consider getting only the matches of interest,
         // once there's an easy way to do this for all arenas at once.
         AllMatches.get(function(nodes) {

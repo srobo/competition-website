@@ -12,10 +12,6 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
         $scope.corners[cornerId] = corner;
     });
 
-    Teams.follow(function(teams) {
-        $scope.teams = teams;
-    });
-
     // work out the team's position in the league
     var get_postition = function(points, team) {
         var position = null;
@@ -116,6 +112,10 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
 
     // update the data only when the state changes
     State.change(function() {
+        Teams.get(function(nodes) {
+            $scope.teams = nodes.teams;
+        });
+
         AllMatches.get(function(nodes) {
             all_matches = nodes.matches;
             update_matches($scope.$storage.chosenTeam);

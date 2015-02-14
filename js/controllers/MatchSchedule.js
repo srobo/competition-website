@@ -15,10 +15,6 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corner
         $scope.corners[cornerId] = corner;
     });
 
-    Teams.follow(function(teams) {
-        $scope.teams = teams;
-    });
-
     // update our current match information all the time
     var updateState = function(CurrentMatch) {
         CurrentMatch.get(function(match) {
@@ -28,6 +24,10 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corner
 
     // update the data only when the state changes
     State.change(function() {
+        Teams.get(function(nodes) {
+            $scope.teams = nodes.teams;
+        });
+
         MatchPeriods.getSessions(function(sessions) {
             for (var i=0; i<sessions.length; i++) {
                 sessions[i].arenas = $scope.arenas;

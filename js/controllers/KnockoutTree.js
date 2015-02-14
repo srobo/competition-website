@@ -6,10 +6,6 @@ app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueS
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
 
-    Teams.follow(function(teams) {
-        $scope.teams = teams;
-    });
-
     // update our current/next information all the time
     // it will change as time passes, even if the state revision doesn't
     var updateState = function(MatchState) {
@@ -34,6 +30,10 @@ app.controller("KnockoutTree", function($scope, Arenas, KnockoutMatches, LeagueS
 
     // update the data only when the state changes
     State.change(function() {
+        Teams.get(function(nodes) {
+            $scope.teams = nodes.teams;
+        });
+
         LeagueScores.get(function(points) {
             $scope.latest_scored_match = points.last_scored;
         });
