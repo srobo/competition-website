@@ -1,6 +1,21 @@
 
 var utils = require('../../js/competition-utils.js');
 
+describe("The time offsetter", function() {
+	it("should be defined", function() {
+		expect(utils.compute_offset).toBeDefined();
+		expect(utils.apply_offset).toBeDefined();
+	});
+	it("should round trip a time", function() {
+		var then = new Date("2015-01-01");
+		var now = new Date("2015-01-02");
+		var offset = utils.compute_offset(then, now);
+		var result = utils.apply_offset(offset, now);
+		expect(result).toEqual(then);
+	});
+
+});
+
 describe("The league sorter", function() {
 	it("should be defined", function() {
 		expect(utils.league_sorter).toBeDefined();

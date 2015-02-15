@@ -6,6 +6,20 @@ var EMPTY_CORNER_SYMBOL = '-';
 // to hide 'old' matches
 var MAX_MATCH_AGE = 15 * 60; // 15 minutes in seconds
 
+var compute_offset = function() {
+    return function(then, now) {
+        var now = now || new Date();
+        return now - then;
+    }
+}();
+
+var apply_offset = function() {
+    return function(offset, now) {
+        var now = now || new Date();
+        return new Date(now.valueOf() - offset);
+    }
+}();
+
 var create_follower = function() {
     return function($interval, resource, delay) {
         resource.follow = function(cb, delay_override) {
@@ -325,6 +339,8 @@ var process_knockouts = function() {
 
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
+    exports.compute_offset = compute_offset;
+    exports.apply_offset = apply_offset;
     exports.league_sorter = league_sorter;
     exports.match_converter = match_converter;
     exports.convert_matches = convert_matches;

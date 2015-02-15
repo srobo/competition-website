@@ -65,7 +65,7 @@ app.factory("MatchPeriods", function($resource) {
         }
         return sessions;
     };
-    return $resource(API_ROOT + "/matches/periods", {}, {
+    return $resource(API_ROOT + "/periods", {}, {
         getSessions: {method: "GET", interceptor: {
             response: function(response) {
                 return build_sessions(response.data);
@@ -76,6 +76,33 @@ app.factory("MatchPeriods", function($resource) {
 
 app.factory("KnockoutMatches", function($resource) {
     return $resource(API_ROOT + "/knockout");
+});
+
+app.factory("Current", function($interval, $resource) {
+    var resource = $resource(API_ROOT + "/current", {}, {
+        'get': { method: 'GET', interceptor: {
+            response: function(response) {
+                var data = response.data;
+                var time = data.time = new Date(data.time);
+                data.offset = compute_offset(time);
+                return data;
+            }
+        }},
+        'getMatch': { method: 'GET', interceptor: {
+            response: function(response) {
+                return response.data.matches;
+            }
+        }},
+        'getTime': { method: 'GET', interceptor: {
+            response: function(response) {
+                return new Date(response.data.time);
+            }
+        }}
+    });
+    // helper which applies the offset value generated above
+    resource.timeFromOffset = apply_offset;
+    // 10 seconds follower
+    return create_follower($interval, resource, 10*1000);
 });
 
 app.factory("CurrentMatchFactory", function($resource) {
