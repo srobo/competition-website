@@ -2,17 +2,18 @@
 var app = angular.module('competitionResources', ["ngResource"]);
 
 app.factory("Teams", function($interval, $resource) {
-    var res = $resource(API_ROOT + "/teams");
-    res.getList = function(cb) {
-        res.get(function(raw) {
-            var teams_list = [];
-            for (var tla in raw.teams) {
-                teams_list.push(raw.teams[tla]);
+    return $resource(API_ROOT + "/teams", {}, {
+        getList: { method: 'GET', interceptor: {
+            response: function(response) {
+                var teams = response.data.teams;
+                var teams_list = [];
+                for (var tla in teams) {
+                    teams_list.push(teams[tla]);
+                }
+                return teams_list;
             }
-            cb(teams_list);
-        });
-    };
-    return res;
+        }}
+    });
 });
 
 app.factory("State", function($interval, $resource) {
