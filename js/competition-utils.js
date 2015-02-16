@@ -181,11 +181,59 @@ var match_converter = function() {
         for (var arena in match) {
             var detail = match[arena];
             output.num = detail.num;
-            output.time = convert_time(detail.start_time);
+            output.time = convert_time(detail.times.slot.start);
             var arena_teams = ensure_whole_arena(detail.teams);
             output.teams = output.teams.concat(arena_teams);
         }
         return output;
+    };
+}();
+
+var build_sessions = function() {
+    var group_matches = function(all_games) {
+        var last_num = 0;
+        var matches = [];
+        var match = {};
+        for (var i=0; i<all_games.length; i++) {
+            var game = all_games[i];
+            if (last_num != game.num) {
+                matches.push(match);
+                match = {};
+                last_num = game.num;
+            }
+            match[game.arena] = game;
+        }
+        matches.push(match);
+        return matches;
+    };
+    return function(data, cb) {
+        if (data.arenas == null || data.matches == null || data.periods == null) {
+            // can't do anything, but don't worry -- we'll get called
+            // again once we have the data
+            return;
+        }
+
+        var all_matches = group_matches(data.matches);
+
+        var sessions = [];
+        for (var i=0; i<data.periods.length; i++) {
+            var period = data.periods[i];
+            var matches = [];
+            if (period.matches) {
+                matches = all_matches.slice(period.matches.first_num,
+                                            period.matches.last_num + 1);
+                matches = convert_matches(matches);
+            }
+            sessions.push({
+                'arenas': data.arenas,
+                'description': period.description,
+                'start_time': new Date(period.start_time),
+                'end_time': new Date(period.end_time),
+                'max_end_time': new Date(period.max_end_time),
+                'matches': matches
+            });
+        }
+        cb(sessions);
     };
 }();
 

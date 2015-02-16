@@ -114,16 +114,24 @@ describe("The match schedule converter sorter helpers", function() {
 		input = {
 			'A': {
 				'arena': 'A',
-				'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+				'times': {
+					'slot': {
+						'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
+						'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
+					}
+				},
 				'num': 0,
-				'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
 				'teams': [ 'CLY', 'TTN', 'SCC', 'DSF' ]
 			},
 			'B': {
 				'arena': 'B',
-				'end_time': 'Sat, 15 Mar 2014 00:05:00 GMT',
+				'times': {
+					'slot': {
+						'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
+						'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
+					}
+				},
 				'num': 0,
-				'start_time': 'Sat, 15 Mar 2014 00:00:00 GMT',
 				'teams': [ 'GRS', 'QMC', 'GRD', 'BRK' ]
 			}
 		};

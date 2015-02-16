@@ -56,26 +56,24 @@ app.factory("AllMatches", function($resource) {
     return $resource(API_ROOT + "/matches");
 });
 
-app.factory("MatchPeriods", function($resource) {
-    var build_sessions = function(nodes) {
-        var sessions = [];
-        for (var i=0; i<nodes.periods.length; i++) {
-            var period = nodes.periods[i];
-            var matches = convert_matches(period.matches);
-            sessions.push({
-                'description': period.description,
-                'matches': matches
-            });
-        }
-        return sessions;
+app.factory("MatchPeriods", function($resource, Arenas, AllMatches) {
+    var res = $resource(API_ROOT + "/periods");
+    res.getSessions = function(cb) {
+        var data = {};
+        Arenas.get(function(nodes) {
+            data.arenas = nodes.arenas;
+            build_sessions(data, cb);
+        });
+        AllMatches.get(function(nodes) {
+            data.matches = nodes.matches;
+            build_sessions(data, cb);
+        });
+        res.get(function(nodes) {
+            data.periods = nodes.periods;
+            build_sessions(data, cb);
+        });
     };
-    return $resource(API_ROOT + "/periods", {}, {
-        getSessions: {method: "GET", interceptor: {
-            response: function(response) {
-                return build_sessions(response.data);
-            }
-        }}
-    });
+    return res;
 });
 
 app.factory("KnockoutMatches", function($resource) {

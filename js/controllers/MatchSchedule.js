@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
 
-app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corners, CurrentMatchFactory, MatchPeriods, State, Teams) {
+app.controller("MatchSchedule", function($scope, $sessionStorage, Corners, Current, MatchPeriods, State, Teams) {
 
     $scope.$storage = $sessionStorage.$default({hideOldMatches: true});
 
@@ -16,11 +16,13 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corner
     });
 
     // update our current match information all the time
-    var updateState = function(CurrentMatch) {
-        CurrentMatch.get(function(match) {
-            $scope.current_match = match.num;
-        });
-    };
+    Current.follow(function(nodes) {
+        if (nodes.matches.length > 0) {
+            $scope.current_match = nodes.matches[0].num;
+        } else {
+            $scope.current_match = null;
+        }
+    });
 
     // update the data only when the state changes
     State.change(function() {
@@ -29,23 +31,9 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Arenas, Corner
         });
 
         MatchPeriods.getSessions(function(sessions) {
-            for (var i=0; i<sessions.length; i++) {
-                sessions[i].arenas = $scope.arenas;
-            }
             sessions_cache[false] = sessions;
             sessions_cache[true] = unspent_matches(sessions, true);
             $scope.sessions = sessions_cache[$sessionStorage.hideOldMatches];
         });
-    });
-
-    Arenas.get(function(nodes) {
-        $scope.arenas = nodes.arenas;
-        var CurrentMatch = CurrentMatchFactory(nodes.arenas[0]);
-        var update = function() {
-            updateState(CurrentMatch);
-        };
-        // refresh every 10s
-        setInterval(update, 10000);
-        update();
     });
 });

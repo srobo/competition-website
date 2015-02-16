@@ -57,7 +57,9 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
         <tr>
             <th rowspan="2">Time  </th>
             <th rowspan="2">Match </th>
-            <th data-ng-repeat="arena in session.arenas" colspan="4">Arena {{arena}}</th>
+            <th data-ng-repeat="arena in session.arenas"
+                style="color: {{arena.colour}};"
+                colspan="4">Arena {{arena.display_name}}</th>
         </tr>
         <tr>
             <th data-ng-repeat-start="arena in session.arenas">Corner 0</th>
