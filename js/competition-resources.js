@@ -48,6 +48,10 @@ app.factory("LeagueScores", function($resource) {
     return $resource(API_ROOT + "/scores/league");
 });
 
+app.factory("LastScoredMatch", function($resource) {
+    return $resource(API_ROOT + "/matches/last_scored");
+});
+
 app.factory("AllMatches", function($resource) {
     return $resource(API_ROOT + "/matches");
 });

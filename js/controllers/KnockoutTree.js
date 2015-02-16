@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, Current, KnockoutMatches, LeagueScores, MatchPeriods, State, Teams) {
+app.controller("KnockoutTree", function($scope, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
@@ -54,7 +54,7 @@ app.controller("KnockoutTree", function($scope, Current, KnockoutMatches, League
             }
         });
 
-        LeagueScores.get(function(points) {
+        LastScoredMatch.get(function(points) {
             $scope.latest_scored_match = points.last_scored;
         });
 

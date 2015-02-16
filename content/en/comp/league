@@ -12,10 +12,10 @@ The positions of the teams within the league are used to seed the [knockouts](/c
 
 Details of the scores for each individual match are available on the [points page](/comp/points).
 
-<span data-ng-if="latest_match != null">
-Up to date with scores from match {{latest_match}}.
+<span data-ng-if="latest_scored_match != null">
+Up to date with scores from match {{latest_scored_match}}.
 </span>
-<span data-ng-if="latest_match == null">
+<span data-ng-if="latest_scored_match == null">
 No scores have been recorded yet.
 </span>
 
