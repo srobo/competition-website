@@ -11,8 +11,6 @@ app.controller("KnockoutTree", function($scope, Corners, Current, KnockoutMatche
         $scope.corners[cornerId] = corner;
     });
 
-    var knockout_period = {};
-
     var update_knockout_started = function(now) {
         if ($scope.knockout_start == null) {
             // can't do anything if we don't know when they start
