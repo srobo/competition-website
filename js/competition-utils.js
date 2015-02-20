@@ -10,14 +10,14 @@ var compute_offset = function() {
     return function(then, now) {
         var now = now || new Date();
         return now - then;
-    }
+    };
 }();
 
 var apply_offset = function() {
     return function(offset, now) {
         var now = now || new Date();
         return new Date(now.valueOf() - offset);
-    }
+    };
 }();
 
 var create_follower = function() {
@@ -344,7 +344,7 @@ var process_knockout_round = function() {
         }
 
         return game_groups;
-    }
+    };
     return function(round, rounds_after_this) {
 
         var game_groups = group_games(round);
@@ -382,7 +382,7 @@ var process_knockouts = function() {
             output.push(process_knockout_round(rounds[i], rounds_after_this));
         }
         return output;
-    }
+    };
 }();
 
 // node require() based exports.
