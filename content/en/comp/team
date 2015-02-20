@@ -1,13 +1,6 @@
 //TITLE: Team information | 2014 Competition
 //ANGULAR_CONTROLLER: TeamInformation
 
-<style type="text/css">
-td.match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
-td.match:nth-child(4n+4) { background-color: {{corners[1].colour|hexLighter:0.5}}; }
-td.match:nth-child(4n+5) { background-color: {{corners[2].colour|hexLighter:0.5}}; }
-td.match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
-</style>
-
 # Team Information
 
 <div id="team-chooser">
@@ -51,12 +44,15 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-repeat="game in scheduled_games|gamesAfterNow">
+        <tr data-ng-repeat="game in games|gamesAfterNow:time_offset">
             <td title="Begins at {{game.time|date:'HH:mm:ss on EEEE, d MMMM'}}.">
                 {{game.time|date:'HH:mm:ss'}}
             </td>
             <td>{{game.num}}</td>
-            <td>{{game.arena}}</td>
+            <td data-ng-init="arena = arenas[game.arena]"
+                style="color: {{arena.colour}};">
+                {{arena.display_name}}
+            </td>
             <td class="corner"
                 data-ng-init="corner = (game.teams|indexToCorner:$storage.chosenTeam)"
                 style="background-color: {{corners[corner].colour|hexLighter:0.5}};">
@@ -78,7 +74,7 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
 
 #### Points Earned
 
-**League position:** {{league_position}} ([full ranking](/comp/league))
+**League position:** {{teams[$storage.chosenTeam].league_pos}} ([full ranking](/comp/league))
 
 <table class="past">
     <thead>
@@ -91,12 +87,12 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
     <tfoot>
         <tr>
             <th>Totals</th>
-            <th>{{points.game_points[$storage.chosenTeam]}}</th>
-            <th>{{points.league_points[$storage.chosenTeam]}}</th>
+            <th>{{teams[$storage.chosenTeam].scores.game}}</th>
+            <th>{{teams[$storage.chosenTeam].scores.league}}</th>
         </tr>
     </tfoot>
     <tbody>
-        <tr data-ng-repeat="game in detailed_games|gamesBeforeNow">
+        <tr data-ng-repeat="game in games|gamesBeforeNow:time_offset">
             <td>{{game.num}}</td>
             <td>{{game.scores.game[$storage.chosenTeam]}}</td>
             <td>{{game.scores.league[$storage.chosenTeam]}}</td>
