@@ -3,10 +3,10 @@ var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
 app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, MatchesFactory, State, Teams) {
 
-    $scope.upcoming_match = {};
-    $scope.next_match = {};
-    $scope.current_match = {};
-    $scope.previous_match = {};
+    $scope.upcoming_match = null;
+    $scope.next_match = null;
+    $scope.current_match = null;
+    $scope.previous_match = null;
 
     // because this changes as a result of two things, do our own updating.
     // Idealy this would be a filter in the template, but that didn't want
@@ -45,10 +45,7 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
                         $scope[name].games = {};
                     }
                     $scope[name].games[arena] = item;
-                    // TODO: avoid storing this in two places
-                    // done for the moment to achieve a minimal patch
                     $scope[name].num = num;
-                    $scope[name + "_number"] = num;
                 }
             }
             refresh();
