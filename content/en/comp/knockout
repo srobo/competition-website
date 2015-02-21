@@ -32,7 +32,7 @@ See the [match schedule](/comp/schedule) for information about the current match
             <h4>{{match.description}}</h4>
             <span>{{match.time|date:'HH:mm:ss'}}</span>
             <div class="game" data-ng-repeat="game in match.games">
-                <span>Arena {{game.arena}}</span>
+                <span style="color: {{arenas[game.arena].colour}};">Arena {{arenas[game.arena].display_name}}</span>
                 <ul>
                     <li data-ng-repeat="tla in game.teams track by $index">
                         <a data-ng-href="/teams/{{tla}}"

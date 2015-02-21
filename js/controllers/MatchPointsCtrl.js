@@ -32,7 +32,7 @@ var games_list_to_matches_map = function() {
     };
 }();
 
-app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Corners, State, Teams) {
+app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, Corners, State, Teams) {
 
     $scope.empty_corner = EMPTY_CORNER_SYMBOL;
     $scope.$storage = $localStorage;
@@ -60,6 +60,10 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Co
     $scope.$watch("$storage.chosenTeam", updateChosen);
 
     State.change(function() {
+        Arenas.get(function(nodes) {
+            $scope.arenas = nodes.arenas;
+        });
+
         Teams.get(function(nodes) {
             $scope.teams = nodes.teams;
         });

@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
+app.controller("KnockoutTree", function($scope, Arenas, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
@@ -43,6 +43,10 @@ app.controller("KnockoutTree", function($scope, Corners, Current, KnockoutMatche
 
     // update the data only when the state changes
     State.change(function() {
+        Arenas.get(function(nodes) {
+            $scope.arenas = nodes.arenas;
+        });
+
         Teams.get(function(nodes) {
             $scope.teams = nodes.teams;
         });
