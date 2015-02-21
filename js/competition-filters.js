@@ -40,12 +40,6 @@ competitionFilters.filter('containsTeam', function() {
     return matches_for_team;
 });
 
-/// Exclude matches which have already happened
-competitionFilters.filter('unspentMatches', function() {
-    // implemented in competition-utils.js
-    return unspent_matches;
-});
-
 /// Convert the text to title case
 competitionFilters.filter('titleCase', function() {
     return function(string) {

@@ -106,20 +106,3 @@ app.factory("Current", function($interval, $resource) {
     // 10 seconds follower
     return create_follower($interval, resource, 10*1000);
 });
-
-app.factory("CurrentMatchFactory", function($resource) {
-    return function(arena) {
-        var args = {arenaId: arena};
-        return $resource(API_ROOT + "/matches/:arenaId/current", args);
-    }
-});
-
-app.factory("MatchesFactory", function($resource) {
-    return function(arena, numbers) {
-        if (Object.prototype.toString.call(numbers) === '[object Array]' ) {
-            numbers = numbers.join(',');
-        }
-        var encoded_numbers = encodeURIComponent(numbers);
-        return $resource(API_ROOT + "/matches/" + arena + "?numbers=" + encoded_numbers);
-    }
-});

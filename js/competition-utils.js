@@ -49,34 +49,6 @@ var create_follower = function() {
     };
 }();
 
-var get_current_session = function() {
-    return function(sessions, current) {
-        if (current == null) {
-            return null;
-        }
-        for (var i=0; i<sessions.length; i++) {
-            var session = sessions[i];
-            var matches = session.matches;
-
-            if (matches.length == 0) {
-                continue;
-            }
-
-            var first_match = matches[0];
-            if (first_match.num > current) {
-                continue;
-            }
-
-            var last_match = matches[matches.length-1];
-            if (last_match.num < current) {
-                continue;
-            }
-
-            return session;
-        }
-    };
-}();
-
 var hex_to_rgba = function() {
     var get_parts = function(hex) {
         if (hex[0] == "#") {
@@ -112,50 +84,6 @@ var games_for_team = function() {
             }
         }
         return games;
-    };
-}();
-
-var league_sorter = function() {
-    var _game_points = null;
-
-    var sort_helper = function(a, b) {
-        var val = b.points - a.points;
-        if (val == 0) {
-            a_game = _game_points[a.tla];
-            b_game = _game_points[b.tla];
-            return b_game - a_game;
-        }
-        return val;
-    };
-
-    var display_convert = function(rows, cutoff) {
-        var last_score = 0;
-        var last_pos = 1;
-        for (var i=0; i<rows.length; i++) {
-            var row = rows[i];
-            if (row.points == last_score) {
-                row.pos = last_pos;
-            } else {
-                last_score = row.points;
-                last_pos = row.pos = i+1;
-            }
-        }
-        if (cutoff != null && rows.length > cutoff) {
-            rows.splice(cutoff, 0, {'tla': '-', 'points': '-', 'pos': '-'});
-        }
-    };
-
-    return function(league_points, cutoff, game_points) {
-        var rows = [];
-        _game_points = game_points;
-
-        for (var tla in league_points) {
-            var pts = league_points[tla];
-            rows.push({'tla': tla, 'points': pts});
-        }
-        rows.sort(sort_helper);
-        display_convert(rows, cutoff);
-        return rows;
     };
 }();
 
@@ -408,7 +336,6 @@ var process_knockouts = function() {
 if (typeof(exports) != 'undefined') {
     exports.compute_offset = compute_offset;
     exports.apply_offset = apply_offset;
-    exports.league_sorter = league_sorter;
     exports.match_converter = match_converter;
     exports.convert_matches = convert_matches;
     exports.matches_for_team = matches_for_team;
