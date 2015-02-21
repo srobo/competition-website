@@ -4,10 +4,11 @@ var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches, Current, State, Teams) {
 
     $scope.matches = [];
-    $scope.upcoming_match = null;
-    $scope.next_match = null;
-    $scope.current_match = null;
-    $scope.previous_match = null;
+    // NB: These must be inited to objects, see below
+    $scope.upcoming_match = {};
+    $scope.next_match = {};
+    $scope.current_match = {};
+    $scope.previous_match = {};
 
     var grouped_matches = [];
 
@@ -17,23 +18,31 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
         }
     };
 
-    var build_match_info = function(games) {
-        var game = first_value(games);
-        return {
-            'num': game.num,
-            'games': games
-        };
+    // Each of the _match items is used within an 'include'. These work
+    // by creating a new scope upfront, taking a reference to the value
+    // within the named item. As a result, we need to update the original
+    // value rather than just replacing it.
+    // See http://stackoverflow.com/a/15937197/67873 for a more detailed
+    // explanation.
+    var set_match_info = function(name, games) {
+        var info = $scope[name];
+        if (!games) {
+            info.exists = false;
+            info.num = null;
+            info.games = null;
+        } else {
+            info.exists = true;
+            var game = first_value(games);
+            info.num = game.num;
+            info.games = games;
+        }
     }
 
     $scope.time_offset = 0;
     Current.follow(function(nodes) {
         $scope.time_offset = nodes.offset;
         var grouped = group_matches(nodes.matches);
-        if (grouped.length > 0) {
-            $scope.current_match = build_match_info(grouped[0]);
-        } else {
-            $scope.current_match = null;
-        }
+        set_match_info('current_match', grouped[0]);
     });
 
     $interval(function() {
@@ -43,29 +52,17 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
             var game = first_value(game_map);
             return new Date(game.times.slot.end) < now;
         });
-        if (previous_matches.length > 0) {
-            // last one
-            var previous_match = previous_matches[previous_matches.length - 1];
-            $scope.previous_match = build_match_info(previous_match);
-        } else {
-            $scope.previous_match = null;
-        }
+        // last one
+        var previous_match = previous_matches[previous_matches.length - 1];
+        set_match_info('previous_match', previous_match);
 
         var upcoming_matches = array_filter(grouped_matches, function(game_map) {
             var game = first_value(game_map);
             return new Date(game.times.slot.start) > now;
         });
 
-        if (upcoming_matches.length > 0) {
-            $scope.next_match = build_match_info(upcoming_matches[0]);
-            if (upcoming_matches.length > 1) {
-                $scope.upcoming_match = build_match_info(upcoming_matches[1]);
-            } else {
-                $scope.upcoming_match = null;
-            }
-        } else {
-            $scope.next_match = null;
-        }
+        set_match_info('next_match', upcoming_matches[0]);
+        set_match_info('upcoming_match', upcoming_matches[1]);
     }, 100);
 
     // update the data only when the state changes
