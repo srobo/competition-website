@@ -194,6 +194,7 @@ var match_converter = function() {
             var detail = match[arena];
             output.num = detail.num;
             output.time = new Date(detail.times.slot.start);
+            output.end_time = new Date(detail.times.slot.end);
             var arena_teams = ensure_whole_arena(detail.teams);
             output.teams = output.teams.concat(arena_teams);
         }
@@ -203,8 +204,11 @@ var match_converter = function() {
 
 var group_matches = function() {
     return function(all_games) {
-        var last_num = 0;
         var matches = [];
+        if (all_games.length == 0) {
+            return matches;
+        }
+        var last_num = all_games[0].num;
         var match = {};
         for (var i=0; i<all_games.length; i++) {
             var game = all_games[i];

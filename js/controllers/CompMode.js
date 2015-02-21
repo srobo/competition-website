@@ -1,59 +1,79 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, MatchesFactory, State, Teams) {
+app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches, Current, State, Teams) {
 
+    $scope.matches = [];
     $scope.upcoming_match = null;
     $scope.next_match = null;
     $scope.current_match = null;
     $scope.previous_match = null;
 
-    // because this changes as a result of two things, do our own updating.
-    // Idealy this would be a filter in the template, but that didn't want
-    // to work easily.
-    var all_matches = [];
-    var next_match = 0;
-    var refresh = function() {
-        var low = Math.max(0, next_match-2);
-        $scope.matches = all_matches.slice(low, low+10);
+    var grouped_matches = [];
+
+    var first_value = function(map) {
+        for (var k in map) {
+            return map[k];
+        }
     };
 
-    // update our current/next information all the time
-    // it will change as time passes, even if the state revision doesn't
-    var store_map = {
-        "previous": "previous_match",
-        "current": "current_match",
-        "next": "next_match",
-        "next+1": "upcoming_match"
-    };
-    var updateState = function(MatchState, arena) {
-        MatchState.get(function(matches) {
-            matches = matches.matches;
-            for (var i=0; i<matches.length; i++) {
-                var match = matches[i];
-                if (match.query == "next") {
-                    next_match = match.num;
-                }
-                if (match.query in store_map) {
-                    var name = store_map[match.query];
-                    var item = null, num = null;
-                    if (!match.error) {
-                        item = match;
-                        num = match.num;
-                    }
-                    if ($scope[name].games == null) {
-                        $scope[name].games = {};
-                    }
-                    $scope[name].games[arena] = item;
-                    $scope[name].num = num;
-                }
-            }
-            refresh();
+    var build_match_info = function(games) {
+        var game = first_value(games);
+        return {
+            'num': game.num,
+            'games': games
+        };
+    }
+
+    $scope.time_offset = 0;
+    Current.follow(function(nodes) {
+        $scope.time_offset = nodes.offset;
+        var grouped = group_matches(nodes.matches);
+        if (grouped.length > 0) {
+            $scope.current_match = build_match_info(grouped[0]);
+        } else {
+            $scope.current_match = null;
+        }
+    });
+
+    $interval(function() {
+        var now = Current.timeFromOffset($scope.time_offset);
+
+        var previous_matches = array_filter(grouped_matches, function(game_map) {
+            var game = first_value(game_map);
+            return new Date(game.times.slot.end) < now;
         });
-    };
+        if (previous_matches.length > 0) {
+            // last one
+            var previous_match = previous_matches[previous_matches.length - 1];
+            $scope.previous_match = build_match_info(previous_match);
+        } else {
+            $scope.previous_match = null;
+        }
+
+        var upcoming_matches = array_filter(grouped_matches, function(game_map) {
+            var game = first_value(game_map);
+            return new Date(game.times.slot.start) > now;
+        });
+
+        if (upcoming_matches.length > 0) {
+            $scope.next_match = build_match_info(upcoming_matches[0]);
+            if (upcoming_matches.length > 1) {
+                $scope.upcoming_match = build_match_info(upcoming_matches[1]);
+            } else {
+                $scope.upcoming_match = null;
+            }
+        } else {
+            $scope.next_match = null;
+        }
+    }, 100);
 
     // update the data only when the state changes
     State.change(function() {
+        Arenas.get(function(nodes) {
+            $scope.arenas = nodes.arenas;
+        });
+
         Teams.get(function(nodes) {
             $scope.teams = nodes.teams;
         });
@@ -61,29 +81,34 @@ app.controller("CompMode", function($scope, Arenas, AllMatches, LeagueScores, Ma
         // TODO: consider getting only the matches of interest,
         // once there's an easy way to do this for all arenas at once.
         AllMatches.get(function(nodes) {
-            all_matches = convert_matches(nodes.matches);
-            refresh();
-        });
-
-        LeagueScores.get(function(points) {
-            var league_points = league_sorter(points.league_points, null, points.game_points);
-            $scope.league_points = league_points.slice(0, 10);
+            all_matches = nodes.matches;
+            grouped_matches = group_matches(all_matches)
+            $scope.matches = convert_matches(grouped_matches);
         });
     });
+});
 
-    Arenas.get(function(nodes) {
-        $scope.arenas = nodes.arenas;
-        var per_arena = function(arena) {
-            var MatchState = MatchesFactory(arena, "previous,current,next,next+1");
-            var update = function() {
-                updateState(MatchState, arena);
-            };
-            // refresh every 10s
-            setInterval(update, 10000);
-            update();
-        };
-        for (var i=0; i<$scope.arenas.length; i++) {
-            per_arena($scope.arenas[i]);
+app.filter("matchesEndingAfterNow", function(Current) {
+    return function(matches, time_offset) {
+        var now = Current.timeFromOffset(time_offset);
+        return array_filter(matches, function(match) {
+            return match.end_time > now;
+        });
+    };
+});
+
+app.filter("leaderboard", function() {
+    return function(teams, limit) {
+        var output = [];
+        for (var tla in teams) {
+            output.push(teams[tla]);
         }
-    });
+        output.sort(function(a, b) {
+            return a.league_pos - b.league_pos;
+        });
+        if (limit) {
+            output = output.slice(0, limit);
+        }
+        return output;
+    };
 });

@@ -138,6 +138,7 @@ describe("The match schedule converter sorter helpers", function() {
 		expected = {
 			'num': 0,
 			'time': new Date('2014-03-15 00:00:00'),
+			'end_time': new Date('2014-03-15 00:05:00'),
 			'teams': [ 'CLY', 'TTN', 'SCC', 'DSF', 'GRS', 'QMC', 'GRD', 'BRK' ]
 		};
 	});
