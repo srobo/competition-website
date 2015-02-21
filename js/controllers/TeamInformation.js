@@ -83,26 +83,10 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
     });
 });
 
-var games_time_filter = function() {
-    return function(games, predicate) {
-        if (games == null) {
-            return games;
-        }
-        var output = [];
-        for (var i=0; i<games.length; i++) {
-            var game = games[i];
-            if (predicate(game)) {
-                output.push(game);
-            }
-        }
-        return output;
-    };
-}();
-
 app.filter("gamesAfterNow", function(Current) {
     return function(games, time_offset) {
         var now = Current.timeFromOffset(time_offset);
-        return games_time_filter(games, function(game) {
+        return array_filter(games, function(game) {
             return game.time > now;
         });
     };
@@ -111,7 +95,7 @@ app.filter("gamesAfterNow", function(Current) {
 app.filter("gamesBeforeNow", function(Current) {
     return function(games, time_offset) {
         var now = Current.timeFromOffset(time_offset);
-        return games_time_filter(games, function(game) {
+        return array_filter(games, function(game) {
             return game.time < now;
         });
     };

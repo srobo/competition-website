@@ -20,6 +20,22 @@ var apply_offset = function() {
     };
 }();
 
+var array_filter = function() {
+    return function(arr, predicate) {
+        if (arr == null) {
+            return arr;
+        }
+        var output = [];
+        for (var i=0; i<arr.length; i++) {
+            var item = arr[i];
+            if (predicate(item)) {
+                output.push(item);
+            }
+        }
+        return output;
+    };
+}();
+
 var create_follower = function() {
     return function($interval, resource, delay) {
         resource.follow = function(cb, delay_override) {
