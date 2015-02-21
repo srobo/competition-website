@@ -316,7 +316,7 @@ describe("The knockout round processor match filterer", function() {
 			'arena': 'A',
 			'num': 0,
 			'times': {
-				'game': {
+				'slot': {
 					'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
 					'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
 				}
@@ -326,7 +326,7 @@ describe("The knockout round processor match filterer", function() {
 			'arena': 'B',
 			'num': 0,
 			'times': {
-				'game': {
+				'slot': {
 					'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
 					'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
 				}

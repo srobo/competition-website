@@ -377,7 +377,7 @@ var process_knockout_round = function() {
                 var game = match_games[j];
                 if (j == 0) {
                     number = game.num;
-                    time = new Date(game.times.game.start);
+                    time = new Date(game.times.slot.start);
                 }
                 game_details.push(build_game(game));
             }
