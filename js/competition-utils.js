@@ -205,8 +205,8 @@ var match_converter = function() {
     };
 }();
 
-var build_sessions = function() {
-    var group_matches = function(all_games) {
+var group_matches = function() {
+    return function(all_games) {
         var last_num = 0;
         var matches = [];
         var match = {};
@@ -222,6 +222,9 @@ var build_sessions = function() {
         matches.push(match);
         return matches;
     };
+}();
+
+var build_sessions = function() {
     return function(data, cb) {
         if (data.arenas == null || data.matches == null || data.periods == null) {
             // can't do anything, but don't worry -- we'll get called
