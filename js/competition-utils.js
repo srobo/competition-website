@@ -188,16 +188,12 @@ var ensure_whole_arena = function() {
 }();
 
 var match_converter = function() {
-    var convert_time = function(time_str) {
-        var date = new Date(time_str);
-        return date;
-    };
     return function(match) {
         var output = { 'teams': [] };
         for (var arena in match) {
             var detail = match[arena];
             output.num = detail.num;
-            output.time = convert_time(detail.times.slot.start);
+            output.time = new Date(detail.times.slot.start);
             var arena_teams = ensure_whole_arena(detail.teams);
             output.teams = output.teams.concat(arena_teams);
         }
