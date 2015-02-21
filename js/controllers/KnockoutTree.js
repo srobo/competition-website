@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, Arenas, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
+app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
@@ -21,7 +21,7 @@ app.controller("KnockoutTree", function($scope, Arenas, Corners, Current, Knocko
         }
         if (now == null) {
             // can't do anything if we don't know what time it is.
-            // TODO: should we log an error here?
+            $log.warn("Cannot update knockout state without knowing the current server time or offset");
             return;
         }
         $scope.knockout_started = $scope.knockout_start < now;
