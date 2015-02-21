@@ -9,7 +9,7 @@ competitionFilters.filter('teamInfo', function($log) {
 
     return function(tla, teams) {
         if (teams == null || !(tla in teams)) {
-            if (tla != empty_corner_symbol && tla != unknowable_team) {
+            if (tla && tla != empty_corner_symbol && tla != unknowable_team) {
                 $log.warn('No information for team: ' + tla);
             }
             return tla;
