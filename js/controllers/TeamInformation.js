@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
 
-app.controller("TeamInformation", function($scope, $interval, $localStorage, AllMatches, Arenas, Corners, Current, State, Teams) {
+app.controller("TeamInformation", function($scope, $interval, $localStorage, gamesBeforeNowFilter, AllMatches, Arenas, Corners, Current, State, Teams) {
 
     $scope.$storage = $localStorage;
     $scope.corners = [];
@@ -38,9 +38,18 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
     };
 
     $interval(function() {
+        // Set the time to the next match
         if ($scope.next_game != null) {
             $scope.time_to_next_game = describe_time_until($scope.next_game.time);
         }
+        // Configure the list of knockout matches
+        // Need to do this here rather than in the template as we want
+        // to hide the entire table if it's empty, which I couldn't find
+        // a way of doing without having the knockout_games as a scope property
+        var old_games = gamesBeforeNowFilter($scope.games, $scope.time_offset);
+        $scope.knockout_games = old_games.filter(function(game) {
+            return game.type == 'knockout';
+        });
     }, 100);
 
     var update_matches = function(team) {

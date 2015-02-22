@@ -74,6 +74,21 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
 
 #### Points Earned
 
+<table class="past" data-ng-show="knockout_games.length">
+    <thead>
+        <tr>
+            <th>Knockout Match</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="game in knockout_games">
+            <td>{{game.num}}</td>
+            <td>{{game.scores.game[$storage.chosenTeam]}}</td>
+        </tr>
+    </tbody>
+</table>
+
 **League position:** {{teams[$storage.chosenTeam].league_pos}} ([full ranking](/comp/league))
 
 <table class="past">
@@ -92,7 +107,8 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
         </tr>
     </tfoot>
     <tbody>
-        <tr data-ng-repeat="game in games|gamesBeforeNow:time_offset">
+        <tr data-ng-repeat="game in games|gamesBeforeNow:time_offset"
+            data-ng-if="game.type == 'league'">
             <td>{{game.num}}</td>
             <td>{{game.scores.game[$storage.chosenTeam]}}</td>
             <td>{{game.scores.league[$storage.chosenTeam]}}</td>
