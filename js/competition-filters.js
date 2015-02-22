@@ -49,7 +49,7 @@ competitionFilters.filter('titleCase', function() {
             parts[i] = word[0].toUpperCase() + word.substring(1).toLowerCase();
         }
         return parts.join(" ");
-    }
+    };
 });
 
 /// Convert the text to title case

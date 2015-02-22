@@ -36,7 +36,7 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
             info.num = game.num;
             info.games = games;
         }
-    }
+    };
 
     $scope.time_offset = 0;
     Current.follow(function(nodes) {
@@ -79,7 +79,7 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
         // once there's an easy way to do this for all arenas at once.
         AllMatches.get(function(nodes) {
             all_matches = nodes.matches;
-            grouped_matches = group_matches(all_matches)
+            grouped_matches = group_matches(all_matches);
             $scope.matches = convert_matches(grouped_matches);
         });
     });

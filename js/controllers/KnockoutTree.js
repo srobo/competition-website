@@ -25,13 +25,13 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
             return;
         }
         $scope.knockout_started = $scope.knockout_start < now;
-    }
+    };
 
     // update our current/next information all the time
     // it will change as time passes, even if the state revision doesn't
     Current.follow(function(nodes) {
         if (nodes.matches.length > 0) {
-            var match = nodes.matches[0]
+            var match = nodes.matches[0];
             $scope.current_match = match.num;
         } else {
             $scope.current_match = null;

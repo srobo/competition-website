@@ -8,14 +8,14 @@ var MAX_MATCH_AGE = 15 * 60; // 15 minutes in seconds
 
 var compute_offset = function() {
     return function(then, now) {
-        var now = now || new Date();
+        now = now || new Date();
         return now - then;
     };
 }();
 
 var apply_offset = function() {
     return function(offset, now) {
-        var now = now || new Date();
+        now = now || new Date();
         return new Date(now.valueOf() - offset);
     };
 }();
