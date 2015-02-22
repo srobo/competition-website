@@ -48,7 +48,7 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
     $interval(function() {
         var now = Current.timeFromOffset($scope.time_offset);
 
-        var previous_matches = array_filter(grouped_matches, function(game_map) {
+        var previous_matches = grouped_matches.filter(function(game_map) {
             var game = first_value(game_map);
             return new Date(game.times.slot.end) < now;
         });
@@ -56,7 +56,7 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
         var previous_match = previous_matches[previous_matches.length - 1];
         set_match_info('previous_match', previous_match);
 
-        var upcoming_matches = array_filter(grouped_matches, function(game_map) {
+        var upcoming_matches = grouped_matches.filter(function(game_map) {
             var game = first_value(game_map);
             return new Date(game.times.slot.start) > now;
         });
@@ -88,7 +88,7 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
 app.filter("matchesEndingAfterNow", function(Current) {
     return function(matches, time_offset) {
         var now = Current.timeFromOffset(time_offset);
-        return array_filter(matches, function(match) {
+        return matches.filter(function(match) {
             return match.end_time > now;
         });
     };

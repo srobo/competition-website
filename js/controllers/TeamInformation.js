@@ -86,7 +86,7 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
 app.filter("gamesAfterNow", function(Current) {
     return function(games, time_offset) {
         var now = Current.timeFromOffset(time_offset);
-        return array_filter(games, function(game) {
+        return games.filter(function(game) {
             return game.time > now;
         });
     };
@@ -95,7 +95,7 @@ app.filter("gamesAfterNow", function(Current) {
 app.filter("gamesBeforeNow", function(Current) {
     return function(games, time_offset) {
         var now = Current.timeFromOffset(time_offset);
-        return array_filter(games, function(game) {
+        return games.filter(function(game) {
             return game.time < now;
         });
     };

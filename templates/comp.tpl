@@ -19,6 +19,7 @@
 		var API_ROOT = "/comp-api";
 	</script>
 
+	<script type="text/javascript" src="{$root_uri}js/polyfill.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/competition-utils.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.js"></script>
