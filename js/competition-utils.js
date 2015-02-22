@@ -156,14 +156,10 @@ var matches_for_team = function() {
         if (input == null || team == null || team.length == 0) {
             return input;
         }
-        var output = [];
-        for (var i=0; i<input.length; i++) {
-            var match = input[i];
+        var output = input.filter(function(game) {
             // contains
-            if (match.teams.indexOf(team) >= 0) {
-                output.push(match);
-            }
-        }
+            return game.teams.indexOf(team) != -1;
+        });
         return output;
     };
 }();
@@ -188,13 +184,9 @@ var unspent_matches = function() {
             return [];
         }
 
-        var output = [];
-        for (var i=0; i<matches.length; i++) {
-            var match = matches[i];
-            if (match.time > when) {
-                output.push(match);
-            }
-        }
+        var output = matches.filter(function(match) {
+            return match.time > when;
+        });
         return output;
     };
     return function(sessions, hideOldMatches) {
