@@ -54,23 +54,6 @@ var hex_to_rgba = function() {
     };
 }();
 
-var games_for_team = function() {
-    return function(games_list, team) {
-        if (games_list == null || team == null) {
-            return [];
-        }
-        var games = [];
-        for (var i=0; i<games_list.length; i++) {
-            var game = games_list[i];
-            // contains
-            if (game.teams.indexOf(team) != -1) {
-                games.push(game);
-            }
-        }
-        return games;
-    };
-}();
-
 var convert_matches = function() {
     return function(matches) {
         var output = [];

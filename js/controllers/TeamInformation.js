@@ -47,7 +47,7 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, All
         if (all_matches.length == 0) {
             return;
         }
-        var scheduled_games = games_for_team(all_matches, team);
+        var scheduled_games = matches_for_team(all_matches, team);
         var next_game = null;
         var now = Current.timeFromOffset($scope.time_offset);
         for (var i=0; i<scheduled_games.length; i++) {

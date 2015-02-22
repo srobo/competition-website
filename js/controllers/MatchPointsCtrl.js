@@ -48,7 +48,7 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
             return;
         }
 
-        var games = games_for_team(games_list, team);
+        var games = matches_for_team(games_list, team);
         var match_numbers = [];
         for (var i=0; i<games.length; i++) {
             match_numbers.push(games[i].num);
