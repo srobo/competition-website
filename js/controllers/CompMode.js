@@ -87,6 +87,9 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
 
 app.filter("matchesEndingAfterNow", function(Current) {
     return function(matches, time_offset) {
+        if (!matches) {
+            return [];
+        }
         var now = Current.timeFromOffset(time_offset);
         return matches.filter(function(match) {
             return match.end_time > now;
