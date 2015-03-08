@@ -68,7 +68,7 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
             match_numbers.push(games[i].num);
         }
 
-        $scope.chosenMatches = match_numbers;
+        $scope.chosenMatches = unique(match_numbers);
     };
 
     $scope.$watch("$storage.chosenTeam", updateChosen);
