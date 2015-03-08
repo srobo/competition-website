@@ -32,6 +32,20 @@ var games_list_to_matches_map = function() {
     };
 }();
 
+var unique = function() {
+    // logic from https://stackoverflow.com/questions/11688692/most-elegant-way-to-create-a-list-of-unique-items-in-javascript
+    return function(arr) {
+        var u = {}, a = [];
+        for(var i = 0, l = arr.length; i < l; ++i){
+            if(!u.hasOwnProperty(arr[i])) {
+                a.push(arr[i]);
+                u[arr[i]] = 1;
+            }
+        }
+        return a;
+    }
+}();
+
 app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Arenas, Corners, State, Teams) {
 
     $scope.empty_corner = EMPTY_CORNER_SYMBOL;
@@ -78,7 +92,7 @@ app.controller("MatchPointsCtrl", function($scope, $localStorage, AllMatches, Ar
 
 app.filter('pickMatches', function() {
     return function(matches_map, chosen_match_nums) {
-        var numbers = only_integers(chosen_match_nums);
+        var numbers = unique(only_integers(chosen_match_nums));
         // JavaScript is insane
         numbers.sort(function(a,b){return a - b;});
         var output = [];
