@@ -23,6 +23,7 @@ var games_list_to_matches_map = function() {
             if (!(game.num in matches_map)) {
                 matches_map[game.num] = {
                     "num": game.num,
+                    "display_name": game.display_name,
                     "games": {}
                 };
             }

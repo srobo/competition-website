@@ -38,7 +38,7 @@ Either choose a team or enter a comma separated list of matches in the box to th
 For a summary of all the teams' points, see the [league points](/comp/league) page.
 
 <div class="points" data-ng-repeat="match in matches|pickMatches:chosenMatches">
-    <h4>Match {{match.num}}</h4>
+    <h4>{{match.display_name}}</h4>
     <div class="game"
          data-ng-repeat="(arena, game) in match.games">
         <h4 style="color: {{arenas[game.arena].colour}};">Arena {{arenas[game.arena].display_name}}</h4>
