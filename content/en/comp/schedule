@@ -76,7 +76,7 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
             <td title="{{match.display_name}}">{{match.num}}</td>
             <td data-ng-repeat="team in match.teams track by $index"
                 data-ng-class="{match: team==chosenTeam}"
-                title="{{team|teamName:teams}}">
+                title="{{team|teamInfo:teams|teamName}}">
                 {{team}}
             </td>
         </tr>
