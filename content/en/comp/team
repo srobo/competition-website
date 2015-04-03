@@ -90,7 +90,12 @@ No upcoming matches.
     <tbody>
         <tr data-ng-repeat="game in knockout_games">
             <td>{{game.num}}</td>
-            <td>{{game.scores.game[$storage.chosenTeam]}}</td>
+            <td>
+                {{game.scores.game[$storage.chosenTeam]}}
+                <span class="position" data-ng-show="game.scores.normalised[$storage.chosenTeam]">
+                    ({{game.scores.ranking[$storage.chosenTeam]|ordinal}})
+                </span>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -117,7 +122,12 @@ No upcoming matches.
             data-ng-if="game.type == 'league'">
             <td>{{game.num}}</td>
             <td>{{game.scores.game[$storage.chosenTeam]}}</td>
-            <td>{{game.scores.league[$storage.chosenTeam]}}</td>
+            <td data-ng-init="league_points = game.scores.league[$storage.chosenTeam]">
+                {{league_points}}
+                <span class="position" data-ng-show="league_points">
+                    ({{game.scores.ranking[$storage.chosenTeam]|ordinal}})
+                </span>
+            </td>
         </tr>
     </tbody>
 </table>

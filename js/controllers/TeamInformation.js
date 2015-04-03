@@ -1,5 +1,5 @@
 
-var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
+var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ordinal", "ui.select2"]);
 
 app.controller("TeamInformation", function($scope, $interval, $localStorage, gamesBeforeNowFilter, AllMatches, Arenas, Corners, Current, State, Teams) {
 

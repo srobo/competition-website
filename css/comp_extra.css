@@ -50,6 +50,14 @@ table th {
 	border-right-style:double;
 	border-right-width:3px;
 }
+#comp_team table.past td:last-child {
+	padding-left:15px;
+	text-align:left;
+}
+
+#comp_team table.past .position {
+	margin-left:7px;
+}
 
 /* Points page */
 #comp_points #match-chooser {
