@@ -46,6 +46,11 @@ table th {
 	text-align:left;
 }
 
+#comp_team table.past td:first-child {
+	border-right-style:double;
+	border-right-width:3px;
+}
+
 /* Points page */
 #comp_points #match-chooser {
 	float:right;
