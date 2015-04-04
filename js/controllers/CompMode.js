@@ -69,8 +69,23 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
 
     // update the data only when the state changes
     State.change(function() {
+        var data = {};
+        function set_matches(data) {
+            if (data.matches == null || data.arenas == null) {
+                // don't have all the data yet, wait until we do (we'll
+                // be called again when that happens).
+                return;
+            }
+
+            all_matches = data.matches;
+            grouped_matches = group_matches(all_matches);
+            $scope.matches = convert_matches(grouped_matches, data.arenas);
+            $scope.arenas = data.arenas;
+        }
+
         Arenas.get(function(nodes) {
-            $scope.arenas = nodes.arenas;
+            data.arenas = nodes.arenas;
+            set_matches(data);
         });
 
         Teams.get(function(nodes) {
@@ -80,9 +95,8 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
         // TODO: consider getting only the matches of interest,
         // once there's an easy way to do this for all arenas at once.
         AllMatches.get(function(nodes) {
-            all_matches = nodes.matches;
-            grouped_matches = group_matches(all_matches);
-            $scope.matches = convert_matches(grouped_matches);
+            data.matches = nodes.matches;
+            set_matches(data);
         });
     });
 });

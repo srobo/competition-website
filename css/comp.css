@@ -32,6 +32,13 @@ table.schedule td:nth-child(2) {
 table.schedule td {
 	text-align:center;
 }
+table.schedule td.no_match {
+	border:0 none;
+	/* we still want it to take up space on the page,
+	 * so use visibility instead of display.
+	 */
+	visibility:hidden;
+}
 table.schedule tbody tr.current,
 div.match.current {
 	/* TODO: make darker */

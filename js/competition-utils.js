@@ -55,10 +55,10 @@ var hex_to_rgba = function() {
 }();
 
 var convert_matches = function() {
-    return function(matches) {
+    return function(matches, arenas) {
         var output = [];
         for (var i=0; i<matches.length; i++) {
-            output.push(match_converter(matches[i]));
+            output.push(match_converter(matches[i], arenas));
         }
         return output;
     };
@@ -83,15 +83,29 @@ var ensure_whole_arena = function() {
 }();
 
 var match_converter = function() {
-    return function(match) {
+    var teams_per_arena = TEAMS_PER_ARENA;
+    return function(match, arenas) {
         var output = { 'teams': [] };
+        // Get initial data from the first game in the match
         for (var arena in match) {
             var detail = match[arena];
             output.num = detail.num;
             output.display_name = detail.display_name;
             output.time = new Date(detail.times.slot.start);
             output.end_time = new Date(detail.times.slot.end);
-            var arena_teams = ensure_whole_arena(detail.teams);
+            break;
+        }
+        // Get teams data by iterating over the arenas, thus ensuring
+        // that all the arenas are properly represented.
+        for (var arena in arenas) {
+            var detail = match[arena];
+            var arena_teams;
+            if (detail) {
+                arena_teams = ensure_whole_arena(detail.teams);
+            } else {
+                // array of given size containing 'undefined' elements
+                arena_teams = new Array(teams_per_arena);
+            }
             output.teams = output.teams.concat(arena_teams);
         }
         return output;
@@ -137,7 +151,7 @@ var build_sessions = function() {
             if (period.matches) {
                 matches = all_matches.slice(period.matches.first_num,
                                             period.matches.last_num + 1);
-                matches = convert_matches(matches);
+                matches = convert_matches(matches, data.arenas);
             }
             sessions.push({
                 'arenas': data.arenas,

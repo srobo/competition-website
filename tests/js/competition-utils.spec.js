@@ -23,6 +23,7 @@ describe("The match schedule converter sorter helpers", function() {
 	});
 	var input, expected;
 	beforeEach(function() {
+		arenas = { 'A': null, 'B': null };
 		input = {
 			'A': {
 				'arena': 'A',
@@ -55,18 +56,24 @@ describe("The match schedule converter sorter helpers", function() {
 		};
 	});
 	it("should flatten and simplify match descriptions", function() {
-		var match = utils.match_converter(input);
+		var match = utils.match_converter(input, arenas);
 		expect(match).toEqual(expected);
 	});
 	it("should flatten and simplify the collection of matches", function() {
-		var matches = utils.convert_matches([input]);
+		var matches = utils.convert_matches([input], arenas);
 		expect(matches).toEqual([expected]);
 	});
 	it("should have correct teams alignment even when there are not the maximum number", function() {
 		input.A.teams = input.A.teams.slice(0, 2);
 		input.B.teams = input.B.teams.slice(0, 3);
 		expected.teams = input.A.teams.concat(['-', '-'], input.B.teams, ['-']);
-		var matches = utils.convert_matches([input]);
+		var matches = utils.convert_matches([input], arenas);
+		expect(matches).toEqual([expected]);
+	});
+	it("should handle the case where a match is only in one arena", function() {
+		input = { 'B': input.B };
+		expected.teams = new Array(4).concat(input.B.teams);
+		var matches = utils.convert_matches([input], arenas);
 		expect(matches).toEqual([expected]);
 	});
 	it("should put a suitable character in empty corners", function() {
@@ -79,7 +86,7 @@ describe("The match schedule converter sorter helpers", function() {
 		var expected_b = input.B.teams.concat([]);
 		expected_b[1] = '-';
 		expected.teams = expected_a.concat(expected_b);
-		var matches = utils.convert_matches([input]);
+		var matches = utils.convert_matches([input], arenas);
 		expect(matches).toEqual([expected]);
 	});
 });
