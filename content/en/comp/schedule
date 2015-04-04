@@ -2,10 +2,10 @@
 //ANGULAR_CONTROLLER: MatchSchedule
 
 <style type="text/css">
-td.match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
-td.match:nth-child(4n+4) { background-color: {{corners[1].colour|hexLighter:0.5}}; }
-td.match:nth-child(4n+5) { background-color: {{corners[2].colour|hexLighter:0.5}}; }
-td.match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
+td.chosen_team_match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
+td.chosen_team_match:nth-child(4n+4) { background-color: {{corners[1].colour|hexLighter:0.5}}; }
+td.chosen_team_match:nth-child(4n+5) { background-color: {{corners[2].colour|hexLighter:0.5}}; }
+td.chosen_team_match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
 </style>
 
 # Match Schedule
@@ -75,7 +75,7 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
             <td>{{match.time|date:'HH:mm:ss'}}</td>
             <td title="{{match.display_name}}">{{match.num}}</td>
             <td data-ng-repeat="team in match.teams track by $index"
-                data-ng-class="{match: team==chosenTeam}"
+                data-ng-class="{chosen_team_match: team==chosenTeam}"
                 title="{{team|teamInfo:teams|teamName}}">
                 {{team}}
             </td>
