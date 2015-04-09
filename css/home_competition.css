@@ -99,6 +99,9 @@ div#competition div#leaderboard-container {
 div#competition div#leaderboard {
 	margin-right:50px;
 }
+div#competition div#leaderboard th {
+	padding:0 3px;
+}
 
 #streams #chooser {
 	margin:0;
