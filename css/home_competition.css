@@ -135,6 +135,9 @@ div#competition div#leaderboard {
 #match-info div.game table tbody td {
 	min-width:35px;
 }
+#match-info div.game table tbody tr:not(:first-child) td {
+	padding-top:3px;
+}
 #match-info div.game.headings {
 	/* Something causes an extra 4px of gap on the right.
 	 * I've no idea what, but it's there in both Firefox & Chrome. */
