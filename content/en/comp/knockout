@@ -24,7 +24,8 @@ See the [match schedule](/comp/schedule) for information about the current match
 </span>
 
 <div id="knockouts">
-    <div class="round" data-ng-repeat="round in rounds">
+    <div class="round" data-ng-repeat="round in rounds"
+                       data-ng-init="isFinal = $last">
         <div class="match"
              data-ng-repeat="match in round"
              data-ng-class="{current: match.num==current_match}"
@@ -36,6 +37,7 @@ See the [match schedule](/comp/schedule) for information about the current match
                 <ul>
                     <li data-ng-repeat="tla in game.teams track by $index">
                         <a data-ng-href="/teams/{{tla}}"
+                           data-ng-class="{promote: !isFinal && (game.ranking[tla] == 1 || game.ranking[tla] == 2)}"
                            data-ng-show="{{tla != unknowable && tla != '-'}}"
                            title="Find out more about team {{tla|teamInfo:teams|teamName}}">
                            {{tla}}

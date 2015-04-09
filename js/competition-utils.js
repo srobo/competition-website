@@ -229,8 +229,13 @@ var unspent_matches = function() {
 
 var process_knockout_round = function() {
     var build_game = function(info) {
+        var ranking = {};
+        if (info.scores) {
+            ranking = info.scores.ranking;
+        }
         return {
             "arena": info.arena,
+            "ranking": ranking,
             "teams": ensure_whole_arena(info.teams)
         };
     };

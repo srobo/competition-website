@@ -230,11 +230,15 @@ describe("The knockout round processor match filterer", function() {
 	beforeEach(function() {
 		// a round is a collection of games
 		var teams_a = [ 'CLY', 'TTN', 'SCC', 'DSF' ];
+		var rank_a = {'CLY': 4, 'TTN': 1, 'SCC': 3, 'DSF': 1};
 		var teams_b = [ 'GRS', 'QMC', 'GRD', 'BRK' ];
 		round = [{
 			'arena': 'A',
 			'num': 0,
 			'display_name': 'Final (#0)',
+			'scores': {
+				'ranking': rank_a
+			},
 			'times': {
 				'slot': {
 					'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
@@ -246,6 +250,7 @@ describe("The knockout round processor match filterer", function() {
 			'arena': 'B',
 			'num': 0,
 			'display_name': 'Final (#0)',
+			// no scores yet
 			'times': {
 				'slot': {
 					'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
@@ -261,9 +266,11 @@ describe("The knockout round processor match filterer", function() {
 			'time': new Date('2014-03-15 00:00:00'),
 			'games': [{
 					'arena': 'A',
+					'ranking': rank_a,
 					'teams': teams_a
 				}, {
 					'arena': 'B',
+					'ranking': {},
 					'teams': teams_b
 				}]
 		}];

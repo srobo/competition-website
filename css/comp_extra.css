@@ -157,3 +157,6 @@ table th {
 	clear:both;
 	float:right;
 }
+#knockouts div.game a.promote {
+	font-weight:bold;
+}
