@@ -136,9 +136,16 @@ div#competition div#leaderboard {
 	min-width:35px;
 }
 #match-info div.game.headings {
-	/* Something causes an extra 4px of gap on the left.
+	/* Something causes an extra 4px of gap on the right.
 	 * I've no idea what, but it's there in both Firefox & Chrome. */
-	margin:0 5px 0 1px;
+	margin:0 1px 0 5px;
+}
+#match-info div.game.headings.single th {
+	text-align:right;
+	padding-right:5px;
+}
+#match-info div.scored div.game.headings.single {
+	margin-left:-35px;
 }
 #match-info div.game.headings table tbody th {
 	border-top-width:2px;
