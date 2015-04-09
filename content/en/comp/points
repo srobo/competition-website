@@ -57,7 +57,12 @@ For a summary of all the teams' points, see the [league points](/comp/league) pa
                 <th>{{type|titleCase}}</th>
                 <td data-ng-repeat="tla in game.teams track by $index"
                     data-ng-class="{match: tla==$storage.chosenTeam}">
-                    {{scores[tla] || 0}}
+                    <span data-ng-if="type != 'ranking'">
+                        {{scores[tla] || 0}}
+                    </span>
+                    <span data-ng-if="type == 'ranking'">
+                        {{scores[tla]|ordinal}}
+                    </span>
                 </td>
             </tr>
         </table>

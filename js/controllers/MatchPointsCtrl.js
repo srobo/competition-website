@@ -1,5 +1,5 @@
 
-var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
+var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ordinal", "ui.select2"]);
 
 var only_integers = function() {
     return function(list) {

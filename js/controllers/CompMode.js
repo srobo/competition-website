@@ -1,5 +1,5 @@
 
-var app = angular.module('app', ["competitionFilters", "competitionResources"]);
+var app = angular.module('app', ["competitionFilters", "competitionResources", "ordinal"]);
 
 app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches, Current, State, Teams) {
 

@@ -4,3 +4,6 @@
 [submodule "js/lib/angular-storage"]
 	path = js/lib/angular-storage
 	url = git://github.com/gsklee/ngStorage.git
+[submodule "js/lib/angularjs-ordinal-filter"]
+	path = js/lib/angularjs-ordinal-filter
+	url = git://github.com/jdpedrie/angularjs-ordinal-filter.git
