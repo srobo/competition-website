@@ -29,11 +29,13 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
         if (!games) {
             info.exists = false;
             info.num = null;
+            info.display_name = null;
             info.games = null;
         } else {
             info.exists = true;
             var game = first_value(games);
             info.num = game.num;
+            info.display_name = game.display_name;
             info.games = games;
         }
     };
