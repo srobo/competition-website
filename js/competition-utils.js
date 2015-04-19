@@ -284,11 +284,16 @@ var process_knockout_round = function() {
 }();
 
 var process_knockouts = function() {
-    return function(rounds) {
+    return function(rounds, tiebreaker) {
         var output = [];
         for (var i=0; i<rounds.length; i++) {
             output.push(process_knockout_round(rounds[i]));
         }
+
+        if (tiebreaker) {
+            output.push(process_knockout_round([tiebreaker]));
+        }
+
         return output;
     };
 }();

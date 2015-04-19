@@ -80,6 +80,10 @@ app.factory("KnockoutMatches", function($resource) {
     return $resource(API_ROOT + "/knockout");
 });
 
+app.factory('Tiebreaker', function($resource) {
+    return $resource(API_ROOT + '/tiebreaker');
+});
+
 app.factory("Current", function($interval, $resource) {
     var resource = $resource(API_ROOT + "/current", {}, {
         'get': { method: 'GET', interceptor: {

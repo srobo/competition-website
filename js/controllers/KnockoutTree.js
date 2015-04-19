@@ -1,7 +1,7 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
-app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams) {
+app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams, Tiebreaker) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;
     var KNOCKOUT_TYPE = "knockout";
@@ -52,11 +52,16 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
         });
 
         MatchPeriods.get(function(nodes) {
-            var len = nodes.periods.length;
-            if (len > 0) {
-                var knockout_period = nodes.periods[len - 1];
-                $scope.knockout_start = new Date(knockout_period.start_time);
+            var knockout_period;
+            for (var i = 0; i < nodes.periods.length; i++) {
+                if (nodes.periods[i].type === 'knockout') {
+                    knockout_period = nodes.periods[i];
+                    break;
+                }
+            }
 
+            if (knockout_period) {
+                $scope.knockout_start = new Date(knockout_period.start_time);
                 update_knockout_started();
             }
         });
@@ -66,6 +71,14 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
         });
 
         KnockoutMatches.get(function(nodes) {
+            // perform the request, however the callback is guaranteed to be
+            // called after the code below this chunk
+            Tiebreaker.get(function(tiebreaker) {
+                $scope.rounds = process_knockouts(nodes.rounds,
+                                                  tiebreaker.tiebreaker);
+            });
+
+            // load knockouts first in case there is no tiebreaker
             $scope.rounds = process_knockouts(nodes.rounds);
         });
     });
