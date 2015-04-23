@@ -15,12 +15,26 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Corners, Curre
         $scope.corners[cornerId] = corner;
     });
 
+    var sessions_changed = function(sessions) {
+        sessions_cache[false] = sessions;
+        sessions_cache[true] = unspent_matches(sessions, true);
+        $scope.sessions = sessions_cache[$sessionStorage.hideOldMatches];
+    };
+
     // update our current match information all the time
     Current.follow(function(nodes) {
+        var changed = false;
         if (nodes.matches.length > 0) {
-            $scope.current_match = nodes.matches[0].num;
+            var num = nodes.matches[0].num;
+            changed = $scope.current_match != num;
+            $scope.current_match = num;
         } else {
+            changed = $scope.current_match == null;
             $scope.current_match = null;
+        }
+        if (changed) {
+            // re-calculate the list of unspent matches
+            sessions_changed(sessions_cache[false]);
         }
     });
 
@@ -30,10 +44,6 @@ app.controller("MatchSchedule", function($scope, $sessionStorage, Corners, Curre
             $scope.teams = nodes.teams;
         });
 
-        MatchPeriods.getSessions(function(sessions) {
-            sessions_cache[false] = sessions;
-            sessions_cache[true] = unspent_matches(sessions, true);
-            $scope.sessions = sessions_cache[$sessionStorage.hideOldMatches];
-        });
+        MatchPeriods.getSessions(sessions_changed);
     });
 });
