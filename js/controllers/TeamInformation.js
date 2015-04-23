@@ -48,8 +48,29 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         return describe_time(seconds_until(then));
     };
 
+    var get_next_game = function(scheduled_games) {
+        var next_game = null;
+        var now = Current.timeFromOffset($scope.time_offset);
+        for (var i=0; i<scheduled_games.length; i++) {
+            var game = scheduled_games[i];
+            game.time = new Date(game.times.slot.start);
+
+            if (now < game.time &&
+                (next_game == null || game.time < next_game.time)) {
+                next_game = game;
+                next_game.game_time = new Date(game.times.game.start);
+                var staging_times = next_game.staging_times = {};
+                for (var kind in game.times.staging) {
+                    staging_times[kind] = new Date(game.times.staging[kind]);
+                }
+            }
+        }
+        return next_game;
+    };
+
     $interval(function() {
         // Set the time to the next match
+        $scope.next_game = get_next_game($scope.games);
         if ($scope.next_game != null) {
             $scope.time_to_next_game = describe_time_until($scope.next_game.game_time);
             $scope.time_to_next_slot = describe_time_until($scope.next_game.time);
@@ -82,25 +103,9 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
             return;
         }
         var scheduled_games = matches_for_team(all_matches, team);
-        var next_game = null;
-        var now = Current.timeFromOffset($scope.time_offset);
-        for (var i=0; i<scheduled_games.length; i++) {
-            var game = scheduled_games[i];
-            game.time = new Date(game.times.slot.start);
-
-            if (now < game.time &&
-                (next_game == null || game.time < next_game.time)) {
-                next_game = game;
-                next_game.game_time = new Date(game.times.game.start);
-                var staging_times = next_game.staging_times = {};
-                for (var kind in game.times.staging) {
-                    staging_times[kind] = new Date(game.times.staging[kind]);
-                }
-            }
-        }
 
         $scope.games = scheduled_games;
-        $scope.next_game = next_game;
+        $scope.next_game = get_next_game(scheduled_games);
     };
 
     $scope.$watch("$storage.chosenTeam", update_matches);
