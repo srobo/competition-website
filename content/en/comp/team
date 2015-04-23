@@ -35,7 +35,27 @@ Teams who arrive late may forfeit the match.
 #### Upcoming Matches
 
 <p data-ng-if="next_game" markdown="1">
-**Next match (#{{next_game.num}}) starts in:** {{time_to_next_game}}
+    **Next: {{next_game.display_name}}**
+    <!-- Time to the start of the slot -->
+    <span data-ng-if="time_to_next_slot && long_before_staging">
+        (starts in {{time_to_next_slot}})
+    </span>
+    <!-- Time to the start of the actual game -->
+    <span data-ng-if="time_to_next_game && !staging_closes">
+        (starts in {{time_to_next_game}})
+    </span>
+    <br />
+    <!-- During and before the staging period one of these is shown -->
+    <span data-ng-if="staging_opens && !long_before_staging">
+        **Staging opens in** {{staging_opens}}
+    </span>
+    <span data-ng-if="!staging_opens && !staging_signal">
+        **Staging open** (closes in {{staging_closes}})
+    </span>
+    <span data-ng-if="staging_signal && staging_closes">
+        <span class="staging-signal">Go to staging!</span>
+        (closes in {{staging_closes}})
+    </span>
 </p>
 
 <!--- warning: upcoming_games defined later -->

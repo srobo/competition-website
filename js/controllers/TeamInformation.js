@@ -17,7 +17,7 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         $scope.time_offset = nodes.offset;
     });
 
-    var describe_time_until = function(then) {
+    var seconds_until = function(then) {
         if (then == null) {
             return null;
         }
@@ -27,9 +27,16 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         }
         var difference = then.getTime() - now.getTime();
         difference /= 1000;
-        difference = Math.round(difference);
-        var minutes = Math.floor(difference / 60);
-        var seconds = difference % 60;
+        return difference;
+    };
+
+    var describe_time = function(num_seconds) {
+        if (num_seconds == null) {
+            return null;
+        }
+        num_seconds = Math.round(num_seconds);
+        var minutes = Math.floor(num_seconds / 60);
+        var seconds = num_seconds % 60;
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
@@ -37,10 +44,28 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         return output;
     };
 
+    var describe_time_until = function(then) {
+        return describe_time(seconds_until(then));
+    };
+
     $interval(function() {
         // Set the time to the next match
         if ($scope.next_game != null) {
-            $scope.time_to_next_game = describe_time_until($scope.next_game.time);
+            $scope.time_to_next_game = describe_time_until($scope.next_game.game_time);
+            $scope.time_to_next_slot = describe_time_until($scope.next_game.time);
+
+            var staging_opens = $scope.next_game.staging_times['opens'];
+            var opens_seconds = seconds_until(staging_opens);
+
+            $scope.long_before_staging = opens_seconds && opens_seconds > 10 * 60;
+            $scope.staging_opens = describe_time(opens_seconds);
+
+            var staging_closes = $scope.next_game.staging_times['closes'];
+            $scope.staging_closes = describe_time_until(staging_closes);
+
+            var staging_signal = $scope.next_game.staging_times['signal_teams'];
+            // set the staging signal when the signal time is in the past
+            $scope.staging_signal = seconds_until(staging_signal) == null;
         }
         // Configure the list of knockout matches
         // Need to do this here rather than in the template as we want
@@ -66,6 +91,11 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
             if (now < game.time &&
                 (next_game == null || game.time < next_game.time)) {
                 next_game = game;
+                next_game.game_time = new Date(game.times.game.start);
+                var staging_times = next_game.staging_times = {};
+                for (var kind in game.times.staging) {
+                    staging_times[kind] = new Date(game.times.staging[kind]);
+                }
             }
         }
 

@@ -39,6 +39,11 @@ table th {
 	margin-left:0;
 	text-align:center;
 }
+#comp_team div.matches .staging-signal {
+	color:red;
+	font-size:1.8em;
+	font-weight:bold;
+}
 #comp_team div.matches table th {
 	padding:0 5px;
 }
