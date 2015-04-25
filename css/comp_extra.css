@@ -22,6 +22,14 @@ table th {
 	padding:0 5px;
 	vertical-align:middle;
 }
+/* center all the number cols */
+#comp_league table td {
+	text-align:center;
+}
+/* but not the team name */
+#comp_league table td:last-child {
+	text-align:left;
+}
 
 /* Team page */
 #comp_team #team-chooser {

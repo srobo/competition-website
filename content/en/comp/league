@@ -25,7 +25,7 @@ No scores have been recorded yet.
             <th class="sorter"
                 title="Click to sort by league position."
                 data-ng-class="{active:sortKey == 'league_pos'}"
-                data-ng-click="sortKey = 'league_pos'; reverse = !reverse; alwaysPos = false">
+                data-ng-click="sortKey = 'league_pos'; reverse = !reverse">
                 Position
             </th>
             <th title="The number of league points the team has earned.">
@@ -37,13 +37,15 @@ No scores have been recorded yet.
             <th class="sorter"
                 title="Click to sort by team."
                 data-ng-class="{active:sortKey == 'tla'}"
-                data-ng-click="sortKey = 'tla'; reverse = !reverse; alwaysPos = true">
+                data-ng-click="sortKey = 'tla'; reverse = !reverse">
                 Team
             </th>
         </tr>
     </thead>
     <tr data-ng-repeat="item in (filtered = (teams | orderBy:sortKey:reverse))" id="{{item.tla}}">
-        <td><span data-ng-if="alwaysPos || item.league_pos != filtered[$index - 1].league_pos">{{item.league_pos}}</span></td>
+        <td>
+            <span data-ng-if="item|isTied:teams">=</span>{{item.league_pos}}
+        </td>
         <td>{{item.scores.league}}</td>
         <td>{{item.scores.game}}</td>
         <td>

@@ -14,3 +14,19 @@ app.controller("LeaguePoints", function($scope, LastScoredMatch, State, Teams) {
         });
     });
 });
+
+app.filter("isTied", function() {
+    return function(teamInfo, teams) {
+        if (!teamInfo || !teams) {
+            return false;
+        }
+        for (var i=0; i<teams.length; i++) {
+            if (teams[i].tla != teamInfo.tla &&
+                teams[i].league_pos == teamInfo.league_pos) {
+                console.log(teamInfo.tla, "tied with ", teams[i].tla);
+                return true;
+            }
+        }
+        return false;
+    };
+});
