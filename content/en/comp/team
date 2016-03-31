@@ -1,4 +1,4 @@
-//TITLE: 2015 Competition Team Information
+//TITLE: 2016 Competition Team Information
 //ANGULAR_CONTROLLER: TeamInformation
 
 # Team Information
@@ -27,7 +27,7 @@ Find out what the team say about themselves on their [status page](/teams/{{$sto
 
 Teams must present their robot to the staging area in sufficient time
 before the advertised start of a match.
-The staging area is next to the arenas, see the [venue layout](/resources/2015/competition-layout.pdf).
+The staging area is next to the arenas, see the [venue layout](/resources/2016/competition-layout.pdf).
 Teams who arrive late may forfeit the match.
 
 <div id="upcoming-matches" class="matches" markdown="1">
