@@ -43,6 +43,13 @@
 
 
 	<div id="{$page_id}" class="content">
+		<ul class="comp-nav">
+			<li><a href="{$root_uri}comp/team">Team Information</a></li>
+			<li><a href="{$root_uri}comp/schedule">Match Schedule</a></li>
+			<li><a href="{$root_uri}comp/points">Match Points</a></li>
+			<li><a href="{$root_uri}comp/league">League Status</a></li>
+			<li><a href="{$root_uri}comp/knockout">Knockouts</a></li>
+		</ul>
 
 		{getFromContent get="content"}
 		<p></p>

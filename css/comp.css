@@ -61,3 +61,18 @@ table.sortable tr.reverse th.active:after {
 	content:" ▾";
 	top:0;
 }
+
+div.content ul.comp-nav
+{
+	list-style:none;
+	margin:0;
+}
+div.content ul.comp-nav > li
+{
+	float:right;
+	padding:0 1em;
+}
+div.content ul.comp-nav > li:not(:first-child)
+{
+	border-right:1px solid silver;
+}
