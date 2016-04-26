@@ -49,12 +49,15 @@ Teams who arrive late may forfeit the match.
     <span data-ng-if="staging_opens && !long_before_staging && !staging_signal">
         **Staging opens in** {{staging_opens}}
     </span>
-    <span data-ng-if="!staging_opens && !staging_signal">
+    <span data-ng-if="staging_closes && !staging_opens && !staging_signal">
         **Staging open** (closes in {{staging_closes}})
     </span>
     <span data-ng-if="staging_signal && staging_closes">
         <span class="staging-signal">Go to staging!</span>
         (closes in {{staging_closes}})
+    </span>
+    <span data-ng-if="!staging_closes && !staging_opens && !staging_signal">
+        **Staging closed**
     </span>
 </p>
 
