@@ -46,7 +46,7 @@ Teams who arrive late may forfeit the match.
     </span>
     <br />
     <!-- During and before the staging period one of these is shown -->
-    <span data-ng-if="staging_opens && !long_before_staging">
+    <span data-ng-if="staging_opens && !long_before_staging && !staging_signal">
         **Staging opens in** {{staging_opens}}
     </span>
     <span data-ng-if="!staging_opens && !staging_signal">
