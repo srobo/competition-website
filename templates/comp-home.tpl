@@ -26,13 +26,12 @@ and that its dependencies (CSS and JS) will be included there suitably.
 			</span>
 			<h1 style="text-align: center;">SR2016 Live!</h1>
 			<div id="live-stream-wrapper">
-				<div id="live-stream-controls">
-					<a id="live-stream-a-link" class="selected" href="#">Arena A</a> |
-					<a id="live-stream-b-link" href="#">Arena B</a> |
-					<a id="live-stream-hide-link" href="#">No stream</a>
-				</div>
-				<div id="live-stream-a"></div>
-				<div id="live-stream-b"></div>
+				<iframe width="560"
+				        height="315"
+				        src="https://www.youtube.com/embed/Yawca_t1ZB0"
+				        frameborder="0"
+				        allowfullscreen>
+				</iframe>
 			</div>
 			<div id="match-info">
 {literal}

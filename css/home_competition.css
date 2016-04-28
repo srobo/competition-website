@@ -79,10 +79,11 @@ div#competition span.top-links {
 	position:absolute;
 	margin-top:20px;
 }
-div#competition span#live-stream-link {
-	right:0;
-	margin-right:100px;
-	text-align:center;
+div#competition #live-stream-wrapper {
+	text-align: center;
+}
+div#competition #live-stream-wrapper > * {
+	margin: auto;
 }
 div#competition span#more-link {
 	left:0;

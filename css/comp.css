@@ -1,16 +1,3 @@
-#live-stream-wrapper {
-	text-align: center;
-}
-
-#live-stream-wrapper > * {
-	margin: auto;
-}
-
-#live-stream-controls a.selected {
-	color: black;
-	font-weight: bold;
-}
-
 tbody tr:nth-child(odd) {
 	/* TODO: make darker */
 	background-color: #E8E8E8;
