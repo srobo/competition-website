@@ -28,7 +28,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 			<div id="live-stream-wrapper">
 				<iframe width="560"
 				        height="315"
-				        src="https://www.youtube.com/embed/ovMrK2JcQRQ"
+				        src="https://www.youtube.com/embed/YgQV7sTMmXg"
 				        frameborder="0"
 				        allowfullscreen>
 				</iframe>
