@@ -34,10 +34,10 @@ and that its dependencies (CSS and JS) will be included there suitably.
 				</iframe>
 			</div>
 			<div id="match-info">
-{literal}
+{% raw %}
 <div class="scored match" style="position:relative;margin-top:10px;">
 	<span style="position:absolute;margin-left:50px;left:0">
-		<a href="{/literal}{$root_uri}{literal}comp/points">more scores...</a>
+		<a href="{% endraw %}{$root_uri}{% raw %}comp/points">more scores...</a>
 	</span>
 	<h4>
 		Latest Scores<span data-ng-if="previous_match">: {{previous_match.display_name}}</span>
@@ -139,7 +139,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
      data-ng-include="'match-info'">
 </div>
 
-{/literal}
+{% endraw %}
 			</div>
 
 			<div id="leaderboard-container" class="info-box">
@@ -150,7 +150,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 				</span>
 				<h2><a href="{$root_uri}comp/league">Leaderboard</a></h2>
 				<div id="leaderboard">
-{literal}
+{% raw %}
 <table>
 	<thead>
 		<tr>
@@ -163,11 +163,11 @@ and that its dependencies (CSS and JS) will be included there suitably.
 		<td>{{team.league_pos}}</td>
 		<td>{{team.scores.league}}</td>
 		<td title="{{team|teamName}}">
-			<a href="{/literal}{$root_uri}{literal}teams/{{item.tla}}">{{team.tla}}</a>
+			<a href="{% endraw %}{$root_uri}{% raw %}teams/{{item.tla}}">{{team.tla}}</a>
 		</td>
 	</tr>
 </table>
-{/literal}
+{% endraw %}
 				</div>
 			</div>
 
@@ -179,7 +179,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 				</span>
 				<h2><a href="{$root_uri}comp/schedule">Match Schedule</a></h2>
 				<div id="match_sched">
-{literal}
+{% raw %}
 <table class="schedule">
 	<thead>
 		<tr>
@@ -199,13 +199,13 @@ and that its dependencies (CSS and JS) will be included there suitably.
 				title="{{team|teamInfo:teams|teamName}}">
 				<!--- TODO: non-literal filtering, possibly based on the existence of the page -->
 				<a data-ng-if="team && team != '-'"
-				   href="{/literal}{$root_uri}{literal}teams/{{team}}">{{team}}</a>
+				   href="{% endraw %}{$root_uri}{% raw %}teams/{{team}}">{{team}}</a>
 				<span data-ng-if="team == '-'">{{team}}</span>
 			</td>
 		</tr>
 	</tbody>
 </table>
-{/literal}
+{% endraw %}
 				</div>
 			</div>
 		</div>
