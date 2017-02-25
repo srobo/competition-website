@@ -1,0 +1,22 @@
+{
+  "name": "competition-website",
+  "version": "0.0.1",
+  "description": "The Student Robotics competition website",
+  "main": ".",
+  "scripts": {
+    "test": "."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srobo/competition-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srobo/competition-website/issues"
+  },
+  "homepage": "https://github.com/srobo/competition-website#readme",
+  "devDependencies": {
+    "brand": "github:srobo/brand"
+  }
+}
