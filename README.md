@@ -6,6 +6,36 @@ This includes the version of the homepage shown during the competition as well
 as the specific pages which the progress of the teams and matches at the
 competition.
 
+## Getting Started
+
+*Note*: This website makes heavy use of the SR Competition API which is part of
+the separate [SRComp suite][srcomp]. These instructions _only_ contain
+information about these pages; it is assumed that the reader will configure an
+SRComp-HTTP instance separately.
+
+1. [Install Ruby][install-ruby]
+
+2. Install Bundler and Rake
+
+    ``` shell
+    $ gem install bundler rake
+    ```
+3. Install the website's dependencies
+
+    ``` shell
+    $ bundle install
+    ```
+
+    Note that if you don't want to install the gems to a global location you'll
+    need to add `--path gems` to the above command.
+
+4. Start the app in development mode
+
+    ```shell
+    $ rake dev
+    ```
 
 
 [SR]: https://studentrobotics.org
+[srcomp]: https://www.studentrobotics.org/trac/wiki/SRcomp
+[install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
