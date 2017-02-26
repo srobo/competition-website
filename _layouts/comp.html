@@ -31,16 +31,10 @@
 	<script type="text/javascript" src="{{ site.base_url }}/js/competition-filters.js"></script>
 	<script type="text/javascript" src="{{ site.base_url }}/js/competition-resources.js"></script>
 	<script type="text/javascript" src="{{ site.base_url }}/js/controllers/{{ page.angular_controller }}.js"></script>
-
-	{include file="tracking.tpl"}
 </head>
 
 <body data-ng-controller="{{ page.angular_controller }}">
-{include file="tracking-image.tpl"}
 <div id="pageWrapper">
-
-	{include file=$header_file}
-
 
 	<div id="{$page_id}" class="content">
 		<ul class="comp-nav">
@@ -53,13 +47,13 @@
 
 		{{ content }}
 		<p></p>
-
 	</div>
-
-	{include file=$footer_file}
 
 </div>
 
+
+	{% include footer.html %}
+	{% include script.html %}
 </body>
 
 </html>
