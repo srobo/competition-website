@@ -56,11 +56,6 @@
 
 	</div>
 
-	<div id="original">
-		Original: <a href="{$root_uri}content/{$original}">{$original}</a>
-	</div>
-
-
 	{include file=$footer_file}
 
 </div>
