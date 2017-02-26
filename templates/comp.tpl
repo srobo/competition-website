@@ -8,29 +8,29 @@
 	<meta name="keywords" content="{{ page.keywords }}" />
 	<meta name="description" content="{{ page.description }}" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css" />
-	<link rel="stylesheet" type="text/css" href="{$root_uri}css/main.css" />
-	<link rel="stylesheet" type="text/css" href="{$root_uri}css/comp.css" />
-	<link rel="stylesheet" type="text/css" media="print" href="{$root_uri}css/print.css" />
-	<link rel="stylesheet" type="text/css" href="{$root_uri}css/comp_extra.css" />
-	<link rel="alternate" type="application/rss+xml" title="SR RSS" href="{$root_uri}feed.php" />
-	<link rel="shortcut icon" href="{$root_uri}images/template/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="{{ site.base_url }}/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="{{ site.base_url }}/css/comp.css" />
+	<link rel="stylesheet" type="text/css" media="print" href="{{ site.base_url }}/css/print.css" />
+	<link rel="stylesheet" type="text/css" href="{{ site.base_url }}/css/comp_extra.css" />
+	<link rel="alternate" type="application/rss+xml" title="SR RSS" href="{{ site.base_url }}/feed.php" />
+	<link rel="shortcut icon" href="{{ site.base_url }}/images/template/favicon.ico" />
 
 	<script type="text/javascript">
 		var API_ROOT = "/comp-api";
 	</script>
 
-	<script type="text/javascript" src="{$root_uri}js/polyfill.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/competition-utils.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/polyfill.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/competition-utils.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-resource.min.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/lib/angular-storage/ngStorage.min.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/lib/angular-ui-select2/src/select2.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/lib/angularjs-ordinal-filter/ordinal.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/competition-filters.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/competition-resources.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/controllers/{{ page.angular_controller }}.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/lib/angular-storage/ngStorage.min.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/lib/angular-ui-select2/src/select2.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/lib/angularjs-ordinal-filter/ordinal.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/competition-filters.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/competition-resources.js"></script>
+	<script type="text/javascript" src="{{ site.base_url }}/js/controllers/{{ page.angular_controller }}.js"></script>
 
 	{include file="tracking.tpl"}
 </head>
@@ -44,11 +44,11 @@
 
 	<div id="{$page_id}" class="content">
 		<ul class="comp-nav">
-			<li><a href="{$root_uri}comp/team">Team Information</a></li>
-			<li><a href="{$root_uri}comp/schedule">Match Schedule</a></li>
-			<li><a href="{$root_uri}comp/points">Match Points</a></li>
-			<li><a href="{$root_uri}comp/league">League Status</a></li>
-			<li><a href="{$root_uri}comp/knockout">Knockouts</a></li>
+			<li><a href="{{ site.base_url }}/comp/team">Team Information</a></li>
+			<li><a href="{{ site.base_url }}/comp/schedule">Match Schedule</a></li>
+			<li><a href="{{ site.base_url }}/comp/points">Match Points</a></li>
+			<li><a href="{{ site.base_url }}/comp/league">League Status</a></li>
+			<li><a href="{{ site.base_url }}/comp/knockout">Knockouts</a></li>
 		</ul>
 
 		{{ content }}
