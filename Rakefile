@@ -11,10 +11,10 @@ task :dependencies do
   sh('npm install')
 end
 
-file '_dev.yml' do
-  touch '_dev.yml'
+file '_local.yml' do
+  touch '_local.yml'
 end
 
-task :dev => [:dependencies, :'_dev.yml'] do
+task :dev => [:dependencies, :'_local.yml'] do
   sh('bundle exec jekyll serve --drafts --config _config.yml,_local.yml')
 end
