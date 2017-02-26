@@ -1,5 +1,6 @@
 /.bundle
 /.sass-cache
+/_local.yml
 /_site
 /gems
 /node_modules
