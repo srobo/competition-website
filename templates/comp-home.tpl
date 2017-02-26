@@ -9,12 +9,12 @@ and that its dependencies (CSS and JS) will be included there suitably.
 -->
 
 	<header>
-		<a href="{{ site.base_url }}/"><img src="{{ site.base_url }}/images/template/website_logo.png" alt="Student Robotics Logo" /></a>
+		<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/template/website_logo.png" alt="Student Robotics Logo" /></a>
 		<div id="navwrapper">
 		<ul>
-			<li><a href="{{ site.base_url }}/about">About Us</a></li>
-			<li><a href="{{ site.base_url }}/ide">IDE</a></li>
-			<li><a href="{{ site.base_url }}/docs/">Docs</a></li>
+			<li><a href="{{ site.baseurl }}/about">About Us</a></li>
+			<li><a href="{{ site.baseurl }}/ide">IDE</a></li>
+			<li><a href="{{ site.baseurl }}/docs/">Docs</a></li>
 		</ul>
 		</div>
 	</header>
@@ -22,7 +22,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 	<div class="content">
 		<div id="competition">
 			<span class="top-links" id="more-link">
-				<a href="{{ site.base_url }}/events/sr2016/2016-04-30-competition">Tell me more...</a>
+				<a href="{{ site.baseurl }}/events/sr2016/2016-04-30-competition">Tell me more...</a>
 			</span>
 			<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
 			<div id="live-stream-wrapper">
@@ -37,7 +37,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 {% raw %}
 <div class="scored match" style="position:relative;margin-top:10px;">
 	<span style="position:absolute;margin-left:50px;left:0">
-		<a href="{% endraw %}{{ site.base_url }}/{% raw %}comp/points">more scores...</a>
+		<a href="{% endraw %}{{ site.baseurl }}/{% raw %}comp/points">more scores...</a>
 	</span>
 	<h4>
 		Latest Scores<span data-ng-if="previous_match">: {{previous_match.display_name}}</span>
@@ -146,9 +146,9 @@ and that its dependencies (CSS and JS) will be included there suitably.
 				<!-- TODO: maybe move to left so that you read this first
 				   this tells you that the TLAs are teams -->
 				<span class="more-link">
-					<a href="{{ site.base_url }}/comp/league">more...</a>
+					<a href="{{ site.baseurl }}/comp/league">more...</a>
 				</span>
-				<h2><a href="{{ site.base_url }}/comp/league">Leaderboard</a></h2>
+				<h2><a href="{{ site.baseurl }}/comp/league">Leaderboard</a></h2>
 				<div id="leaderboard">
 {% raw %}
 <table>
@@ -163,7 +163,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 		<td>{{team.league_pos}}</td>
 		<td>{{team.scores.league}}</td>
 		<td title="{{team|teamName}}">
-			<a href="{% endraw %}{{ site.base_url }}/{% raw %}teams/{{item.tla}}">{{team.tla}}</a>
+			<a href="{% endraw %}{{ site.baseurl }}/{% raw %}teams/{{item.tla}}">{{team.tla}}</a>
 		</td>
 	</tr>
 </table>
@@ -175,9 +175,9 @@ and that its dependencies (CSS and JS) will be included there suitably.
 
 			<div style="width: 600px" class="info-box">
 				<span class="more-link">
-					<a href="{{ site.base_url }}/comp/schedule">more...</a>
+					<a href="{{ site.baseurl }}/comp/schedule">more...</a>
 				</span>
-				<h2><a href="{{ site.base_url }}/comp/schedule">Match Schedule</a></h2>
+				<h2><a href="{{ site.baseurl }}/comp/schedule">Match Schedule</a></h2>
 				<div id="match_sched">
 {% raw %}
 <table class="schedule">
@@ -199,7 +199,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 				title="{{team|teamInfo:teams|teamName}}">
 				<!--- TODO: non-literal filtering, possibly based on the existence of the page -->
 				<a data-ng-if="team && team != '-'"
-				   href="{% endraw %}{{ site.base_url }}/{% raw %}teams/{{team}}">{{team}}</a>
+				   href="{% endraw %}{{ site.baseurl }}/{% raw %}teams/{{team}}">{{team}}</a>
 				<span data-ng-if="team == '-'">{{team}}</span>
 			</td>
 		</tr>
@@ -212,13 +212,13 @@ and that its dependencies (CSS and JS) will be included there suitably.
 
 		<div id="boxWrapper">
 			<div class="box">
-				<h3><a href="{{ site.base_url }}/about">Who are we?</a></h3>
+				<h3><a href="{{ site.baseurl }}/about">Who are we?</a></h3>
 				<p>
 					<!-- TODO: or something better -->
-					Student Robotics run an annual robotics <a href="{{ site.base_url }}/schools/game">competition</a>
+					Student Robotics run an annual robotics <a href="{{ site.baseurl }}/schools/game">competition</a>
 					for sixth-form schools and colleges.
-					All of the <a href="{{ site.base_url }}/schools/kit">kit</a> the schools &amp; colleges use is designed, built, tested and distributed by us.
-					Student Robotics is run, in its entirety, by a <a href="{{ site.base_url }}/about/committee">team</a> of university students and recent graduates
+					All of the <a href="{{ site.baseurl }}/schools/kit">kit</a> the schools &amp; colleges use is designed, built, tested and distributed by us.
+					Student Robotics is run, in its entirety, by a <a href="{{ site.baseurl }}/about/committee">team</a> of university students and recent graduates
 					&mdash; mainly from the Universities of <a href="http://www.soton.ac.uk">Southampton</a> and <a href="http://bristol.ac.uk">Bristol</a>.
 				</p>
 			</div>
