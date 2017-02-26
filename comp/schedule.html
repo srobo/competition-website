@@ -3,6 +3,7 @@ title: 2016 Match Schedule
 layout: comp
 angular_controller: MatchSchedule
 ---
+{% raw %}
 
 <style type="text/css">
 td.chosen_team_match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
@@ -90,3 +91,4 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
 <!-- full_schedule -->
 </div>
+{% endraw %}
