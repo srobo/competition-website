@@ -1,5 +1,8 @@
-//TITLE: 2016 Competition Team Information
-//ANGULAR_CONTROLLER: TeamInformation
+---
+title: 2016 Competition Team Information
+layout: comp
+angular_controller: TeamInformation
+---
 
 # Team Information
 

@@ -1,5 +1,8 @@
-//TITLE: 2016 Match Schedule
-//ANGULAR_CONTROLLER: MatchSchedule
+---
+title: 2016 Match Schedule
+layout: comp
+angular_controller: MatchSchedule
+---
 
 <style type="text/css">
 td.chosen_team_match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }

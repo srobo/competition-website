@@ -1,5 +1,8 @@
-//TITLE: 2016 Competition Knockout
-//ANGULAR_CONTROLLER: KnockoutTree
+---
+title: 2016 Competition Knockout
+layout: comp
+angular_controller: KnockoutTree
+---
 
 <style type="text/css">
 div.game ul li:nth-child(1) { background-color: {{corners[0].colour|hexLighter:0.2}}; }

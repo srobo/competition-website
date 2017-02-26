@@ -1,5 +1,8 @@
-//TITLE: 2016 Competition League
-//ANGULAR_CONTROLLER: LeaguePoints
+---
+title: 2016 Competition League
+layout: comp
+angular_controller: LeaguePoints
+---
 
 # League Status
 

@@ -1,5 +1,8 @@
-//TITLE: 2016 Match Points
-//ANGULAR_CONTROLLER: MatchPointsCtrl
+---
+title: 2016 Match Points
+layout: comp
+angular_controller: MatchPointsCtrl
+---
 
 <style type="text/css">
 /* first column is more headers */
