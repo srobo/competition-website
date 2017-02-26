@@ -24,7 +24,7 @@ and that its dependencies (CSS and JS) will be included there suitably.
 			<span class="top-links" id="more-link">
 				<a href="{{ site.base_url }}/events/sr2016/2016-04-30-competition">Tell me more...</a>
 			</span>
-			<h1 style="text-align: center;">SR2016 Live!</h1>
+			<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
 			<div id="live-stream-wrapper">
 				<iframe width="560"
 				        height="315"
