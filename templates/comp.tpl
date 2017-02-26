@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" data-ng-app="app">
 
 <head>
-	<title>{getFromContent get="title"} | Student Robotics</title>
+	<title>{{ page.title }} | Student Robotics</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="keywords" content="{getFromContent get='keywords'}" />
-	<meta name="description" content="{getFromContent get='description'}" />
+	<meta name="keywords" content="{{ page.keywords }}" />
+	<meta name="description" content="{{ page.description }}" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css" />
 	<link rel="stylesheet" type="text/css" href="{$root_uri}css/main.css" />
 	<link rel="stylesheet" type="text/css" href="{$root_uri}css/comp.css" />
@@ -30,12 +30,12 @@
 	<script type="text/javascript" src="{$root_uri}js/lib/angularjs-ordinal-filter/ordinal.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/competition-filters.js"></script>
 	<script type="text/javascript" src="{$root_uri}js/competition-resources.js"></script>
-	<script type="text/javascript" src="{$root_uri}js/controllers/{getFromContent get='angular_controller'}.js"></script>
+	<script type="text/javascript" src="{$root_uri}js/controllers/{{ page.angular_controller }}.js"></script>
 
 	{include file="tracking.tpl"}
 </head>
 
-<body data-ng-controller="{getFromContent get='angular_controller'}">
+<body data-ng-controller="{{ page.angular_controller }}">
 {include file="tracking-image.tpl"}
 <div id="pageWrapper">
 
@@ -51,7 +51,7 @@
 			<li><a href="{$root_uri}comp/knockout">Knockouts</a></li>
 		</ul>
 
-		{getFromContent get="content"}
+		{{ content }}
 		<p></p>
 
 	</div>
