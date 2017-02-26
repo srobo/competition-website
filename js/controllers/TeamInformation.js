@@ -5,6 +5,8 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
 
     $scope.$storage = $localStorage;
     $scope.corners = [];
+    $scope.games = [];
+    $scope.next_game = null;
     $scope.points = {};
     var all_matches = [];
 
