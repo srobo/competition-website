@@ -1,9 +1,9 @@
 [submodule "js/lib/angular-ui-select2"]
 	path = js/lib/angular-ui-select2
-	url = git://github.com/angular-ui/ui-select2.git
+	url = https://github.com/angular-ui/ui-select2.git
 [submodule "js/lib/angular-storage"]
 	path = js/lib/angular-storage
-	url = git://github.com/gsklee/ngStorage.git
+	url = https://github.com/gsklee/ngStorage.git
 [submodule "js/lib/angularjs-ordinal-filter"]
 	path = js/lib/angularjs-ordinal-filter
-	url = git://github.com/jdpedrie/angularjs-ordinal-filter.git
+	url = https://github.com/jdpedrie/angularjs-ordinal-filter.git
