@@ -9,7 +9,7 @@ description: >
   16-18 to assemble a team and build fully autonomous robots.
 
 year: 2017
-api_root: /comp-api
+api_root: https://studentrobotics.org/comp-api
 
 markdown: kramdown
 
