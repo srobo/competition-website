@@ -1,4 +1,6 @@
-baseurl: /comp
+# Note: the baseurl used must match that on GitHub, which they pick as being
+# the name of the repo.
+baseurl: /competition-website
 url: https://studentrobotics.org
 
 title: Student Robotics
