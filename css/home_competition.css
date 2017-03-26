@@ -1,19 +1,7 @@
 div#competition {
-	border-bottom:1px solid silver;
 	position:relative;
-	margin-bottom:20px;
-	overflow:hidden;
 	/* mostly to avoid the bumpy up & down as things load */
 	min-height:350px;
-}
-
-div#boxWrapper div.box {
-	float:left;
-	width:480px;
-}
-
-div#boxWrapper div.box p {
-	margin-right:20px;
 }
 
 table.schedule td:nth-child(2) {
