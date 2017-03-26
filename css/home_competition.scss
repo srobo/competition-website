@@ -5,93 +5,105 @@ div#competition {
 	position: relative;
 	/* mostly to avoid the bumpy up & down as things load */
 	min-height: 350px;
-}
 
-table.schedule td:nth-child(2) {
-	text-align: center;
-}
+	table.schedule td:nth-child(2) {
+		text-align: center;
+	}
 
-div#competition span.top-links {
-	position: absolute;
-	margin-top: 20px;
-}
-div#competition #live-stream-wrapper {
-	text-align:  center;
-}
-div#competition #live-stream-wrapper > * {
-	margin:  auto;
-}
-div#competition span#more-link {
-	left: 0;
-	margin-left: 100px;
-}
+	span.top-links {
+		position: absolute;
+		margin-top: 20px;
+	}
 
-div#competition .more-link-container {
-	position:  relative;
-}
-div#competition .more-link-container h2 {
-	display:  inline-block;
-}
-div#competition span.more-link {
-	position: absolute;
-	top:  1.2rem;
-	margin-left:  1em;
-}
+	#live-stream-wrapper {
+		text-align:  center;
 
-div#competition div#leaderboard-container {
-	float: right;
-	padding-right: 40px;
-	width: 330px;
-}
-div#competition div#leaderboard {
-	margin-right: 50px;
-}
-div#competition div#leaderboard th {
-	padding: 0 3px;
-}
+		& > * {
+			margin:  auto;
+		}
+	}
 
-div#competition div#match-schedule-container {
-	clear:  both;
-}
-div#competition div#match-schedule-container table.schedule th:nth-child(n+3) {
-	width:  350px;
+	span#more-link {
+		left: 0;
+		margin-left: 100px;
+	}
+
+	.more-link-container {
+		position:  relative;
+
+		h2 {
+			display:  inline-block;
+		}
+	}
+	span.more-link {
+		position: absolute;
+		top:  1.2rem;
+		margin-left:  1em;
+	}
+
+	div#leaderboard-container {
+		float: right;
+		padding-right: 40px;
+		width: 330px;
+	}
+	div#leaderboard {
+		margin-right: 50px;
+
+		th {
+			padding: 0 3px;
+		}
+	}
+
+	div#match-schedule-container {
+		clear:  both;
+
+		table.schedule th:nth-child(n+3) {
+			width:  350px;
+		}
+	}
 }
 
 #match-info {
 	float: left;
 	text-align: center;
 	width: 600px;
-}
 
-#match-info div.match {
-	padding: 5px 0;
-}
-#match-info div.scored {
-	padding: 0;
-}
-#match-info div.match:nth-child(3n+1) {
-	border: none;
-}
+	div.match {
+		padding: 5px 0;
 
-#match-info div.game {
-	display: inline-block;
-}
-#match-info div.game table tbody td {
-	min-width: 35px;
-}
-#match-info div.game table tbody tr:not(:first-child) td,
-#match-info div.game table tbody tr:not(:first-child) th {
-	padding-top: 3px;
-}
-#match-info div.game.headings {
-	/* Something causes an extra 4px of gap on the right.
-	 * I've no idea what, but it's there in both Firefox & Chrome. */
-	margin: 0 1px 0 5px;
-}
-#match-info div.game.headings.single th {
-	text-align: right;
-	padding-right: 5px;
-}
-#match-info div.scored div.game.headings.single {
-	margin-left: -35px;
+		&:nth-child(3n+1) {
+			border: none;
+		}
+	}
+
+	div.game {
+		display: inline-block;
+
+		table tbody td {
+			min-width: 35px;
+		}
+		table tbody tr:not(:first-child) {
+			td, th {
+				padding-top: 3px;
+			}
+		}
+		&.headings {
+			/* Something causes an extra 4px of gap on the right.
+			* I've no idea what, but it's there in both Firefox & Chrome. */
+			margin: 0 1px 0 5px;
+
+			&.single th {
+				text-align: right;
+				padding-right: 5px;
+			}
+		}
+	}
+
+	div.scored {
+		padding: 0;
+
+		div.game.headings.single {
+			margin-left: -35px;
+		}
+	}
 }
