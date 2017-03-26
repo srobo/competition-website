@@ -9,7 +9,7 @@ angular_controller: CompMode
 -->
 <div id="competition">
 	<span class="top-links" id="more-link">
-		<a href="{{ site.competition_link }}">Tell me more...</a>
+		<a href="{{ site.competition_link }}">Tell me more&hellip;</a>
 	</span>
 	<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
 	<div id="live-stream-wrapper">
@@ -24,7 +24,7 @@ angular_controller: CompMode
 {% raw %}
 <div class="scored match" style="position:relative;margin-top:10px;">
 	<span style="position:absolute;margin-left:50px;left:0">
-		<a href="{% endraw %}{{ site.baseurl }}/{% raw %}comp/points">more scores...</a>
+		<a href="{% endraw %}{{ site.baseurl }}/{% raw %}comp/points">more scores&hellip;</a>
 	</span>
 	<h4>
 		Latest Scores<span data-ng-if="previous_match">: {{previous_match.display_name}}</span>
@@ -135,7 +135,7 @@ angular_controller: CompMode
 	<div  class="more-link-container">
 		<h2>Leaderboard</h2>
 		<span class="more-link">
-			<a href="{{ site.baseurl }}/comp/league">more...</a>
+			<a href="{{ site.baseurl }}/comp/league">more&hellip;</a>
 		</span>
 	</div>
 	<div id="leaderboard">
@@ -164,7 +164,7 @@ angular_controller: CompMode
 		<div class="more-link-container">
 			<h2>Match Schedule</h2>
 			<span class="more-link">
-				<a href="{{ site.baseurl }}/comp/schedule">more...</a>
+				<a href="{{ site.baseurl }}/comp/schedule">more&hellip;</a>
 			</span>
 		</div>
 {% raw %}
