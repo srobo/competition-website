@@ -89,9 +89,6 @@ div#competition div#leaderboard th {
 #match-info div.match:nth-child(3n+1) {
 	border:none;
 }
-#match-info table th {
-	padding:0 5px;
-}
 
 #match-info div.game {
 	display:inline-block;
@@ -99,7 +96,8 @@ div#competition div#leaderboard th {
 #match-info div.game table tbody td {
 	min-width:35px;
 }
-#match-info div.game table tbody tr:not(:first-child) td {
+#match-info div.game table tbody tr:not(:first-child) td,
+#match-info div.game table tbody tr:not(:first-child) th {
 	padding-top:3px;
 }
 #match-info div.game.headings {
@@ -113,7 +111,4 @@ div#competition div#leaderboard th {
 }
 #match-info div.scored div.game.headings.single {
 	margin-left:-35px;
-}
-#match-info div.game.headings table tbody th {
-	padding:2px 10px;
 }
