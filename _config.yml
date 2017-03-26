@@ -11,6 +11,8 @@ description: >
 year: 2017
 api_root: https://studentrobotics.org/comp-api
 
+competition_link: https://studentrobotics.org/events/sr2017/competition/
+
 markdown: kramdown
 
 timezone: Etc/GMT
