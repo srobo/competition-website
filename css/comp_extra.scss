@@ -2,177 +2,222 @@
 ---
 
 /* Schedule page */
-#comp_schedule #schedule-filter {
-	float: right;
-}
-#full_schedule #schedule-filter input[type=checkbox] {
-	margin-bottom: 2px;
-	vertical-align: bottom;
-}
-#full_schedule div.match-session {
-	clear: both;
-}
-#full_schedule th[rowspan] {
-	vertical-align: middle;
-}
-#full_schedule colgroup.arena {
-	width: 150px;
+#comp_schedule {
+	#schedule-filter {
+		float: right;
+
+		input[type=checkbox] {
+			margin-bottom: 2px;
+			vertical-align: bottom;
+		}
+	}
+	#full_schedule {
+		div.match-session {
+			clear: both;
+		}
+
+		th[rowspan] {
+			vertical-align: middle;
+		}
+
+		colgroup.arena {
+			width: 150px;
+		}
+	}
 }
 
 /* League page */
-table th {
-	padding: 0 5px;
-	vertical-align: middle;
-}
-/* center all the number cols */
-#comp_league table td {
-	text-align: center;
-}
-/* but not the team name */
-#comp_league table td:last-child {
-	text-align: left;
+#comp_league {
+	th {
+		padding: 0 5px;
+		vertical-align: middle;
+	}
+
+	/* center all the number cols */
+	td {
+		text-align: center;
+
+		/* but not the team name */
+		&:last-child {
+			text-align: left;
+		}
+	}
 }
 
 /* Team page */
-#comp_team #team-chooser {
-	float: right;
-}
-#comp_team #per-team-details {
-	text-align: center;
-}
-#comp_team div.matches {
-	display: inline-block;
-	margin: 0 50px;
-	vertical-align: top;
-}
-#comp_team div.matches p {
-	margin-left: 0;
-	text-align: center;
-}
-#comp_team div.matches .staging-signal {
-	color: red;
-	font-size: 1.8em;
-	font-weight: bold;
-}
-#comp_team div.matches table th {
-	padding: 0 5px;
-}
-#comp_team #upcoming-matches td:last-child {
-	text-align: left;
-}
+#comp_team {
+	#team-chooser {
+		float: right;
+	}
 
-#comp_team table.past td:first-child {
-	border-right-style: double;
-	border-right-width: 3px;
-}
-#comp_team table.past td:last-child {
-	padding-left: 15px;
-	text-align: left;
-}
+	#per-team-details {
+		text-align: center;
+	}
 
-#comp_team table.past .position {
-	margin-left: 7px;
+	div.matches {
+		display: inline-block;
+		margin: 0 50px;
+		vertical-align: top;
+
+		p {
+			margin-left: 0;
+			text-align: center;
+		}
+		.staging-signal {
+			color: red;
+			font-size: 1.8em;
+			font-weight: bold;
+		}
+		table th {
+			padding: 0 5px;
+		}
+	}
+
+	#upcoming-matches td:last-child {
+		text-align: left;
+	}
+
+	table.past {
+		td {
+			&:first-child {
+				border-right-style: double;
+				border-right-width: 3px;
+			}
+			&:last-child {
+				padding-left: 15px;
+				text-align: left;
+			}
+		}
+
+		.position {
+			margin-left: 7px;
+		}
+	}
 }
 
 /* Points page */
-#comp_points #match-chooser {
-	float: right;
-	margin-left: 50px;
-}
-#comp_points #match-chooser input {
-	width: 250px;
-}
-#comp_points div.points {
-	text-align: center;
-}
-#comp_points div.game {
-	display: inline-block;
-	padding: 0 10px;
-}
-#comp_points div.game th {
-	padding: 0 5px;
-}
-#comp_points div.game tbody th {
-	border-bottom-width: 1px;
-	text-align: right;
-}
-#comp_points div.game tbody tr:last-child th {
-	border-bottom-width: 0px;
+#comp_points {
+	#match-chooser {
+		float: right;
+		margin-left: 50px;
+
+		input {
+			width: 250px;
+		}
+	}
+
+	div.points {
+		text-align: center;
+	}
+
+	div.game {
+		display: inline-block;
+		padding: 0 10px;
+
+		th {
+			padding: 0 5px;
+		}
+
+		tbody {
+			th {
+				border-bottom-width: 1px;
+				text-align: right;
+			}
+
+			tr:last-child th {
+				border-bottom-width: 0px;
+			}
+		}
+	}
 }
 
 /* Knockouts page */
-#knockouts div.round {
-	padding-bottom: 15px;
-	padding-top: 15px;
-	text-align: center;
-}
-#knockouts div.round div.match h4 {
-	font-size: 1.25em;
-	margin-bottom: 0;
-}
-#knockouts div.round:nth-child(odd) {
-	/* TODO: make darker */
-	background-color: #E8E8E8;
-}
-#knockouts div.round:nth-last-child(3) div.match {
-	/* Quarters */
-	font-size: 1.2em;
-}
-#knockouts div.round:nth-last-child(3) div.match li {
-	width: 80px;
-}
-#knockouts div.round:nth-last-child(2) div.match {
-	/* Semis */
-	font-size: 1.5em;
-}
-#knockouts div.round:nth-last-child(2) div.match li {
-	width: 90px;
-}
-#knockouts div.round:nth-last-child(1) div.match {
-	/* Finals */
-	font-size: 2em;
-}
-#knockouts div.round:nth-last-child(1) div.match li {
-	width: 120px;
-}
+#knockouts {
+	div.round {
+		padding-bottom: 15px;
+		padding-top: 15px;
+		text-align: center;
 
-#knockouts div.match,
-/* Special case -- 4 items on the Quarters line since they're all in the same arena
- * Needed to overrrle the border: none in the 3n+1 below, not because it's actually
- * any different
- */
-#knockouts div.round:nth-last-child(3) div.match:nth-child(4) {
-	border-left: 1px solid lightGrey;
-	display: inline-block;
-	padding: 5px 0;
-}
-#knockouts div.match:nth-child(3n+1) {
-	border: none;
-}
-#knockouts div.match span {
-	display: block;
-}
+		div.match h4 {
+			font-size: 1.25em;
+			margin-bottom: 0;
+		}
 
-#knockouts div.game {
-	display: inline-block;
-	padding: 0 10px;
-}
-#knockouts div.game ul {
-	list-style-type: none;
-	margin: 0 10px;
-}
-#knockouts div.game li {
-	float: left;
-	text-align: center;
-	width: 50px;
-}
-#knockouts div.game li:nth-child(2) {
-	float: right;
-}
-#knockouts div.game li:nth-child(3) {
-	clear: both;
-	float: right;
-}
-#knockouts div.game a.promote {
-	font-weight: bold;
+		&:nth-child(odd) {
+			/* TODO: make darker */
+			background-color: #E8E8E8;
+		}
+
+		&:nth-last-child(3) div.match {
+			/* Quarters */
+			font-size: 1.2em;
+
+			div.match li {
+				width: 80px;
+			}
+		}
+
+		&:nth-last-child(2) div.match {
+			/* Semis */
+			font-size: 1.5em;
+
+			div.match li {
+				width: 90px;
+			}
+		}
+
+		&:nth-last-child(1) div.match {
+			/* Finals */
+			font-size: 2em;
+
+			div.match li {
+				width: 120px;
+			}
+		}
+	}
+
+	div.match,
+	/* Special case -- 4 items on the Quarters line since they're all in the same arena
+	* Needed to overrrle the `border: none;` in the 3n+1 below, not because it's
+	* actually any different
+	*/
+	div.round:nth-last-child(3) div.match:nth-child(4) {
+		border-left: 1px solid lightGrey;
+		display: inline-block;
+		padding: 5px 0;
+	}
+	div.match:nth-child(3n+1) {
+		border: none;
+	}
+	div.match span {
+		display: block;
+	}
+
+	div.game {
+		display: inline-block;
+		padding: 0 10px;
+
+		ul {
+			list-style-type: none;
+			margin: 0 10px;
+		}
+
+		li {
+			float: left;
+			text-align: center;
+			width: 50px;
+
+			&:nth-child(2) {
+				float: right;
+			}
+			&:nth-child(3) {
+				clear: both;
+				float: right;
+			}
+		}
+
+		a.promote {
+			font-weight: bold;
+		}
+	}
 }
