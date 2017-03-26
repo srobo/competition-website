@@ -104,6 +104,10 @@ table th {
 	padding-top:15px;
 	text-align:center;
 }
+#knockouts div.round div.match h4 {
+	font-size: 1.25em;
+	margin-bottom: 0;
+}
 #knockouts div.round:nth-child(odd) {
 	/* TODO: make darker */
 	background-color: #E8E8E8;
@@ -111,7 +115,6 @@ table th {
 #knockouts div.round:nth-last-child(3) div.match {
 	/* Quarters */
 	font-size:1.2em;
-	line-height:1em;
 }
 #knockouts div.round:nth-last-child(3) div.match li {
 	width:80px;
@@ -119,7 +122,6 @@ table th {
 #knockouts div.round:nth-last-child(2) div.match {
 	/* Semis */
 	font-size:1.5em;
-	line-height:1em;
 }
 #knockouts div.round:nth-last-child(2) div.match li {
 	width:90px;
@@ -127,7 +129,6 @@ table th {
 #knockouts div.round:nth-last-child(1) div.match {
 	/* Finals */
 	font-size:2em;
-	line-height:1em;
 }
 #knockouts div.round:nth-last-child(1) div.match li {
 	width:120px;
