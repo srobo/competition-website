@@ -129,13 +129,15 @@ angular_controller: CompMode
 {% endraw %}
 </div>
 
-<div id="leaderboard-container" class="more-link-container">
+<div id="leaderboard-container">
 	<!-- TODO: maybe move to left so that you read this first
 		this tells you that the TLAs are teams -->
-	<span class="more-link">
-		<a href="{{ site.baseurl }}/comp/league">more...</a>
-	</span>
-	<h2>Leaderboard</h2>
+	<div  class="more-link-container">
+		<h2>Leaderboard</h2>
+		<span class="more-link">
+			<a href="{{ site.baseurl }}/comp/league">more...</a>
+		</span>
+	</div>
 	<div id="leaderboard">
 {% raw %}
 <table>
@@ -158,11 +160,13 @@ angular_controller: CompMode
 		</div>
 	</div>
 
-	<div id="match-schedule-container" class="more-link-container">
-		<span class="more-link">
-			<a href="{{ site.baseurl }}/comp/schedule">more...</a>
-		</span>
-		<h2>Match Schedule</h2>
+	<div id="match-schedule-container">
+		<div class="more-link-container">
+			<h2>Match Schedule</h2>
+			<span class="more-link">
+				<a href="{{ site.baseurl }}/comp/schedule">more...</a>
+			</span>
+		</div>
 {% raw %}
 <table class="schedule">
 	<thead>

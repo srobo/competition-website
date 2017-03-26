@@ -38,12 +38,13 @@ div#competition span#more-link {
 div#competition .more-link-container {
 	position: relative;
 }
+div#competition .more-link-container h2 {
+	display: inline-block;
+}
 div#competition span.more-link {
 	position:absolute;
-	right:0;
-	left:190px;
-	margin-top:29px;
-	margin-right:100px;
+	top: 1.2rem;
+	margin-left: 1em;
 }
 
 div#competition div#leaderboard-container {
