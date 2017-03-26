@@ -1,4 +1,4 @@
-div.content div#competition {
+div#competition {
 	border-bottom:1px solid silver;
 	position:relative;
 	margin-bottom:20px;
@@ -7,12 +7,12 @@ div.content div#competition {
 	min-height:350px;
 }
 
-div.content div#boxWrapper div.box {
+div#boxWrapper div.box {
 	float:left;
 	width:480px;
 }
 
-div.content div#boxWrapper div.box p {
+div#boxWrapper div.box p {
 	margin-right:20px;
 }
 

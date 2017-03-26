@@ -7,21 +7,20 @@ angular_controller: CompMode
 <!-- TODO:
 * Add an outline of and link to the rules?
 -->
-	<div class="content">
-		<div id="competition">
-			<span class="top-links" id="more-link">
-				<a href="{{ site.baseurl }}/events/sr2016/2016-04-30-competition">Tell me more...</a>
-			</span>
-			<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
-			<div id="live-stream-wrapper">
-				<iframe width="560"
-				        height="315"
-				        src="https://www.youtube.com/embed/YgQV7sTMmXg"
-				        frameborder="0"
-				        allowfullscreen>
-				</iframe>
-			</div>
-			<div id="match-info">
+<div id="competition">
+	<span class="top-links" id="more-link">
+		<a href="{{ site.baseurl }}/events/sr2016/2016-04-30-competition">Tell me more...</a>
+	</span>
+	<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
+	<div id="live-stream-wrapper">
+		<iframe width="560"
+				height="315"
+				src="https://www.youtube.com/embed/YgQV7sTMmXg"
+				frameborder="0"
+				allowfullscreen>
+		</iframe>
+	</div>
+	<div id="match-info">
 {% raw %}
 <div class="scored match" style="position:relative;margin-top:10px;">
 	<span style="position:absolute;margin-left:50px;left:0">
@@ -128,16 +127,16 @@ angular_controller: CompMode
 </div>
 
 {% endraw %}
-			</div>
+</div>
 
-			<div id="leaderboard-container" class="info-box">
-				<!-- TODO: maybe move to left so that you read this first
-				   this tells you that the TLAs are teams -->
-				<span class="more-link">
-					<a href="{{ site.baseurl }}/comp/league">more...</a>
-				</span>
-				<h2>Leaderboard</h2>
-				<div id="leaderboard">
+<div id="leaderboard-container" class="info-box">
+	<!-- TODO: maybe move to left so that you read this first
+		this tells you that the TLAs are teams -->
+	<span class="more-link">
+		<a href="{{ site.baseurl }}/comp/league">more...</a>
+	</span>
+	<h2>Leaderboard</h2>
+	<div id="leaderboard">
 {% raw %}
 <table>
 	<thead>
@@ -156,17 +155,17 @@ angular_controller: CompMode
 	</tr>
 </table>
 {% endraw %}
-				</div>
-			</div>
+		</div>
+	</div>
 
-			<br style="clear: left;" />
+	<br style="clear: left;" />
 
-			<div style="width: 600px" class="info-box">
-				<span class="more-link">
-					<a href="{{ site.baseurl }}/comp/schedule">more...</a>
-				</span>
-				<h2>Match Schedule</h2>
-				<div id="match_sched">
+	<div style="width: 600px" class="info-box">
+		<span class="more-link">
+			<a href="{{ site.baseurl }}/comp/schedule">more...</a>
+		</span>
+		<h2>Match Schedule</h2>
+		<div id="match_sched">
 {% raw %}
 <table class="schedule">
 	<thead>
@@ -194,36 +193,35 @@ angular_controller: CompMode
 	</tbody>
 </table>
 {% endraw %}
-				</div>
-			</div>
-		</div>
-
-		<div id="boxWrapper">
-			<div class="box">
-				<h3><a href="{{ site.baseurl }}/about">Who are we?</a></h3>
-				<p>
-					<!-- TODO: or something better -->
-					Student Robotics run an annual robotics <a href="{{ site.baseurl }}/schools/game">competition</a>
-					for sixth-form schools and colleges.
-					All of the <a href="{{ site.baseurl }}/schools/kit">kit</a> the schools &amp; colleges use is designed, built, tested and distributed by us.
-					Student Robotics is run, in its entirety, by a <a href="{{ site.baseurl }}/about/committee">team</a> of university students and recent graduates
-					&mdash; mainly from the Universities of <a href="http://www.soton.ac.uk">Southampton</a> and <a href="http://bristol.ac.uk">Bristol</a>.
-				</p>
-			</div>
-			<div class="box">
-				<h3><a href="https://twitter.com/StudentRobotics">Tweets from @StudentRobotics</a></h3>
-				<p>
-					<a width="450" height="300"
-					   class="twitter-timeline"
-					   data-dnt="true"
-					   data-chrome="noheader nofooter"
-					   data-widget-id="321728443496660993"
-					   href="https://twitter.com/StudentRobotics"
-					   >
-						Tweets from @StudentRobotics
-					</a>
-					<script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script>
-				</p>
-			</div>
 		</div>
 	</div>
+</div>
+
+<div id="boxWrapper">
+	<div class="box">
+		<h3><a href="{{ site.baseurl }}/about">Who are we?</a></h3>
+		<p>
+			<!-- TODO: or something better -->
+			Student Robotics run an annual robotics <a href="{{ site.baseurl }}/schools/game">competition</a>
+			for sixth-form schools and colleges.
+			All of the <a href="{{ site.baseurl }}/schools/kit">kit</a> the schools &amp; colleges use is designed, built, tested and distributed by us.
+			Student Robotics is run, in its entirety, by a <a href="{{ site.baseurl }}/about/committee">team</a> of university students and recent graduates
+			&mdash; mainly from the Universities of <a href="http://www.soton.ac.uk">Southampton</a> and <a href="http://bristol.ac.uk">Bristol</a>.
+		</p>
+	</div>
+	<div class="box">
+		<h3><a href="https://twitter.com/StudentRobotics">Tweets from @StudentRobotics</a></h3>
+		<p>
+			<a width="450" height="300"
+				class="twitter-timeline"
+				data-dnt="true"
+				data-chrome="noheader nofooter"
+				data-widget-id="321728443496660993"
+				href="https://twitter.com/StudentRobotics"
+				>
+				Tweets from @StudentRobotics
+			</a>
+			<script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script>
+		</p>
+	</div>
+</div>
