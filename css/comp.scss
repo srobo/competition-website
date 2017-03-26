@@ -1,12 +1,5 @@
 ---
 ---
-table {
-	margin: 0 auto;
-}
-
-td {
-	padding: 2px 10px;
-}
 
 label {
 	display: block;
@@ -26,14 +19,22 @@ li {
 	padding-left: 5px;
 }
 
-tbody {
-	tr:nth-child(odd) {
-		/* TODO: make darker */
-		background-color: #E8E8E8;
+table {
+	margin: 0 auto;
+
+	td {
+		padding: 2px 10px;
 	}
 
-	tr:hover {
-		background-color: #E0E0E0;
+	tbody {
+		tr:nth-child(odd) {
+			/* TODO: make darker */
+			background-color: #E8E8E8;
+		}
+
+		tr:hover {
+			background-color: #E0E0E0;
+		}
 	}
 }
 
