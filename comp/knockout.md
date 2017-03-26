@@ -27,7 +27,7 @@ The knockouts have not yet started.
 See the [match schedule](/comp/schedule) for information about the current match.
 </span>
 
-<div id="knockouts">
+<div id="knockouts-container">
     <div class="round" data-ng-repeat="round in rounds"
                        data-ng-init="isFinal = $last">
         <div class="match"
