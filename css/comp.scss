@@ -1,5 +1,6 @@
 ---
 ---
+@import "../node_modules/brand/sass/srobo/index";
 
 label {
 	display: block;
@@ -22,8 +23,12 @@ li {
 table {
 	margin: 0 auto;
 
-	td {
-		padding: 2px 10px;
+	th, td {
+		padding: 0.1em 0.5em;
+	}
+
+	thead th {
+		border-bottom: 2px solid $sr-blue;
 	}
 
 	tbody tr {
