@@ -1,0 +1,84 @@
+@import "common";
+@import "urls";
+
+$blue-top-colour: transparentize($sr-blue, 0.2);
+$blue-bottom-colour: transparentize($sr-blue, 0.3);
+
+.header {
+  text-align: center;
+}
+
+.panel {
+  background-color: $sr-white;
+  padding: 3.5em $spacing;
+
+  @include media-query("medium") {
+    padding: 3.5em 0;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  h1 {
+    font-size: 2.4em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  &:nth-of-type(even) {
+    background: $sr-light-grey;
+  }
+}
+
+.panel.panel-highlight {
+  background: $sr-blue;
+  color: $sr-white;
+
+  @include headings() {
+    color: $sr-white;
+  }
+}
+
+img.image {
+  background-color: white;
+  border: 1px solid $sr-light-grey;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.panel-header {
+  color: $sr-white;
+
+  @include headings() {
+    color: $sr-white;
+  }
+}
+
+.panel-blueshirts {
+  @include gradient-background($blue-top-colour, $blue-bottom-colour, "#{$image-directory}/blueshirts.jpg");
+}
+
+.panel-boxes {
+  @include gradient-background($blue-top-colour, $blue-bottom-colour, "#{$image-directory}/boxes.jpg");
+}
+
+.panel-arena {
+  @include gradient-background($blue-top-colour, $blue-bottom-colour, "#{$image-directory}/arena.jpg");
+}
+
+.panel-grandstand {
+  @include gradient-background($blue-top-colour, $blue-bottom-colour, "#{$image-directory}/grandstand.jpg");
+}
+
+.panel-container {
+  display: flex;
+  min-height: 18em;
+  align-items: center;
+}
+
+.panel-fill {
+  width: 100%;
+}

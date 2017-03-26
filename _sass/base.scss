@@ -1,0 +1,53 @@
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: $sr-black;
+  font-family: $main-font-family;
+  font-size: 16px;
+  height: 100%;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+a {
+  color: $sr-orange;
+  text-decoration: underline;
+
+  &:hover {
+    color: $sr-blue;
+  }
+
+  &:focus {
+    outline: 2px solid $focus-yellow;
+  }
+}
+
+.main {
+  @extend .row;
+  background: $sr-light-grey;
+  padding: $mobile-spacing $mobile-spacing 0;
+
+  @include media-query("medium") {
+    padding: $spacing 0 (3 * $spacing);
+  }
+}
+
+.home-main {
+  @include media-query("medium") {
+    padding-top: 0;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

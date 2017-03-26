@@ -1,0 +1,34 @@
+@mixin gradient-background($top, $bottom, $image) {
+  background: linear-gradient($top, $bottom), url($image) center center no-repeat;
+  background-size: cover;
+}
+
+.fixed-width {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sidebar, main {
+  @extend .row;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.header-card {
+  background: $sr-blue;
+  padding: $spacing;
+
+  @include media-query("medium") {
+    padding: $spacing 0;
+  }
+
+  h1 {
+    font-family: $hero-font-family;
+    color: $sr-white;
+    margin-bottom: 0;
+  }
+}

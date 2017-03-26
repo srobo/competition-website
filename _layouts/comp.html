@@ -34,22 +34,24 @@
 </head>
 
 <body data-ng-controller="{{ page.angular_controller }}">
-<div id="pageWrapper">
 
-	<div id="{{ page.path|replace:'.md',''|replace:'/','_' }}" class="content">
-		<ul class="comp-nav">
-			<li><a href="{{ site.baseurl }}/comp/team">Team Information</a></li>
-			<li><a href="{{ site.baseurl }}/comp/schedule">Match Schedule</a></li>
-			<li><a href="{{ site.baseurl }}/comp/points">Match Points</a></li>
-			<li><a href="{{ site.baseurl }}/comp/league">League Status</a></li>
-			<li><a href="{{ site.baseurl }}/comp/knockout">Knockouts</a></li>
-		</ul>
+	{% include header.html %}
 
-		{{ content }}
-		<p></p>
+	<div class="main">
+		<div class="fixed-width">
+			<ul class="comp-nav">
+				<li><a href="{{ site.baseurl }}/comp/team">Team Information</a></li>
+				<li><a href="{{ site.baseurl }}/comp/schedule">Match Schedule</a></li>
+				<li><a href="{{ site.baseurl }}/comp/points">Match Points</a></li>
+				<li><a href="{{ site.baseurl }}/comp/league">League Status</a></li>
+				<li><a href="{{ site.baseurl }}/comp/knockout">Knockouts</a></li>
+			</ul>
+		</div>
+		<div id="{{ page.path|replace:'.md',''|replace:'/','_' }}" class="fixed-width">
+			{{ content }}
+			<p></p>
+		</div>
 	</div>
-
-</div>
 
 	{% include footer.html %}
 	{% include script.html %}
