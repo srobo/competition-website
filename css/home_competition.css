@@ -65,6 +65,9 @@ div#competition div#leaderboard th {
 div#competition div#match-schedule-container {
 	clear: both;
 }
+div#competition div#match-schedule-container table.schedule th:nth-child(n+3) {
+	width: 350px;
+}
 
 #match-info {
 	float:left;
