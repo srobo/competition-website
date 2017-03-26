@@ -13,3 +13,5 @@ $baseurl: "{{ site.baseurl }}";
         "panel",
         "footer"
 ;
+
+@import "comp/all";

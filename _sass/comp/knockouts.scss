@@ -1,0 +1,93 @@
+#knockouts {
+	div.round {
+		padding-bottom: 15px;
+		padding-top: 15px;
+		text-align: center;
+
+		a {
+			text-decoration: none;
+		}
+
+		div.match h4 {
+			font-size: 1.25em;
+			margin-bottom: 0;
+		}
+
+		&:nth-child(odd) {
+			/* TODO: make darker */
+			background-color: #E8E8E8;
+		}
+
+		&:nth-last-child(3) div.match {
+			/* Quarters */
+			font-size: 1.2em;
+
+			li {
+				width: 80px;
+			}
+		}
+
+		&:nth-last-child(2) div.match {
+			/* Semis */
+			font-size: 1.5em;
+
+			li {
+				width: 90px;
+			}
+		}
+
+		&:nth-last-child(1) div.match {
+			/* Finals */
+			font-size: 2em;
+
+			li {
+				width: 120px;
+			}
+		}
+	}
+
+	div.match,
+	/* Special case -- 4 items on the Quarters line since they're all in the same arena
+	* Needed to overrrle the `border: none;` in the 3n+1 below, not because it's
+	* actually any different
+	*/
+	div.round:nth-last-child(3) div.match:nth-child(4) {
+		border-left: 1px solid lightGrey;
+		display: inline-block;
+		padding: 5px 0;
+	}
+	div.match:nth-child(3n+1) {
+		border: none;
+	}
+	div.match span {
+		display: block;
+	}
+
+	div.game {
+		display: inline-block;
+		padding: 0 10px;
+
+		ul {
+			list-style-type: none;
+			margin: 0 10px;
+		}
+
+		li {
+			float: left;
+			text-align: center;
+			width: 50px;
+
+			&:nth-child(2) {
+				float: right;
+			}
+			&:nth-child(3) {
+				clear: both;
+				float: right;
+			}
+		}
+
+		a.promote {
+			font-weight: bold;
+		}
+	}
+}
