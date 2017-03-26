@@ -20,12 +20,6 @@ table.schedule td:nth-child(2) {
 	text-align:center;
 }
 
-div#competition span.more-link {
-	position:absolute;
-	right:0;
-	margin-top:20px;
-	margin-right:100px;
-}
 div#competition span.top-links {
 	position:absolute;
 	margin-top:20px;
@@ -45,8 +39,11 @@ div#competition .more-link-container {
 	position: relative;
 }
 div#competition span.more-link {
+	position:absolute;
+	right:0;
 	left:190px;
 	margin-top:29px;
+	margin-right:100px;
 }
 
 div#competition div#leaderboard-container {
