@@ -26,13 +26,13 @@ table {
 		padding: 2px 10px;
 	}
 
-	tbody {
-		tr:nth-child(odd) {
+	tbody tr {
+		&:nth-child(odd) {
 			/* TODO: make darker */
 			background-color: #E8E8E8;
 		}
 
-		tr:hover {
+		&:hover {
 			background-color: #E0E0E0;
 		}
 	}
