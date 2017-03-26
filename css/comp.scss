@@ -31,6 +31,7 @@ tbody {
 		/* TODO: make darker */
 		background-color: #E8E8E8;
 	}
+
 	tr:hover {
 		background-color: #E0E0E0;
 	}
@@ -39,59 +40,63 @@ tbody {
 table.schedule {
 	td:nth-child(4n+2),
 	tr:first-child th:nth-child(n+2) {
-		border-right:10px solid transparent;
+		border-right: 10px solid transparent;
 	}
+
 	td:nth-child(2) {
-		text-align:left;
+		text-align: left;
 	}
+
 	td {
-		text-align:center;
+		text-align: center;
 	}
+
 	td.no_match {
-		border:0 none;
+		border: 0 none;
 		/* we still want it to take up space on the page,
 		* so use visibility instead of display.
 		*/
-		visibility:hidden;
+		visibility: hidden;
 	}
 }
 table.schedule tbody tr.current,
 div.match.current {
 	/* TODO: make darker */
-	background-color:#FFFFB0;
+	background-color: #FFFFB0;
 }
 
 table.sortable {
 	th.sorter {
-		cursor:pointer;
+		cursor: pointer;
 
 		&:after {
-			content:" ◊";
-			margin-right:2px;
+			content: " ◊";
+			margin-right: 2px;
 		}
 	}
 
 	th.active:after {
-		content:" ▴";
-		position:relative;
-		top:-0.4em;
+		content: " ▴";
+		position: relative;
+		top: -0.4em;
 	}
+
 	tr.reverse th.active:after {
-		content:" ▾";
-		top:0;
+		content: " ▾";
+		top: 0;
 	}
 }
 
 ul.comp-nav {
-	list-style:none;
-	margin:0;
+	list-style: none;
+	margin: 0;
 
 	> li {
-		float:right;
-		padding:0 1em;
+		float: right;
+		padding: 0 1em;
 	}
 
 	> li:not(:first-child) {
-		border-right:1px solid silver;
+		border-right: 1px solid silver;
 	}
 }
