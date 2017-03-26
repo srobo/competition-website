@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+        ".vscode": true,
+        "gems": true,
+        "local.config.inc.php": true,
+        "templates_compiled": true
+    }
+}
