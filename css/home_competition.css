@@ -115,8 +115,5 @@ div#competition div#leaderboard th {
 	margin-left:-35px;
 }
 #match-info div.game.headings table tbody th {
-	border-top-width:2px;
-	border-top-style:solid;
-	border-bottom:none;
 	padding:2px 10px;
 }
