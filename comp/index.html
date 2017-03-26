@@ -8,18 +8,28 @@ angular_controller: CompMode
 * Add an outline of and link to the rules?
 -->
 
-<span class="top-links" id="more-link">
-	<a href="{{ site.competition_link }}">Learn more</a>
-</span>
-<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
-<div id="live-stream-wrapper">
-	<iframe width="560"
-			height="315"
-			src="{{ site.youtube_stream_link }}"
-			frameborder="0"
-			allowfullscreen>
-	</iframe>
-</div>
+{% if site.youtube_stream_link %}
+	<span class="top-links" id="more-link">
+		<a href="{{ site.competition_link }}">Learn more</a>
+	</span>
+{% endif %}
+	<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
+{% if site.youtube_stream_link %}
+	<div id="live-stream-wrapper">
+		<iframe width="560"
+				height="315"
+				src="{{ site.youtube_stream_link }}"
+				frameborder="0"
+				allowfullscreen>
+		</iframe>
+	</div>
+{% else %}
+	<p style="text-align: center;">
+		Student Robotics is an annual robotics competition for young people aged 16-18.
+		<br>
+		<a href="{{ site.competition_link }}">Learn more</a>
+	</p>
+{% endif %}
 <div id="match-info">
 {% raw %}
 <div class="scored match" style="position:relative;margin-top:10px;">
