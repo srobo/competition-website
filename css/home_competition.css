@@ -1,94 +1,94 @@
 div#competition {
-	position:relative;
+	position: relative;
 	/* mostly to avoid the bumpy up & down as things load */
-	min-height:350px;
+	min-height: 350px;
 }
 
 table.schedule td:nth-child(2) {
-	text-align:center;
+	text-align: center;
 }
 
 div#competition span.top-links {
-	position:absolute;
-	margin-top:20px;
+	position: absolute;
+	margin-top: 20px;
 }
 div#competition #live-stream-wrapper {
-	text-align: center;
+	text-align:  center;
 }
 div#competition #live-stream-wrapper > * {
-	margin: auto;
+	margin:  auto;
 }
 div#competition span#more-link {
-	left:0;
-	margin-left:100px;
+	left: 0;
+	margin-left: 100px;
 }
 
 div#competition .more-link-container {
-	position: relative;
+	position:  relative;
 }
 div#competition .more-link-container h2 {
-	display: inline-block;
+	display:  inline-block;
 }
 div#competition span.more-link {
-	position:absolute;
-	top: 1.2rem;
-	margin-left: 1em;
+	position: absolute;
+	top:  1.2rem;
+	margin-left:  1em;
 }
 
 div#competition div#leaderboard-container {
-	float:right;
-	padding-right:40px;
-	width:330px;
+	float: right;
+	padding-right: 40px;
+	width: 330px;
 }
 div#competition div#leaderboard {
-	margin-right:50px;
+	margin-right: 50px;
 }
 div#competition div#leaderboard th {
-	padding:0 3px;
+	padding: 0 3px;
 }
 
 div#competition div#match-schedule-container {
-	clear: both;
+	clear:  both;
 }
 div#competition div#match-schedule-container table.schedule th:nth-child(n+3) {
-	width: 350px;
+	width:  350px;
 }
 
 #match-info {
-	float:left;
-	text-align:center;
-	width:600px;
+	float: left;
+	text-align: center;
+	width: 600px;
 }
 
 #match-info div.match {
-	padding:5px 0;
+	padding: 5px 0;
 }
 #match-info div.scored {
-	padding:0;
+	padding: 0;
 }
 #match-info div.match:nth-child(3n+1) {
-	border:none;
+	border: none;
 }
 
 #match-info div.game {
-	display:inline-block;
+	display: inline-block;
 }
 #match-info div.game table tbody td {
-	min-width:35px;
+	min-width: 35px;
 }
 #match-info div.game table tbody tr:not(:first-child) td,
 #match-info div.game table tbody tr:not(:first-child) th {
-	padding-top:3px;
+	padding-top: 3px;
 }
 #match-info div.game.headings {
 	/* Something causes an extra 4px of gap on the right.
 	 * I've no idea what, but it's there in both Firefox & Chrome. */
-	margin:0 1px 0 5px;
+	margin: 0 1px 0 5px;
 }
 #match-info div.game.headings.single th {
-	text-align:right;
-	padding-right:5px;
+	text-align: right;
+	padding-right: 5px;
 }
 #match-info div.scored div.game.headings.single {
-	margin-left:-35px;
+	margin-left: -35px;
 }
