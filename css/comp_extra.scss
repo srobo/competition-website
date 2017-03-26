@@ -1,5 +1,6 @@
 ---
 ---
+@import "../node_modules/brand/sass/srobo/variables/index";
 
 /* Schedule page */
 #comp_schedule {
@@ -84,8 +85,7 @@
 	table.past {
 		td {
 			&:first-child {
-				border-right-style: double;
-				border-right-width: 3px;
+				border-right: 6px solid $sr-light-grey;
 			}
 			&:last-child {
 				padding-left: 15px;
