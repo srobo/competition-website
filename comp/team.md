@@ -24,15 +24,15 @@ angular_controller: TeamInformation
 
 This page shows the information for a specific team at the competition.
 
-<!-- container -->
-<div id="per-team-details" data-ng-if="$storage.chosenTeam" markdown="1">
-
 Find out what the team say about themselves on their [status page](/teams/{{$storage.chosenTeam}}).
 
 Teams must present their robot to the staging area in sufficient time
 before the advertised start of a match.
 The staging area is next to the arenas, see the [venue layout](/resources/2016/competition-layout.pdf).
 Teams who arrive late may forfeit the match.
+
+<!-- container -->
+<div id="per-team-details" data-ng-if="$storage.chosenTeam" markdown="1">
 
 <div id="upcoming-matches" class="matches" markdown="1">
 
