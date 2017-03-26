@@ -3,12 +3,11 @@ task :clean do
 end
 
 task :deep_clean => [:clean] do
-  sh('rm -rf gems node_modules')
+  sh('rm -rf gems')
 end
 
 task :dependencies do
   sh('bundle install --path gems')
-  sh('npm install')
 end
 
 file '_local.yml' do

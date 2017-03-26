@@ -7,3 +7,6 @@
 [submodule "js/lib/angularjs-ordinal-filter"]
 	path = js/lib/angularjs-ordinal-filter
 	url = https://github.com/jdpedrie/angularjs-ordinal-filter.git
+[submodule "_sass/brand"]
+	path = _sass/brand
+	url = https://github.com/srobo/brand

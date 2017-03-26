@@ -14,14 +14,13 @@ information about these pages; it is assumed that the reader will configure an
 SRComp-HTTP instance separately.
 
 1. [Install Ruby][install-ruby]
-2. [Install NPM][install-npm]
 
-3. Install Bundler and Rake
+2. Install Bundler and Rake
 
     ``` shell
     $ gem install bundler rake
     ```
-4. Start the app in development mode
+3. Start the app in development mode
 
     ```shell
     $ rake dev
@@ -31,4 +30,3 @@ SRComp-HTTP instance separately.
 [SR]: https://studentrobotics.org
 [srcomp]: https://www.studentrobotics.org/trac/wiki/SRcomp
 [install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
-[install-npm]: https://www.npmjs.com/get-npm
