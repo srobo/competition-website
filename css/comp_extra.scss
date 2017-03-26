@@ -3,108 +3,108 @@
 
 /* Schedule page */
 #comp_schedule #schedule-filter {
-	float:right;
+	float: right;
 }
 #full_schedule #schedule-filter input[type=checkbox] {
-	margin-bottom:2px;
-	vertical-align:bottom;
+	margin-bottom: 2px;
+	vertical-align: bottom;
 }
 #full_schedule div.match-session {
-	clear:both;
+	clear: both;
 }
 #full_schedule th[rowspan] {
-	vertical-align:middle;
+	vertical-align: middle;
 }
 #full_schedule colgroup.arena {
-	width:150px;
+	width: 150px;
 }
 
 /* League page */
 table th {
-	padding:0 5px;
-	vertical-align:middle;
+	padding: 0 5px;
+	vertical-align: middle;
 }
 /* center all the number cols */
 #comp_league table td {
-	text-align:center;
+	text-align: center;
 }
 /* but not the team name */
 #comp_league table td:last-child {
-	text-align:left;
+	text-align: left;
 }
 
 /* Team page */
 #comp_team #team-chooser {
-	float:right;
+	float: right;
 }
 #comp_team #per-team-details {
-	text-align:center;
+	text-align: center;
 }
 #comp_team div.matches {
-	display:inline-block;
-	margin:0 50px;
-	vertical-align:top;
+	display: inline-block;
+	margin: 0 50px;
+	vertical-align: top;
 }
 #comp_team div.matches p {
-	margin-left:0;
-	text-align:center;
+	margin-left: 0;
+	text-align: center;
 }
 #comp_team div.matches .staging-signal {
-	color:red;
-	font-size:1.8em;
-	font-weight:bold;
+	color: red;
+	font-size: 1.8em;
+	font-weight: bold;
 }
 #comp_team div.matches table th {
-	padding:0 5px;
+	padding: 0 5px;
 }
 #comp_team #upcoming-matches td:last-child {
-	text-align:left;
+	text-align: left;
 }
 
 #comp_team table.past td:first-child {
-	border-right-style:double;
-	border-right-width:3px;
+	border-right-style: double;
+	border-right-width: 3px;
 }
 #comp_team table.past td:last-child {
-	padding-left:15px;
-	text-align:left;
+	padding-left: 15px;
+	text-align: left;
 }
 
 #comp_team table.past .position {
-	margin-left:7px;
+	margin-left: 7px;
 }
 
 /* Points page */
 #comp_points #match-chooser {
-	float:right;
-	margin-left:50px;
+	float: right;
+	margin-left: 50px;
 }
 #comp_points #match-chooser input {
-	width:250px;
+	width: 250px;
 }
 #comp_points div.points {
-	text-align:center;
+	text-align: center;
 }
 #comp_points div.game {
-	display:inline-block;
-	padding:0 10px;
+	display: inline-block;
+	padding: 0 10px;
 }
 #comp_points div.game th {
-	padding:0 5px;
+	padding: 0 5px;
 }
 #comp_points div.game tbody th {
-	border-bottom-width:1px;
-	text-align:right;
+	border-bottom-width: 1px;
+	text-align: right;
 }
 #comp_points div.game tbody tr:last-child th {
-	border-bottom-width:0px;
+	border-bottom-width: 0px;
 }
 
 /* Knockouts page */
 #knockouts div.round {
-	padding-bottom:15px;
-	padding-top:15px;
-	text-align:center;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	text-align: center;
 }
 #knockouts div.round div.match h4 {
 	font-size: 1.25em;
@@ -116,63 +116,63 @@ table th {
 }
 #knockouts div.round:nth-last-child(3) div.match {
 	/* Quarters */
-	font-size:1.2em;
+	font-size: 1.2em;
 }
 #knockouts div.round:nth-last-child(3) div.match li {
-	width:80px;
+	width: 80px;
 }
 #knockouts div.round:nth-last-child(2) div.match {
 	/* Semis */
-	font-size:1.5em;
+	font-size: 1.5em;
 }
 #knockouts div.round:nth-last-child(2) div.match li {
-	width:90px;
+	width: 90px;
 }
 #knockouts div.round:nth-last-child(1) div.match {
 	/* Finals */
-	font-size:2em;
+	font-size: 2em;
 }
 #knockouts div.round:nth-last-child(1) div.match li {
-	width:120px;
+	width: 120px;
 }
 
 #knockouts div.match,
 /* Special case -- 4 items on the Quarters line since they're all in the same arena
- * Needed to overrrle the border:none in the 3n+1 below, not because it's actually
+ * Needed to overrrle the border: none in the 3n+1 below, not because it's actually
  * any different
  */
 #knockouts div.round:nth-last-child(3) div.match:nth-child(4) {
-	border-left:1px solid lightGrey;
-	display:inline-block;
-	padding:5px 0;
+	border-left: 1px solid lightGrey;
+	display: inline-block;
+	padding: 5px 0;
 }
 #knockouts div.match:nth-child(3n+1) {
-	border:none;
+	border: none;
 }
 #knockouts div.match span {
-	display:block;
+	display: block;
 }
 
 #knockouts div.game {
-	display:inline-block;
-	padding:0 10px;
+	display: inline-block;
+	padding: 0 10px;
 }
 #knockouts div.game ul {
-	list-style-type:none;
-	margin:0 10px;
+	list-style-type: none;
+	margin: 0 10px;
 }
 #knockouts div.game li {
-	float:left;
+	float: left;
 	text-align: center;
-	width:50px;
+	width: 50px;
 }
 #knockouts div.game li:nth-child(2) {
-	float:right;
+	float: right;
 }
 #knockouts div.game li:nth-child(3) {
-	clear:both;
-	float:right;
+	clear: both;
+	float: right;
 }
 #knockouts div.game a.promote {
-	font-weight:bold;
+	font-weight: bold;
 }
