@@ -26,33 +26,37 @@ li {
 	padding-left: 5px;
 }
 
-tbody tr:nth-child(odd) {
-	/* TODO: make darker */
-	background-color: #E8E8E8;
-}
-tbody tr:hover {
-	background-color: #E0E0E0;
+tbody {
+	tr:nth-child(odd) {
+		/* TODO: make darker */
+		background-color: #E8E8E8;
+	}
+	tr:hover {
+		background-color: #E0E0E0;
+	}
 }
 
-table.schedule td:nth-child(4n+2) {
-	/* border-right:none; */
-	border-right:10px solid transparent;
-}
-table.schedule tr:first-child th:nth-child(n+2) {
-	border-right:10px solid transparent;
-}
-table.schedule td:nth-child(2) {
-	text-align:left;
-}
-table.schedule td {
-	text-align:center;
-}
-table.schedule td.no_match {
-	border:0 none;
-	/* we still want it to take up space on the page,
-	 * so use visibility instead of display.
-	 */
-	visibility:hidden;
+table.schedule {
+	td:nth-child(4n+2) {
+		/* border-right:none; */
+		border-right:10px solid transparent;
+	}
+	tr:first-child th:nth-child(n+2) {
+		border-right:10px solid transparent;
+	}
+	td:nth-child(2) {
+		text-align:left;
+	}
+	td {
+		text-align:center;
+	}
+	td.no_match {
+		border:0 none;
+		/* we still want it to take up space on the page,
+		* so use visibility instead of display.
+		*/
+		visibility:hidden;
+	}
 }
 table.schedule tbody tr.current,
 div.match.current {
@@ -60,31 +64,35 @@ div.match.current {
 	background-color:#FFFFB0;
 }
 
-table.sortable th.sorter {
-	cursor:pointer;
-}
-table.sortable th.sorter:after {
-	content:" ◊";
-	margin-right:2px;
-}
-table.sortable th.active:after {
-	content:" ▴";
-	position:relative;
-	top:-0.4em;
-}
-table.sortable tr.reverse th.active:after {
-	content:" ▾";
-	top:0;
+table.sortable {
+	th.sorter {
+		cursor:pointer;
+	}
+	th.sorter:after {
+		content:" ◊";
+		margin-right:2px;
+	}
+	th.active:after {
+		content:" ▴";
+		position:relative;
+		top:-0.4em;
+	}
+	tr.reverse th.active:after {
+		content:" ▾";
+		top:0;
+	}
 }
 
 ul.comp-nav {
 	list-style:none;
 	margin:0;
-}
-ul.comp-nav > li {
-	float:right;
-	padding:0 1em;
-}
-ul.comp-nav > li:not(:first-child) {
-	border-right:1px solid silver;
+
+	> li {
+		float:right;
+		padding:0 1em;
+	}
+
+	> li:not(:first-child) {
+		border-right:1px solid silver;
+	}
 }
