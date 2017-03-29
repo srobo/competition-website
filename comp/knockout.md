@@ -40,13 +40,23 @@ See the [match schedule](/comp/schedule) for information about the current match
                 <span style="color: {{arenas[game.arena].colour}};">Arena {{arenas[game.arena].display_name}}</span>
                 <ul>
                     <li data-ng-repeat="tla in game.teams track by $index">
-                        <a data-ng-href="/teams/{{tla}}"
+{% endraw %}
+{% if site.teams_url %}
+{% raw %}
+                        <a data-ng-href="{% emdraw %}{{ site.teams_url }}/{% raw %}{{tla}}"
                            data-ng-class="{promote: !isFinal && (game.ranking[tla] == 1 || game.ranking[tla] == 2)}"
                            data-ng-show="{{tla != unknowable && tla != '-'}}"
                            title="Find out more about team {{tla|teamInfo:teams|teamName}}">
                            {{tla}}
                        </a>
                         <span data-ng-show="{{tla == unknowable || tla == '-'}}">
+{% endraw %}
+{% else %}
+{% raw %}
+                        <span title="{{tla|teamInfo:teams|teamName}}">
+{% endraw %}
+{% endif %}
+{% raw %}
                            {{tla}}
                        </span>
                     </li>

@@ -53,7 +53,15 @@ No scores have been recorded yet.
         <td>{{item.scores.league}}</td>
         <td>{{item.scores.game}}</td>
         <td>
-            <a href="/teams/{{item.tla}}" title="Find out more about team {{item.tla}}">{{item.tla}}</a>:
+{% endraw %}
+{% if site.teams_url %}
+            <a href="{{ site.teams_url }}/{% raw %}{{item.tla}}{% endraw %}"
+               title="Find out more about team {% raw %}{{item.tla}}{% endraw %}"
+            >{% raw %}{{item.tla}}{% endraw %}</a>:
+{% else %}
+            {% raw %}{{item.tla}}{% endraw %}:
+{% endif %}
+{% raw %}
             {{item.name}}
         </td>
     </tr>

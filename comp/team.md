@@ -24,7 +24,11 @@ angular_controller: TeamInformation
 
 This page shows the information for a specific team at the competition.
 
-Find out what the team say about themselves on their [status page](/teams/{{$storage.chosenTeam}}).
+{% endraw %}
+{% if site.teams_url %}
+Find out what the team say about themselves on their [status page]({{ site.teams_url }}/{% raw %}{{$storage.chosenTeam}}{% endraw %}).
+{% endif %}
+{% raw %}
 
 Teams must present their robot to the staging area in sufficient time
 before the advertised start of a match.
