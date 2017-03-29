@@ -64,7 +64,7 @@ angular_controller: CompMode
 			<thead>
 				<tr>
 					<th data-ng-repeat="tla in game.teams track by $index"
-					    title="{{team|teamInfo:teams|teamName}}">
+					    title="{{tla|teamInfo:teams|teamName}}">
 						{{tla}}
 						<span data-ng-if="!tla">-</span>
 					</th>
