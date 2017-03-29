@@ -1,16 +1,16 @@
 <nav class="{{ include.class }}">
   <ul id="navigation" class="full-navigation">
     <li>
-      <a class="page-link" href="/ide">IDE</a>
+      <a class="page-link" href="{{ '/ide' | prepend: site.url }}">IDE</a>
     </li>
     <li>
-      <a class="page-link" href="/docs">Documentation</a>
+      <a class="page-link" href="{{ '/docs' | prepend: site.url }}">Documentation</a>
     </li>
     <li>
-      <a class="page-link" href="{{ '/compete' | prepend: site.baseurl }}">Compete</a>
+      <a class="page-link" href="{{ '/compete' | prepend: site.url }}">Compete</a>
     </li>
     <li>
-      <a class="page-link" href="{{ '/volunteer' | prepend: site.baseurl }}">Volunteer</a>
+      <a class="page-link" href="{{ '/volunteer' | prepend: site.url }}">Volunteer</a>
     </li>
   </ul>
 </nav>
