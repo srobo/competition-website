@@ -33,6 +33,11 @@
 
 	{% include header.html %}
 
+	<div class="header-card">
+		<div class="fixed-width">
+			<h1>We are Live!</h1>
+		</div>
+	</div>
 	<div class="main">
 		<div class="fixed-width">
 			<ul class="comp-nav">
@@ -41,6 +46,7 @@
 				<li><a href="{{ site.baseurl }}/comp/points">Match Points</a></li>
 				<li><a href="{{ site.baseurl }}/comp/league">League Status</a></li>
 				<li><a href="{{ site.baseurl }}/comp/knockout">Knockouts</a></li>
+				<li><a href="{{ site.competition_link }}">Event Information</a></li>
 			</ul>
 		</div>
 		<div id="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}" class="fixed-width">

@@ -92,7 +92,8 @@ table.sortable {
 
 ul.comp-nav {
 	list-style: none;
-	margin: 0;
+	margin: 0 0 20px;
+	overflow: hidden;
 
 	> li {
 		float: right;

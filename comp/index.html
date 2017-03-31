@@ -13,7 +13,6 @@ angular_controller: CompMode
 		<a href="{{ site.competition_link }}">Learn more</a>
 	</span>
 {% endif %}
-	<h1 style="text-align: center;">SR{{ site.year }} Live!</h1>
 {% if site.youtube_stream_link %}
 	<div id="live-stream-wrapper">
 		<iframe width="560"
@@ -23,12 +22,6 @@ angular_controller: CompMode
 				allowfullscreen>
 		</iframe>
 	</div>
-{% else %}
-	<p style="text-align: center;">
-		Student Robotics is an annual robotics competition for young people aged 16-18.
-		<br>
-		<a href="{{ site.competition_link }}">Learn more</a>
-	</p>
 {% endif %}
 <div id="match-info">
 {% raw %}
