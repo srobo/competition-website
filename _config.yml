@@ -16,7 +16,7 @@ year: 2017
 api_root: https://studentrobotics.org/comp-api
 
 competition_link: https://studentrobotics.org/events/sr2017/competition/
-youtube_stream_link: null # https://www.youtube.com/embed/YgQV7sTMmXg
+youtube_stream_link: https://www.youtube-nocookie.com/embed/KVWdpv82kUU
 
 markdown: kramdown
 
