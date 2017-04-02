@@ -53,7 +53,8 @@ See the [match schedule](/comp/schedule) for information about the current match
 {% endraw %}
 {% else %}
 {% raw %}
-                        <span title="{{tla|teamInfo:teams|teamName}}">
+                        <span title="{{tla|teamInfo:teams|teamName}}"
+                              data-ng-class="{promote: !isFinal && (game.ranking[tla] == 1 || game.ranking[tla] == 2)}">
 {% endraw %}
 {% endif %}
 {% raw %}
