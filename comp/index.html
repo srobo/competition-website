@@ -19,13 +19,13 @@ angular_controller: CompMode
 	</div>
 {% endif %}
 <div id="match-info">
-{% raw %}
+
 <div class="scored match" style="position:relative;margin-top:10px;">
 	<span style="position:absolute;margin-left:50px;left:0">
-		<a href="{% endraw %}{{ site.baseurl }}/{% raw %}comp/points">more scores&hellip;</a>
+		<a href="{{ site.baseurl }}/comp/points">more scores&hellip;</a>
 	</span>
 	<h4>
-		Latest Scores<span data-ng-if="previous_match">: {{previous_match.display_name}}</span>
+		Latest Scores<span data-ng-if="previous_match">: [[ previous_match.display_name ]]</span>
 	</h4>
 	<span data-ng-if="!previous_match">No scores yet recorded.</span>
 	<div class="game headings"
@@ -41,19 +41,19 @@ angular_controller: CompMode
 				</tr>
 			</thead>
 			<tr data-ng-repeat="(type, scores) in game.scores">
-				<th>{{type|titleCase}}</th>
+				<th>[[ type|titleCase ]]</th>
 			</tr>
 		</table>
 	</div>
 	<div class="game" data-ng-repeat-end>
-		<h4 style="color: {{arenas[arena].colour}};">Arena {{arenas[arena].display_name}}</h4>
+		<h4 style="color: [[ arenas[arena].colour ]];">Arena [[ arenas[arena].display_name ]]</h4>
 		<table class="scores"
 		       data-ng-if="game.scores">
 			<thead>
 				<tr>
 					<th data-ng-repeat="tla in game.teams track by $index"
-					    title="{{tla|teamInfo:teams|teamName}}">
-						{{tla}}
+					    title="[[ tla|teamInfo:teams|teamName ]]">
+						[[ tla ]]
 						<span data-ng-if="!tla">-</span>
 					</th>
 				</tr>
@@ -61,10 +61,10 @@ angular_controller: CompMode
 			<tr data-ng-repeat="(type, scores) in game.scores">
 				<td data-ng-repeat="tla in game.teams track by $index">
 					<span data-ng-if="type != 'ranking'">
-						{{scores[tla]}}
+						[[ scores[tla] ]]
 					</span>
 					<span data-ng-if="type == 'ranking'">
-						{{scores[tla]|ordinal}}
+						[[ scores[tla]|ordinal ]]
 					</span>
 				</td>
 			</tr>
@@ -73,7 +73,7 @@ angular_controller: CompMode
 	</div>
 </div>
 <script type="text/ng-template" id="match-info">
-	<h4>{{data.description}}: {{data.match.display_name}}</h4>
+	<h4>[[ data.description ]]: [[ data.match.display_name ]]</h4>
 	<div class="game headings"
 	     data-ng-repeat-start="(arena, game) in data.match.games"
 	     data-ng-class="{single: $first}"
@@ -94,13 +94,13 @@ angular_controller: CompMode
 			<thead>
 				<tr>
 					<th data-ng-repeat="tla in game.teams track by $index">
-						{{$index}}
+						[[ $index ]]
 					</th>
 				</tr>
 			</thead>
 			<tr>
-				<td data-ng-repeat="tla in game.teams track by $index" title="{{tla|teamInfo:teams|teamName}}">
-					{{tla}}
+				<td data-ng-repeat="tla in game.teams track by $index" title="[[ tla|teamInfo:teams|teamName ]]">
+					[[ tla ]]
 					<span data-ng-if="!tla">-</span>
 				</td>
 			</tr>
@@ -124,7 +124,7 @@ angular_controller: CompMode
      data-ng-include="'match-info'">
 </div>
 
-{% endraw %}
+
 </div>
 
 <div id="leaderboard-container">
@@ -137,7 +137,7 @@ angular_controller: CompMode
 		</span>
 	</div>
 	<div id="leaderboard">
-{% raw %}
+
 <table>
 	<thead>
 		<tr>
@@ -146,23 +146,19 @@ angular_controller: CompMode
 			<th>Team</th>
 		</tr>
 	</thead>
-	<tr data-ng-repeat="team in teams|leaderboard:10" id="{{team.tla}}">
-		<td>{{team.league_pos}}</td>
-		<td>{{team.scores.league}}</td>
-		<td title="{{team|teamName}}">
-{% endraw %}
+	<tr data-ng-repeat="team in teams|leaderboard:10" id="[[ team.tla ]]">
+		<td>[[ team.league_pos ]]</td>
+		<td>[[ team.scores.league ]]</td>
+		<td title="[[ team|teamName ]]">
 {% if site.teams_url %}
-{% raw %}
-			<a href="{% endraw %}{{ site.teams_url }}/{% raw %}{{team.tla}}">{{team.tla}}</a>
-{% endraw %}
+			<a href="{{ site.teams_url }}/[[ team.tla ]]">[[ team.tla ]]</a>
 {% else %}
-			{% raw %}{{team.tla}}{% endraw %}
+			[[ team.tla ]]
 {% endif %}
-{% raw %}
 		</td>
 	</tr>
 </table>
-{% endraw %}
+
 	</div>
 </div>
 
@@ -173,40 +169,36 @@ angular_controller: CompMode
 			<a href="{{ site.baseurl }}/comp/schedule">more&hellip;</a>
 		</span>
 	</div>
-{% raw %}
+
 <table class="schedule">
 	<thead>
 		<tr>
 			<th>Time</th>
 			<th>Match</th>
-			<th data-ng-repeat="arena in arenas" colspan="4" style="color: {{arena.colour}};">Arena {{arena.display_name}}</th>
+			<th data-ng-repeat="arena in arenas" colspan="4" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr data-ng-repeat="match in matches|matchesEndingAfterNow:time_offset|limitTo:10"
 			data-ng-class="{current: match.num==current_match.num}"
-			id="match-{{match.num}}">
-			<td title="Begins at {{match.time|date:'HH:mm:ss on EEEE, d MMMM'}}.">{{match.time|date:'HH:mm'}}</td>
-			<td title="{{match.display_name}}">{{match.num}}</td>
+			id="match-[[ match.num ]]">
+			<td title="Begins at [[ match.time|date:'HH:mm:ss on EEEE, d MMMM' ]].">[[ match.time|date:'HH:mm' ]]</td>
+			<td title="[[ match.display_name ]]">[[ match.num ]]</td>
 			<td data-ng-repeat="team in match.teams track by $index"
 				data-ng-class="{no_match: !team}"
-				title="{{team|teamInfo:teams|teamName}}">
-{% endraw %}
+				title="[[ team|teamInfo:teams|teamName ]]">
 {% if site.teams_url %}
-{% raw %}
 				<!--- TODO: non-literal filtering, possibly based on the existence of the page -->
 				<a data-ng-if="team && team != '-'"
-				   href="{% endraw %}{{ site.teams_url }}/{% raw %}{{team}}"
-				>{{team}}</a>
-				<span data-ng-if="team == '-'">{{team}}</span>
-{% endraw %}
+				   href="{{ site.teams_url }}/[[ team ]]"
+				>[[ team ]]</a>
+				<span data-ng-if="team == '-'">[[ team ]]</span>
 {% else %}
-				{% raw %}{{team}}{% endraw %}
+				[[ team ]]
 {% endif %}
-{% raw %}
 			</td>
 		</tr>
 	</tbody>
 </table>
-{% endraw %}
+
 </div>

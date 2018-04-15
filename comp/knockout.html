@@ -3,13 +3,12 @@ title: $YYYY Competition Knockout
 layout: comp
 angular_controller: KnockoutTree
 ---
-{% raw %}
 
 <style type="text/css">
-div.game ul li:nth-child(1) { background-color: {{corners[0].colour|hexLighter:0.2}}; }
-div.game ul li:nth-child(2) { background-color: {{corners[1].colour|hexLighter:0.2}}; }
-div.game ul li:nth-child(3) { background-color: {{corners[2].colour|hexLighter:0.2}}; }
-div.game ul li:nth-child(4) { background-color: {{corners[3].colour|hexLighter:0.2}}; }
+div.game ul li:nth-child(1) { background-color: [[ corners[0].colour|hexLighter:0.2 ]]; }
+div.game ul li:nth-child(2) { background-color: [[ corners[1].colour|hexLighter:0.2 ]]; }
+div.game ul li:nth-child(3) { background-color: [[ corners[2].colour|hexLighter:0.2 ]]; }
+div.game ul li:nth-child(4) { background-color: [[ corners[3].colour|hexLighter:0.2 ]]; }
 </style>
 
 <h1>Knockouts</h1>
@@ -21,7 +20,7 @@ From there, the top two robots in each match will progress to the next round.
 </p>
 
 <p data-ng-if="latest_scored_match != null && knockout_started">
-Up to date with scores from match {{latest_scored_match}}.
+Up to date with scores from match [[ latest_scored_match ]].
 </p>
 
 <p data-ng-if="!knockout_started">
@@ -36,31 +35,25 @@ See the <a href="/comp/schedule">match schedule</a> for information about the cu
              data-ng-repeat="match in round"
              data-ng-class="{current: match.num==current_match}"
              >
-            <h4>{{match.description}}</h4>
-            <span>{{match.time|date:'HH:mm:ss'}}</span>
+            <h4>[[ match.description ]]</h4>
+            <span>[[ match.time|date:'HH:mm:ss' ]]</span>
             <div class="game" data-ng-repeat="game in match.games">
-                <span style="color: {{arenas[game.arena].colour}};">Arena {{arenas[game.arena].display_name}}</span>
+                <span style="color: [[ arenas[game.arena].colour ]];">Arena [[ arenas[game.arena].display_name ]]</span>
                 <ul>
                     <li data-ng-repeat="tla in game.teams track by $index">
-{% endraw %}
 {% if site.teams_url %}
-{% raw %}
-                        <a data-ng-href="{% emdraw %}{{ site.teams_url }}/{% raw %}{{tla}}"
+                        <a data-ng-href="{{ site.teams_url }}[[ tla ]]"
                            data-ng-class="{promote: !isFinal && (game.ranking[tla] == 1 || game.ranking[tla] == 2)}"
-                           data-ng-show="{{tla != unknowable && tla != '-'}}"
-                           title="Find out more about team {{tla|teamInfo:teams|teamName}}">
-                           {{tla}}
+                           data-ng-show="[[ tla != unknowable && tla != '-' ]]"
+                           title="Find out more about team [[ tla|teamInfo:teams|teamName ]]">
+                           [[ tla ]]
                        </a>
-                        <span data-ng-show="{{tla == unknowable || tla == '-'}}">
-{% endraw %}
+                        <span data-ng-show="[[ tla == unknowable || tla == '-' ]]">
 {% else %}
-{% raw %}
-                        <span title="{{tla|teamInfo:teams|teamName}}"
+                        <span title="[[ tla|teamInfo:teams|teamName ]]"
                               data-ng-class="{promote: !isFinal && (game.ranking[tla] == 1 || game.ranking[tla] == 2)}">
-{% endraw %}
 {% endif %}
-{% raw %}
-                           {{tla}}
+                           [[ tla ]]
                        </span>
                     </li>
                 </ul>
@@ -68,4 +61,3 @@ See the <a href="/comp/schedule">match schedule</a> for information about the cu
         </div>
     </div>
 </div>
-{% endraw %}

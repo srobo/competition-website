@@ -1,6 +1,8 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
+configure_interpolation(app);
+
 app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, KnockoutMatches, LastScoredMatch, MatchPeriods, State, Teams, Tiebreaker) {
 
     $scope.unknowable = UNKNOWABLE_TEAM;

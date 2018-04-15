@@ -1,6 +1,8 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources"]);
 
+configure_interpolation(app);
+
 app.controller("LeaguePoints", function($scope, LastScoredMatch, State, Teams) {
     // Follow changes to the state
     State.change(function() {

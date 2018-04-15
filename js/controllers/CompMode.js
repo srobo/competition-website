@@ -1,6 +1,8 @@
 
 var app = angular.module('app', ["competitionFilters", "competitionResources", "ordinal"]);
 
+configure_interpolation(app);
+
 app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches, Current, State, Teams) {
 
     $scope.matches = [];

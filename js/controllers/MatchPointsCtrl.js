@@ -1,6 +1,8 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ordinal", "ui.select2"]);
 
+configure_interpolation(app);
+
 var only_integers = function() {
     return function(list) {
         list = list || [];

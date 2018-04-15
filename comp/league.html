@@ -3,7 +3,6 @@ title: $YYYY Competition League
 layout: comp
 angular_controller: LeaguePoints
 ---
-{% raw %}
 
 <h1>League Status</h1>
 
@@ -23,7 +22,7 @@ Details of the scores for each individual match are available on the <a href="/c
 </p>
 
 <p data-ng-if="latest_scored_match != null">
-Up to date with scores from match {{latest_scored_match}}.
+Up to date with scores from match [[ latest_scored_match ]].
 </p>
 <p data-ng-if="latest_scored_match == null">
 No scores have been recorded yet.
@@ -52,24 +51,21 @@ No scores have been recorded yet.
             </th>
         </tr>
     </thead>
-    <tr data-ng-repeat="item in (filtered = (teams | orderBy:sortKey:reverse))" id="{{item.tla}}">
+    <tr data-ng-repeat="item in (filtered = (teams | orderBy:sortKey:reverse))" id="[[ item.tla ]]">
         <td>
-            <span data-ng-if="item|isTied:teams">=</span>{{item.league_pos}}
+            <span data-ng-if="item|isTied:teams">=</span>[[ item.league_pos ]]
         </td>
-        <td>{{item.scores.league}}</td>
-        <td>{{item.scores.game}}</td>
+        <td>[[ item.scores.league ]]</td>
+        <td>[[ item.scores.game ]]</td>
         <td>
-{% endraw %}
 {% if site.teams_url %}
-            <a href="{{ site.teams_url }}/{% raw %}{{item.tla}}{% endraw %}"
-               title="Find out more about team {% raw %}{{item.tla}}{% endraw %}"
-            >{% raw %}{{item.tla}}{% endraw %}</a>:
+            <a href="{{ site.teams_url }}/[[ item.tla ]]"
+               title="Find out more about team [[ item.tla ]]"
+            >[[ item.tla ]]</a>:
 {% else %}
-            {% raw %}{{item.tla}}{% endraw %}:
+            [[ item.tla ]]:
 {% endif %}
-{% raw %}
-            {{item.name}}
+            [[ item.name ]]
         </td>
     </tr>
 </table>
-{% endraw %}

@@ -3,13 +3,12 @@ title: $YYYY Match Schedule
 layout: comp
 angular_controller: MatchSchedule
 ---
-{% raw %}
 
 <style type="text/css">
-td.chosen_team_match:nth-child(4n+3) { background-color: {{corners[0].colour|hexLighter:0.5}}; }
-td.chosen_team_match:nth-child(4n+4) { background-color: {{corners[1].colour|hexLighter:0.5}}; }
-td.chosen_team_match:nth-child(4n+5) { background-color: {{corners[2].colour|hexLighter:0.5}}; }
-td.chosen_team_match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
+td.chosen_team_match:nth-child(4n+3) { background-color: [[ corners[0].colour|hexLighter:0.5 ]]; }
+td.chosen_team_match:nth-child(4n+4) { background-color: [[ corners[1].colour|hexLighter:0.5 ]]; }
+td.chosen_team_match:nth-child(4n+5) { background-color: [[ corners[2].colour|hexLighter:0.5 ]]; }
+td.chosen_team_match:nth-child(4n+6) { background-color: [[ corners[3].colour|hexLighter:0.5 ]]; }
 </style>
 
 <h1>Match Schedule</h1>
@@ -30,8 +29,8 @@ The knockout rounds occur during the <a href="#last-session">last session</a> of
             >
         <option value="">All Teams</option>
         <option data-ng-repeat="(tla, info) in teams"
-                value="{{tla}}">
-            {{info|teamName}}
+                value="[[ tla ]]">
+            [[ info|teamName ]]
         </option>
     </select>
     <label>
@@ -44,7 +43,7 @@ The knockout rounds occur during the <a href="#last-session">last session</a> of
 </div>
 
 <p data-ng-if="current_match != null">
-The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
+The current match is <a href="#match-[[ current_match ]]">[[ current_match ]]</a>.
 </p>
 
 <div id="full_schedule">
@@ -54,7 +53,7 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
 <a id="last-session" data-ng-if="$last"></a>
 
-<h2>{{session.description}}</h2>
+<h2>[[ session.description ]]</h2>
 
 <table class="schedule">
     <colgroup class="meta" span="2" />
@@ -64,8 +63,8 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
             <th rowspan="2">Time  </th>
             <th rowspan="2">Match </th>
             <th data-ng-repeat="arena in session.arenas"
-                style="color: {{arena.colour}};"
-                colspan="4">Arena {{arena.display_name}}</th>
+                style="color: [[ arena.colour ]];"
+                colspan="4">Arena [[ arena.display_name ]]</th>
         </tr>
         <tr>
             <th data-ng-repeat-start="arena in session.arenas">Corner 0</th>
@@ -77,13 +76,13 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
     <tbody>
         <tr data-ng-repeat="match in session.matches|containsTeam:chosenTeam"
             data-ng-class="{current: match.num==current_match}"
-            id="match-{{match.num}}">
-            <td>{{match.time|date:'HH:mm:ss'}}</td>
-            <td title="{{match.display_name}}">{{match.num}}</td>
+            id="match-[[ match.num ]]">
+            <td>[[ match.time|date:'HH:mm:ss' ]]</td>
+            <td title="[[ match.display_name ]]">[[ match.num ]]</td>
             <td data-ng-repeat="team in match.teams track by $index"
                 data-ng-class="{chosen_team_match: team==chosenTeam, no_match: !team}"
-                title="{{team|teamInfo:teams|teamName}}">
-                {{team}}
+                title="[[ team|teamInfo:teams|teamName ]]">
+                [[ team ]]
             </td>
         </tr>
     </tbody>
@@ -93,4 +92,3 @@ The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
 
 <!-- full_schedule -->
 </div>
-{% endraw %}

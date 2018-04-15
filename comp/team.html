@@ -3,7 +3,6 @@ title: $YYYY Competition Team Information
 layout: comp
 angular_controller: TeamInformation
 ---
-{% raw %}
 
 <h1>Team Information</h1>
 
@@ -16,8 +15,8 @@ angular_controller: TeamInformation
             >
         <option value=""></option>
         <option data-ng-repeat="(tla, info) in teams"
-                value="{{tla}}">
-            {{info|teamName}}
+                value="[[ tla ]]">
+            [[ info|teamName ]]
         </option>
     </select>
 </div>
@@ -26,13 +25,11 @@ angular_controller: TeamInformation
 This page shows the information for a specific team at the competition.
 </p>
 
-{% endraw %}
 {% if site.teams_url %}
 <p>
-Find out what the team say about themselves on their <a href="{{ site.teams_url }}/{% raw %}{{$storage.chosenTeam}}{% endraw %}">status page</a>.
+Find out what the team say about themselves on their <a href="{{ site.teams_url }}/[[ $storage.chosenTeam ]]"></a>status page</a>.
 </p>
 {% endif %}
-{% raw %}
 
 <p>
 Teams must present their robot to the staging area in sufficient time
@@ -49,26 +46,26 @@ Teams who arrive late may forfeit the match.
 <h4>Upcoming Matches</h4>
 
 <p data-ng-if="next_game">
-    <strong>Next: {{next_game.display_name}}</strong>
+    <strong>Next: [[ next_game.display_name ]]</strong>
     <!-- Time to the start of the slot -->
     <span data-ng-if="time_to_next_slot && long_before_staging">
-        (starts in {{time_to_next_slot}})
+        (starts in [[ time_to_next_slot ]])
     </span>
     <!-- Time to the start of the actual game -->
     <span data-ng-if="time_to_next_game && !staging_closes">
-        (starts in {{time_to_next_game}})
+        (starts in [[ time_to_next_game ]])
     </span>
     <br />
     <!-- During and before the staging period one of these is shown -->
     <span data-ng-if="staging_opens && !long_before_staging && !staging_signal">
-        <strong>Staging opens in</strong> {{staging_opens}}
+        <strong>Staging opens in</strong> [[ staging_opens ]]
     </span>
     <span data-ng-if="staging_closes && !staging_opens && !staging_signal">
-        <strong>Staging open</strong> (closes in {{staging_closes}})
+        <strong>Staging open</strong> (closes in [[ staging_closes ]])
     </span>
     <span data-ng-if="staging_signal && staging_closes">
         <span class="staging-signal">Go to staging!</span>
-        (closes in {{staging_closes}})
+        (closes in [[ staging_closes ]])
     </span>
     <span data-ng-if="!staging_closes && !staging_opens && !staging_signal">
         <strong>Staging closed</strong>
@@ -89,23 +86,23 @@ Teams who arrive late may forfeit the match.
     <tbody>
         <!--- note: upcoming_games (defined here) also used above -->
         <tr data-ng-repeat="game in upcoming_games = (games|gamesAfterNow:time_offset)">
-            <td title="Begins at {{game.time|date:'HH:mm:ss on EEEE, d MMMM'}}.">
-                {{game.time|date:'HH:mm:ss'}}
+            <td title="Begins at [[ game.time|date:'HH:mm:ss on EEEE, d MMMM' ]].">
+                [[ game.time|date:'HH:mm:ss' ]]
             </td>
-            <td>{{game.num}}</td>
+            <td>[[ game.num ]]</td>
             <td data-ng-init="arena = arenas[game.arena]"
-                style="color: {{arena.colour}};">
-                {{arena.display_name}}
+                style="color: [[ arena.colour ]];">
+                [[ arena.display_name ]]
             </td>
             <td class="corner"
                 data-ng-init="corner = (game.teams|indexToCorner:$storage.chosenTeam)"
-                style="background-color: {{corners[corner].colour|hexLighter:0.5}};">
-                {{corner}}
+                style="background-color: [[ corners[corner].colour|hexLighter:0.5 ]];">
+                [[ corner ]]
             </td>
             <td>
                 <span data-ng-repeat="team in game.teams|otherTeams:$storage.chosenTeam"
-                      title="{{team|teamInfo:teams|teamName}}">
-                    {{team}}<span data-ng-if="!$last">,</span>
+                      title="[[ team|teamInfo:teams|teamName ]]">
+                    [[ team ]]<span data-ng-if="!$last">,</span>
                 </span>
             </td>
         </tr>
@@ -131,11 +128,11 @@ No upcoming matches.
     </thead>
     <tbody>
         <tr data-ng-repeat="game in knockout_games">
-            <td>{{game.num}}</td>
+            <td>[[ game.num ]]</td>
             <td>
-                {{game.scores.game[$storage.chosenTeam]}}
+                [[ game.scores.game[$storage.chosenTeam] ]]
                 <span class="position" data-ng-show="game.scores.normalised[$storage.chosenTeam]">
-                    ({{game.scores.ranking[$storage.chosenTeam]|ordinal}})
+                    ([[ game.scores.ranking[$storage.chosenTeam]|ordinal ]])
                 </span>
             </td>
         </tr>
@@ -143,7 +140,7 @@ No upcoming matches.
 </table>
 
 <p>
-<strong>League position:</strong> {{teams[$storage.chosenTeam].league_pos}} (<a href="/comp/league">full ranking</a>)
+<strong>League position:</strong> [[ teams[$storage.chosenTeam].league_pos ]] (<a href="/comp/league">full ranking</a>)
 </p>
 
 <table class="past">
@@ -157,19 +154,19 @@ No upcoming matches.
     <tfoot>
         <tr>
             <th>Totals</th>
-            <th>{{teams[$storage.chosenTeam].scores.game}}</th>
-            <th>{{teams[$storage.chosenTeam].scores.league}}</th>
+            <th>[[ teams[$storage.chosenTeam].scores.game ]]</th>
+            <th>[[ teams[$storage.chosenTeam].scores.league ]]</th>
         </tr>
     </tfoot>
     <tbody>
         <tr data-ng-repeat="game in games|gamesBeforeNow:time_offset"
             data-ng-if="game.type == 'league'">
-            <td>{{game.num}}</td>
-            <td>{{game.scores.game[$storage.chosenTeam]}}</td>
+            <td>[[ game.num ]]</td>
+            <td>[[ game.scores.game[$storage.chosenTeam] ]]</td>
             <td data-ng-init="league_points = game.scores.league[$storage.chosenTeam]">
-                {{league_points}}
+                [[ league_points ]]
                 <span class="position" data-ng-show="league_points">
-                    ({{game.scores.ranking[$storage.chosenTeam]|ordinal}})
+                    ([[ game.scores.ranking[$storage.chosenTeam]|ordinal ]])
                 </span>
             </td>
         </tr>
@@ -180,4 +177,3 @@ No upcoming matches.
 
 <!-- container -->
 </div>
-{% endraw %}

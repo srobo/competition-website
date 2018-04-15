@@ -1,6 +1,8 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ordinal", "ui.select2"]);
 
+configure_interpolation(app);
+
 app.controller("TeamInformation", function($scope, $interval, $localStorage, gamesBeforeNowFilter, AllMatches, Arenas, Corners, Current, State, Teams) {
 
     $scope.$storage = $localStorage;

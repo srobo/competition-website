@@ -1,6 +1,8 @@
 
 var app = angular.module('app', ["ngStorage", "competitionFilters", "competitionResources", "ui.select2"]);
 
+configure_interpolation(app);
+
 app.controller("MatchSchedule", function($scope, $sessionStorage, Corners, Current, MatchPeriods, State, Teams) {
 
     $scope.$storage = $sessionStorage.$default({hideOldMatches: true});
