@@ -12,12 +12,14 @@ td.chosen_team_match:nth-child(4n+5) { background-color: {{corners[2].colour|hex
 td.chosen_team_match:nth-child(4n+6) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
 </style>
 
-# Match Schedule
+<h1>Match Schedule</h1>
 
+<p>
 This page shows the schedule of matches for the competition.
-During most of the sessions teams earn [league points](/comp/league),
-which are used to seed the the [knockout](/comp/knockout "An alternative, tree style, view of the knockouts") rounds.
-The knockout rounds occur during the [last session](#last-session) of the competition
+During most of the sessions teams earn <a href="/comp/league">league points</a>,
+which are used to seed the the <a href="/comp/knockout" title="An alternative, tree style, view of the knockouts">knockout</a> rounds.
+The knockout rounds occur during the <a href="#last-session">last session</a> of the competition
+</p>
 
 <div id="schedule-filter">
     Show matches for:
@@ -41,18 +43,18 @@ The knockout rounds occur during the [last session](#last-session) of the compet
     </label>
 </div>
 
-<span data-ng-if="current_match != null">
+<p data-ng-if="current_match != null">
 The current match is <a href="#match-{{current_match}}">{{current_match}}</a>.
-</span>
+</p>
 
 <div id="full_schedule">
 
-<div class="match-session" markdown="1"
+<div class="match-session"
      data-ng-repeat="session in sessions">
 
 <a id="last-session" data-ng-if="$last"></a>
 
-## {{session.description}}
+<h2>{{session.description}}</h2>
 
 <table class="schedule">
     <colgroup class="meta" span="2" />

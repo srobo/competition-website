@@ -13,7 +13,7 @@ angular_controller: MatchPointsCtrl
 .scores .match:nth-child(5) { background-color: {{corners[3].colour|hexLighter:0.5}}; }
 </style>
 
-# Match Points
+<h1>Match Points</h1>
 
 <div id="match-chooser">
     <!--- NB: local width style as otherwise Select2 doesn't get it right -->
@@ -36,10 +36,14 @@ angular_controller: MatchPointsCtrl
     </p>
 </div>
 
+<p>
 This page shows the league and game points earned during any match.
 Either choose a team or enter a comma separated list of matches in the box to the right.
+</p>
 
-For a summary of all the teams' points, see the [league points](/comp/league) page.
+<p>
+For a summary of all the teams’ points, see the <a href="/comp/league">league points</a> page.
+</p>
 
 <div class="points" data-ng-repeat="match in matches|pickMatches:chosenMatches">
     <h4>{{match.display_name}}</h4>

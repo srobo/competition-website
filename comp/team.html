@@ -5,7 +5,7 @@ angular_controller: TeamInformation
 ---
 {% raw %}
 
-# Team Information
+<h1>Team Information</h1>
 
 <div id="team-chooser">
     <!--- NB: local width style as otherwise Select2 doesn't get it right -->
@@ -22,28 +22,34 @@ angular_controller: TeamInformation
     </select>
 </div>
 
+<p>
 This page shows the information for a specific team at the competition.
+</p>
 
 {% endraw %}
 {% if site.teams_url %}
-Find out what the team say about themselves on their [status page]({{ site.teams_url }}/{% raw %}{{$storage.chosenTeam}}{% endraw %}).
+<p>
+Find out what the team say about themselves on their <a href="{{ site.teams_url }}/{% raw %}{{$storage.chosenTeam}}{% endraw %}">status page</a>.
+</p>
 {% endif %}
 {% raw %}
 
+<p>
 Teams must present their robot to the staging area in sufficient time
 before the advertised start of a match.
-The staging area is next to the arenas, see the [venue layout](/resources/2016/competition-layout.pdf).
+The staging area is next to the arenas, see the <a href="/resources/2016/competition-layout.pdf">venue layout</a>.
 Teams who arrive late may forfeit the match.
+</p>
 
 <!-- container -->
-<div id="per-team-details" data-ng-if="$storage.chosenTeam" markdown="1">
+<div id="per-team-details" data-ng-if="$storage.chosenTeam">
 
-<div id="upcoming-matches" class="matches" markdown="1">
+<div id="upcoming-matches" class="matches">
 
-#### Upcoming Matches
+<h4>Upcoming Matches</h4>
 
-<p data-ng-if="next_game" markdown="1">
-    **Next: {{next_game.display_name}}**
+<p data-ng-if="next_game">
+    <strong>Next: {{next_game.display_name}}</strong>
     <!-- Time to the start of the slot -->
     <span data-ng-if="time_to_next_slot && long_before_staging">
         (starts in {{time_to_next_slot}})
@@ -55,17 +61,17 @@ Teams who arrive late may forfeit the match.
     <br />
     <!-- During and before the staging period one of these is shown -->
     <span data-ng-if="staging_opens && !long_before_staging && !staging_signal">
-        **Staging opens in** {{staging_opens}}
+        <strong>Staging opens in</strong> {{staging_opens}}
     </span>
     <span data-ng-if="staging_closes && !staging_opens && !staging_signal">
-        **Staging open** (closes in {{staging_closes}})
+        <strong>Staging open</strong> (closes in {{staging_closes}})
     </span>
     <span data-ng-if="staging_signal && staging_closes">
         <span class="staging-signal">Go to staging!</span>
         (closes in {{staging_closes}})
     </span>
     <span data-ng-if="!staging_closes && !staging_opens && !staging_signal">
-        **Staging closed**
+        <strong>Staging closed</strong>
     </span>
 </p>
 
@@ -112,9 +118,9 @@ No upcoming matches.
 
 </div>
 
-<div id="past-matches" class="matches" markdown="1">
+<div id="past-matches" class="matches">
 
-#### Points Earned
+<h4>Points Earned</h4>
 
 <table class="past" data-ng-show="knockout_games.length">
     <thead>
@@ -136,7 +142,9 @@ No upcoming matches.
     </tbody>
 </table>
 
-**League position:** {{teams[$storage.chosenTeam].league_pos}} ([full ranking](/comp/league))
+<p>
+<strong>League position:</strong> {{teams[$storage.chosenTeam].league_pos}} (<a href="/comp/league">full ranking</a>)
+</p>
 
 <table class="past">
     <thead>

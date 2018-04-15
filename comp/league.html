@@ -5,23 +5,29 @@ angular_controller: LeaguePoints
 ---
 {% raw %}
 
-# League Status
+<h1>League Status</h1>
 
+<p>
 This page shows the current status of the league, with teams positioned by
 the number of league points they have earned from their matches.
 Ties are resolved by comparing the total number of game points
 tied teams have earned in their league matches.
+</p>
 
-The positions of the teams within the league are used to seed the [knockouts](/comp/knockout).
+<p>
+The positions of the teams within the league are used to seed the <a href="/comp/knockout">knockouts</a>.
+</p>
 
-Details of the scores for each individual match are available on the [points page](/comp/points).
+<p>
+Details of the scores for each individual match are available on the <a href="/comp/points">points page</a>.
+</p>
 
-<span data-ng-if="latest_scored_match != null">
+<p data-ng-if="latest_scored_match != null">
 Up to date with scores from match {{latest_scored_match}}.
-</span>
-<span data-ng-if="latest_scored_match == null">
+</p>
+<p data-ng-if="latest_scored_match == null">
 No scores have been recorded yet.
-</span>
+</p>
 
 <table class="sortable" data-ng-init="sortKey = 'league_pos'; alwaysPos = false">
     <thead>
