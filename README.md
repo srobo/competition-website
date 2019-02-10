@@ -20,6 +20,7 @@ SRComp-HTTP instance separately.
     ``` shell
     $ gem install bundler rake
     ```
+
 3. Start the app in development mode
 
     ```shell
