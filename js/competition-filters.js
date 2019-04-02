@@ -54,7 +54,6 @@ competitionFilters.filter('titleCase', function() {
 
 /// Convert the hex colour to a lighter colour
 competitionFilters.filter('hexLighter', function() {
-    // implemented in competition-utils.js
     return function(hex, alpha) {
         if (hex == null || alpha == null) {
             return null;
