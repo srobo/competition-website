@@ -52,7 +52,7 @@ competitionFilters.filter('titleCase', function() {
     };
 });
 
-/// Convert the text to title case
+/// Convert the hex colour to a lighter colour
 competitionFilters.filter('hexLighter', function() {
     // implemented in competition-utils.js
     return function(hex, alpha) {
