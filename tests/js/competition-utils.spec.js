@@ -1,6 +1,37 @@
 
 var utils = require('../../js/competition-utils.js');
 
+describe("The decision about whether we show an arena title", function() {
+	it("should be defined", function() {
+		expect(utils.should_show_arena_title).toBeDefined();
+	});
+	it("should be true for more than one arena", function() {
+		var result = utils.should_show_arena_title({
+			'A': {},
+			'B': {},
+		});
+		expect(result).toEqual(true);
+	});
+	it("should be true for a single arena with a name", function() {
+		var result = utils.should_show_arena_title({
+			'A': {'display_name': 'Aaaaa'},
+		});
+		expect(result).toEqual(true);
+	});
+	it("should be false for a single arena without a name", function() {
+		var result = utils.should_show_arena_title({
+			'A': {},
+		});
+		expect(result).toEqual(false);
+	});
+	it("should be false for a single arena without an empty name", function() {
+		var result = utils.should_show_arena_title({
+			'A': {'display_name': ''},
+		});
+		expect(result).toEqual(false);
+	});
+});
+
 describe("The time offsetter", function() {
 	it("should be defined", function() {
 		expect(utils.compute_offset).toBeDefined();

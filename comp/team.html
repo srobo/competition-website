@@ -79,7 +79,7 @@ Teams who arrive late may forfeit the match.
         <tr>
             <th>Time  </th>
             <th>Match </th>
-            <th>Arena </th>
+            <th data-ng-if="show_arena_title">Arena </th>
             <th>Corner</th>
             <th>Against</th>
         </tr>
@@ -91,7 +91,7 @@ Teams who arrive late may forfeit the match.
                 [[ game.time|date:'HH:mm:ss' ]]
             </td>
             <td>[[ game.num ]]</td>
-            <td data-ng-init="arena = arenas[game.arena]"
+            <td data-ng-if="show_arena_title" data-ng-init="arena = arenas[game.arena]"
                 style="color: [[ arena.colour ]];">
                 [[ arena.display_name ]]
             </td>

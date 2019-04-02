@@ -6,6 +6,22 @@ var EMPTY_CORNER_SYMBOL = '-';
 // to hide 'old' matches
 var MAX_MATCH_AGE = 15 * 60; // 15 minutes in seconds
 
+var should_show_arena_title = function() {
+    // Whether or not we should show the arena title
+    return function(arenas) {
+        var keys = Object.keys(arenas);
+        if (keys.length > 1) {
+            // More than one arena
+            return true;
+        }
+        if (arenas[keys[0]].display_name) {
+            // Or the arena has a display name
+            return true;
+        }
+        return false;
+    }
+}();
+
 var compute_offset = function() {
     return function(then, now) {
         now = now || new Date();
@@ -143,6 +159,7 @@ var build_sessions = function() {
         }
 
         var all_matches = group_matches(data.matches);
+        var show_arena_title = should_show_arena_title(data.arenas);
 
         var sessions = [];
         for (var i=0; i<data.periods.length; i++) {
@@ -154,6 +171,7 @@ var build_sessions = function() {
                 matches = convert_matches(matches, data.arenas);
             }
             sessions.push({
+                'show_arena_title': show_arena_title,
                 'arenas': data.arenas,
                 'description': period.description,
                 'start_time': new Date(period.start_time),
@@ -216,6 +234,7 @@ var unspent_matches = function() {
             var matches = filter_matches(session.matches, then);
             if (matches.length != 0) {
                 var new_session = {
+                    'show_arena_title': session.show_arena_title,
                     'description': session.description,
                     'arenas': session.arenas,
                     'matches': matches
@@ -305,6 +324,7 @@ var process_knockouts = function() {
 
 // node require() based exports.
 if (typeof(exports) != 'undefined') {
+    exports.should_show_arena_title = should_show_arena_title;
     exports.compute_offset = compute_offset;
     exports.apply_offset = apply_offset;
     exports.match_converter = match_converter;

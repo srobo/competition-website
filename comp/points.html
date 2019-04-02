@@ -48,7 +48,7 @@ For a summary of all the teams’ points, see the <a href="/comp/league">league 
     <h4>[[ match.display_name ]]</h4>
     <div class="game"
          data-ng-repeat="(arena, game) in match.games">
-        <h4 style="color: [[ arenas[game.arena].colour ]];">Arena [[ arenas[game.arena].display_name ]]</h4>
+        <h4 data-ng-if="show_arena_title" style="color: [[ arenas[game.arena].colour ]];">Arena [[ arenas[game.arena].display_name ]]</h4>
         <table class="scores" data-ng-if="game.scores">
             <thead>
                 <tr>

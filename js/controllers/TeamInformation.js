@@ -118,6 +118,7 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
     State.change(function() {
         Arenas.get(function(nodes) {
             $scope.arenas = nodes.arenas;
+            $scope.show_arena_title = should_show_arena_title(nodes.arenas);
         });
 
         Teams.get(function(nodes) {

@@ -38,7 +38,7 @@ See the <a href="/comp/schedule">match schedule</a> for information about the cu
             <h4>[[ match.description ]]</h4>
             <span>[[ match.time|date:'HH:mm:ss' ]]</span>
             <div class="game" data-ng-repeat="game in match.games">
-                <span style="color: [[ arenas[game.arena].colour ]];">Arena [[ arenas[game.arena].display_name ]]</span>
+                <span data-ng-if="show_arena_title" style="color: [[ arenas[game.arena].colour ]];">Arena [[ arenas[game.arena].display_name ]]</span>
                 <ul>
                     <li data-ng-repeat="tla in game.teams track by $index">
 {% if site.teams_url %}
