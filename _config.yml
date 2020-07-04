@@ -12,12 +12,10 @@ description: >
   Student Robotics is an exciting annual competition challenging people aged
   16-18 to assemble a team and build fully autonomous robots.
 
-year: 2019
+year: 2020
 api_root: https://studentrobotics.org/comp-api
 
-competition_link: https://studentrobotics.org/events/sr2019/competition/
-youtube_stream_link: https://www.youtube-nocookie.com/embed/PS-CUiA_nLo
-venue_layout_link: https://studentrobotics.org/resources/sr2019/venue-map.pdf
+competition_link: https://studentrobotics.org/events/sr2020/competition/
 
 markdown: kramdown
 
