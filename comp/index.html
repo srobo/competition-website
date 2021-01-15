@@ -175,7 +175,7 @@ angular_controller: CompMode
 		<tr>
 			<th>Time</th>
 			<th>Match</th>
-			<th data-ng-repeat="arena in arenas" colspan="4" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
+			<th data-ng-repeat="arena in arenas" colspan="[[ num_corners ]]" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
 		</tr>
 	</thead>
 	<tbody>

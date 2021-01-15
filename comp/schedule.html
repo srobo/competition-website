@@ -57,7 +57,7 @@ The current match is <a href="#match-[[ current_match ]]">[[ current_match ]]</a
 
 <table class="schedule">
     <colgroup class="meta" span="2" />
-    <colgroup class="arena" span="4" data-ng-repeat="arena in session.arenas" />
+    <colgroup class="arena" span="[[ corners.length ]]" data-ng-repeat="arena in session.arenas" />
     <thead>
         <tr data-ng-if="session.show_arena_title">
             <th rowspan="2">Time  </th>
@@ -69,10 +69,9 @@ The current match is <a href="#match-[[ current_match ]]">[[ current_match ]]</a
         <tr>
             <th data-ng-if="!session.show_arena_title">Time</th>
             <th data-ng-if="!session.show_arena_title">Match</th>
-            <th data-ng-repeat-start="arena in session.arenas">Corner 0</th>
-            <th>Corner 1</th>
-            <th>Corner 2</th>
-            <th data-ng-repeat-end>Corner 3</th>
+            <th data-ng-repeat="corner in session.all_corners track by $index">
+                Corner [[ corner.number ]]
+            </th>
         </tr>
     </thead>
     <tbody>

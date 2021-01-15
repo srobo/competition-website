@@ -35,13 +35,17 @@ app.factory("Arenas", function($resource) {
 });
 
 app.factory("Corners", function($resource) {
-    return { load: function(cb) {
-        $resource(API_ROOT + "/corners/").get(function(nodes) {
-            for (var cornerId in nodes.corners) {
-                cb(cornerId, nodes.corners[cornerId]);
-            }
-        });
-    }};
+    var resource = $resource(API_ROOT + "/corners");
+    return {
+        get: resource.get,
+        load: function(cb) {
+            resource.get(function(nodes) {
+                for (var cornerId in nodes.corners) {
+                    cb(cornerId, nodes.corners[cornerId]);
+                }
+            });
+        },
+    }
 });
 
 app.factory("LeagueScores", function($resource) {
@@ -56,12 +60,16 @@ app.factory("AllMatches", function($resource) {
     return $resource(API_ROOT + "/matches");
 });
 
-app.factory("MatchPeriods", function($resource, Arenas, AllMatches) {
+app.factory("MatchPeriods", function($resource, Arenas, Corners, AllMatches) {
     var res = $resource(API_ROOT + "/periods");
     res.getSessions = function(cb) {
         var data = {};
         Arenas.get(function(nodes) {
             data.arenas = nodes.arenas;
+            build_sessions(data, cb);
+        });
+        Corners.get(function(nodes) {
+            data.corners = nodes.corners;
             build_sessions(data, cb);
         });
         AllMatches.get(function(nodes) {

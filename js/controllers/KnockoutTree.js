@@ -9,8 +9,10 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
     var KNOCKOUT_TYPE = "knockout";
 
     $scope.corners = [];
+    var num_corners;
     Corners.load(function(cornerId, corner) {
         $scope.corners[cornerId] = corner;
+        num_corners = $scope.corners.length;
     });
 
     var update_knockout_started = function(now) {
@@ -77,12 +79,15 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
             // perform the request, however the callback is guaranteed to be
             // called after the code below this chunk
             Tiebreaker.get(function(tiebreaker) {
-                $scope.rounds = process_knockouts(nodes.rounds,
-                                                  tiebreaker.tiebreaker);
+                $scope.rounds = process_knockouts(
+                    num_corners,
+                    nodes.rounds,
+                    tiebreaker.tiebreaker,
+                );
             });
 
             // load knockouts first in case there is no tiebreaker
-            $scope.rounds = process_knockouts(nodes.rounds);
+            $scope.rounds = process_knockouts(num_corners, nodes.rounds);
         });
     });
 });
