@@ -95,10 +95,16 @@ Teams who arrive late may forfeit the match.
                 style="color: [[ arena.colour ]];">
                 [[ arena.display_name ]]
             </td>
+            <!---
+              note: use ng-bind so that the corner correctly updates when
+              switching between teams who are in the same match (and that match
+              appears on the same row in the table). Using ng-init here would
+              feel more natural, however would result in the value not be
+              re-evaluated by AngularJS.
+            -->
             <td class="corner"
-                data-ng-init="corner = (game.teams|indexToCorner:$storage.chosenTeam)"
+                data-ng-bind="corner = (game.teams|indexToCorner:$storage.chosenTeam)"
                 style="background-color: [[ corners[corner].colour|hexLighter:0.5 ]];">
-                [[ corner ]]
             </td>
             <td>
                 <span data-ng-repeat="team in game.teams|otherTeams:$storage.chosenTeam"
@@ -164,9 +170,16 @@ No upcoming matches.
             data-ng-if="game.type == 'league'">
             <td>[[ game.num ]]</td>
             <td>[[ game.scores.game[$storage.chosenTeam] ]]</td>
-            <td data-ng-init="league_points = game.scores.league[$storage.chosenTeam]">
-                [[ league_points ]]
-                <span class="position" data-ng-show="league_points">
+            <!---
+              note: duplicate league score lookup so the value correctly updates
+              when switching between teams who are in the same match (and that
+              match appears on the same row in the table). Using ng-init here
+              would feel more natural, however would result in the value not be
+              re-evaluated by AngularJS.
+            -->
+            <td>
+                [[ game.scores.league[$storage.chosenTeam] ]]
+                <span class="position" data-ng-show="game.scores.league[$storage.chosenTeam]">
                     ([[ game.scores.ranking[$storage.chosenTeam]|ordinal ]])
                 </span>
             </td>
