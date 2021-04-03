@@ -29,5 +29,5 @@ SRComp-HTTP instance separately.
 
 
 [SR]: https://studentrobotics.org
-[srcomp]: https://www.studentrobotics.org/trac/wiki/SRcomp
+[srcomp]: https://github.com/PeterJCLaw/srcomp/wiki
 [install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
