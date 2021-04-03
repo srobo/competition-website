@@ -2,4 +2,5 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'kramdown'
-gem 'jekyll'
+# Pin to the version used on GitHub Pages
+gem 'jekyll', 3.9

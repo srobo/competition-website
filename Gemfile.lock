@@ -58,7 +58,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll
+  jekyll (= 3.9)
   kramdown
   rake
 
