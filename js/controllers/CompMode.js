@@ -137,3 +137,18 @@ app.filter("leaderboard", function() {
         return output;
     };
 });
+
+app.filter("isTied", function() {
+  return function(teamInfo, teams) {
+      if (!teamInfo || !teams) {
+          return false;
+      }
+      for (var tla in teams) {
+          if (tla != teamInfo.tla &&
+              teams[tla].league_pos == teamInfo.league_pos) {
+              return true;
+          }
+      }
+      return false;
+  };
+});
