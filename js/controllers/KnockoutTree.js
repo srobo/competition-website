@@ -13,6 +13,11 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
     Corners.load(function(cornerId, corner) {
         $scope.corners[cornerId] = corner;
         num_corners = $scope.corners.length;
+        // Assume that the top half of teams in a knockout match go through.
+        // Ideally we'd probably do something like inferring the winners from
+        // the next round of matches and/or have it explicitly provided by the
+        // API, however this works for now.
+        $scope.num_promote = Math.floor(num_corners / 2);
     });
 
     var update_knockout_started = function(now) {
