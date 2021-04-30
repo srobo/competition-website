@@ -1,5 +1,6 @@
 import csv
 import argparse
+import textwrap
 
 parser = argparse.ArgumentParser()
 parser.add_argument('csvfile')
@@ -15,4 +16,11 @@ with open(args.csvfile) as csvfile:
             text = row[4]
             svgdata = svgdata.replace(mnumber,text)
 
+    print(textwrap.dedent('''
+      ---
+      title: $YYYY Competition Knockout
+      layout: comp
+      angular_controller: KnockoutTree
+      ---
+    ''').lstrip())
     print(svgdata)
