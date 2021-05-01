@@ -96,3 +96,16 @@ app.controller("KnockoutTree", function($scope, $log, Arenas, Corners, Current, 
         });
     });
 });
+
+app.filter("winner", function() {
+  return function(rankings) {
+      if (rankings) {
+          for (var tla in rankings) {
+              if (rankings[tla] === 1) {
+                  return tla;
+              }
+          }
+      }
+      return UNKNOWABLE_TEAM;
+  };
+});

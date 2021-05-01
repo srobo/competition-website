@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="{{ site.baseurl }}/js/controllers/{{ page.angular_controller }}.js"></script>
 </head>
 
-<body data-ng-controller="{{ page.angular_controller }}">
+<body data-ng-controller="{{ page.angular_controller }}" class="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}">
 
 	{% include header.html %}
 
