@@ -31,5 +31,5 @@ M301,4,0,0,[[ rounds[4][0].games[0].teams[0] ]]
 M311,4,0,1,[[ rounds[4][0].games[0].teams[1] ]]
 M300,5,0,0,[[ rounds[5][0].games[0].teams[0] ]]
 M310,5,0,1,[[ rounds[5][0].games[0].teams[1] ]]
-M400,??,,,???
-M500,??,,,???
+M400,??,,,[[ rounds[4][0].games[0].ranking|winner ]]
+M500,??,,,[[ rounds[5][0].games[0].ranking|winner ]]
