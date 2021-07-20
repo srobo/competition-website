@@ -27,6 +27,8 @@ SRComp-HTTP instance separately.
     $ rake dev
     ```
 
+4. View the site at <http://localhost:4000/competition-website/comp/>
+
 
 [SR]: https://studentrobotics.org
 [srcomp]: https://github.com/PeterJCLaw/srcomp/wiki
