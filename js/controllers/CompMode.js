@@ -79,8 +79,7 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
                 return;
             }
 
-            all_matches = data.matches;
-            grouped_matches = group_matches(all_matches);
+            grouped_matches = group_matches(data.matches);
             var num_corners = Object.keys(data.corners).length;
             $scope.matches = convert_matches(num_corners, grouped_matches, data.arenas);
             $scope.arenas = data.arenas;
