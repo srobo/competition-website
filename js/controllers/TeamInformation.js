@@ -171,9 +171,8 @@ app.filter("otherTeams", function() {
 });
 
 app.filter("indexToCorner", function() {
-    return function(teams, team, arenas) {
-        var idx = teams.indexOf(team);
-        var corner = idx % 4;
+    return function(teams, team) {
+        var corner = teams.indexOf(team);
         return corner;
     };
 });

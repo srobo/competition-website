@@ -18,7 +18,7 @@
 			background-color: #E8E8E8;
 		}
 
-		&:nth-last-child(3) div.match {
+		&:nth-last-child(4) div.match {
 			/* Quarters */
 			font-size: 1.2em;
 
@@ -27,8 +27,9 @@
 			}
 		}
 
+		&:nth-last-child(3) div.match,
 		&:nth-last-child(2) div.match {
-			/* Semis */
+			/* Semis & third place playoff */
 			font-size: 1.5em;
 
 			li {
@@ -51,7 +52,8 @@
 	* Needed to overrrle the `border: none;` in the 3n+1 below, not because it's
 	* actually any different
 	*/
-	div.round:nth-last-child(3) div.match:nth-child(4) {
+	div.round:nth-last-child(5) div.match:nth-child(4),
+	div.round:nth-last-child(4) div.match:nth-child(4) {
 		border-left: 1px solid lightGrey;
 		display: inline-block;
 		padding: 5px 0;

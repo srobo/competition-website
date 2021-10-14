@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="keywords" content="{{ page.keywords }}" />
 	<meta name="description" content="{{ page.description }}" />
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css" />
 	<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/main.css" />
 	<link rel="shortcut icon" href="{{ site.baseurl }}/images/favicon.ico" />
@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="{{ site.baseurl }}/js/controllers/{{ page.angular_controller }}.js"></script>
 </head>
 
-<body data-ng-controller="{{ page.angular_controller }}">
+<body data-ng-controller="{{ page.angular_controller }}" class="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}">
 
 	{% include header.html %}
 

@@ -3,7 +3,7 @@ var app = angular.module('app', ["competitionFilters", "competitionResources", "
 
 configure_interpolation(app);
 
-app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches, Current, State, Teams) {
+app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches, Corners, Current, State, Teams) {
 
     $scope.matches = [];
     // NB: These must be inited to objects, see below
@@ -73,20 +73,26 @@ app.controller("CompMode", function($scope, $interval, $log, Arenas, AllMatches,
     State.change(function() {
         var data = {};
         function set_matches(data) {
-            if (data.matches == null || data.arenas == null) {
+            if (data.matches == null || data.arenas == null || data.corners == null) {
                 // don't have all the data yet, wait until we do (we'll
                 // be called again when that happens).
                 return;
             }
 
-            all_matches = data.matches;
-            grouped_matches = group_matches(all_matches);
-            $scope.matches = convert_matches(grouped_matches, data.arenas);
+            grouped_matches = group_matches(data.matches);
+            var num_corners = Object.keys(data.corners).length;
+            $scope.matches = convert_matches(num_corners, grouped_matches, data.arenas);
             $scope.arenas = data.arenas;
+            $scope.num_corners = num_corners;
         }
 
         Arenas.get(function(nodes) {
             data.arenas = nodes.arenas;
+            set_matches(data);
+        });
+
+        Corners.get(function(nodes) {
+            data.corners = nodes.corners;
             set_matches(data);
         });
 
@@ -129,4 +135,19 @@ app.filter("leaderboard", function() {
         }
         return output;
     };
+});
+
+app.filter("isTied", function() {
+  return function(teamInfo, teams) {
+      if (!teamInfo || !teams) {
+          return false;
+      }
+      for (var tla in teams) {
+          if (tla != teamInfo.tla &&
+              teams[tla].league_pos == teamInfo.league_pos) {
+              return true;
+          }
+      }
+      return false;
+  };
 });

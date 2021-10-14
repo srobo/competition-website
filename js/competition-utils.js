@@ -1,5 +1,4 @@
 
-var TEAMS_PER_ARENA = 4;
 var EMPTY_CORNER_SYMBOL = '-';
 
 // age of match (by start time) to be hidden when the user wants
@@ -71,26 +70,25 @@ var hex_to_rgba = function() {
 }();
 
 var convert_matches = function() {
-    return function(matches, arenas) {
+    return function(num_corners, matches, arenas) {
         var output = [];
         for (var i=0; i<matches.length; i++) {
-            output.push(match_converter(matches[i], arenas));
+            output.push(match_converter(num_corners, matches[i], arenas));
         }
         return output;
     };
 }();
 
 var ensure_whole_arena = function() {
-    var teams_per_arena = TEAMS_PER_ARENA;
     var empty_corner_symbol = EMPTY_CORNER_SYMBOL;
-    return function(teams) {
+    return function(num_corners, teams) {
         var output = teams.concat([]);
         for (var i=0; i<output.length; i++) {
             if (!output[i]) {
                 output[i] = empty_corner_symbol;
             }
         }
-        var missing = teams_per_arena - output.length;
+        var missing = num_corners - output.length;
         for (; missing > 0; missing--) {
             output = output.concat([empty_corner_symbol]);
         }
@@ -99,8 +97,7 @@ var ensure_whole_arena = function() {
 }();
 
 var match_converter = function() {
-    var teams_per_arena = TEAMS_PER_ARENA;
-    return function(match, arenas) {
+    return function(num_corners, match, arenas) {
         var output = { 'teams': [] };
         // Get initial data from the first game in the match
         for (var arena in match) {
@@ -117,10 +114,10 @@ var match_converter = function() {
             var detail = match[arena];
             var arena_teams;
             if (detail) {
-                arena_teams = ensure_whole_arena(detail.teams);
+                arena_teams = ensure_whole_arena(num_corners, detail.teams);
             } else {
                 // array of given size containing 'undefined' elements
-                arena_teams = new Array(teams_per_arena);
+                arena_teams = new Array(num_corners);
             }
             output.teams = output.teams.concat(arena_teams);
         }
@@ -152,7 +149,7 @@ var group_matches = function() {
 
 var build_sessions = function() {
     return function(data, cb) {
-        if (data.arenas == null || data.matches == null || data.periods == null) {
+        if (data.arenas == null || data.corners == null || data.matches == null || data.periods == null) {
             // can't do anything, but don't worry -- we'll get called
             // again once we have the data
             return;
@@ -161,6 +158,12 @@ var build_sessions = function() {
         var all_matches = group_matches(data.matches);
         var show_arena_title = should_show_arena_title(data.arenas);
 
+        var num_corners = Object.values(data.corners).length;
+        var all_corners = [];
+        for (var _ in data.arenas) {
+            all_corners = all_corners.concat(Object.values(data.corners));
+        }
+
         var sessions = [];
         for (var i=0; i<data.periods.length; i++) {
             var period = data.periods[i];
@@ -168,11 +171,12 @@ var build_sessions = function() {
             if (period.matches) {
                 matches = all_matches.slice(period.matches.first_num,
                                             period.matches.last_num + 1);
-                matches = convert_matches(matches, data.arenas);
+                matches = convert_matches(num_corners, matches, data.arenas);
             }
             sessions.push({
                 'show_arena_title': show_arena_title,
                 'arenas': data.arenas,
+                'all_corners': all_corners,
                 'description': period.description,
                 'start_time': new Date(period.start_time),
                 'end_time': new Date(period.end_time),
@@ -236,6 +240,7 @@ var unspent_matches = function() {
                 var new_session = {
                     'show_arena_title': session.show_arena_title,
                     'description': session.description,
+                    'all_corners': session.all_corners,
                     'arenas': session.arenas,
                     'matches': matches
                 };
@@ -247,7 +252,7 @@ var unspent_matches = function() {
 }();
 
 var process_knockout_round = function() {
-    var build_game = function(info) {
+    var build_game = function(num_corners, info) {
         var ranking = {};
         if (info.scores) {
             ranking = info.scores.ranking;
@@ -255,7 +260,7 @@ var process_knockout_round = function() {
         return {
             "arena": info.arena,
             "ranking": ranking,
-            "teams": ensure_whole_arena(info.teams)
+            "teams": ensure_whole_arena(num_corners, info.teams)
         };
     };
     var group_games = function(games) {
@@ -277,7 +282,7 @@ var process_knockout_round = function() {
 
         return game_groups;
     };
-    return function(round) {
+    return function(num_corners, round) {
 
         var game_groups = group_games(round);
 
@@ -293,7 +298,7 @@ var process_knockout_round = function() {
                     description = game.display_name;
                     time = new Date(game.times.slot.start);
                 }
-                game_details.push(build_game(game));
+                game_details.push(build_game(num_corners, game));
             }
 
             matches.push({
@@ -308,14 +313,14 @@ var process_knockout_round = function() {
 }();
 
 var process_knockouts = function() {
-    return function(rounds, tiebreaker) {
+    return function(num_corners, rounds, tiebreaker) {
         var output = [];
         for (var i=0; i<rounds.length; i++) {
-            output.push(process_knockout_round(rounds[i]));
+            output.push(process_knockout_round(num_corners, rounds[i]));
         }
 
         if (tiebreaker) {
-            output.push(process_knockout_round([tiebreaker]));
+            output.push(process_knockout_round(num_corners, [tiebreaker]));
         }
 
         return output;

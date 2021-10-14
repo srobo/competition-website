@@ -147,7 +147,9 @@ angular_controller: CompMode
 		</tr>
 	</thead>
 	<tr data-ng-repeat="team in teams|leaderboard:10" id="[[ team.tla ]]">
-		<td>[[ team.league_pos ]]</td>
+		<td>
+			<span data-ng-if="team|isTied:teams">=</span>[[ team.league_pos ]]
+		</td>
 		<td>[[ team.scores.league ]]</td>
 		<td title="[[ team|teamName ]]">
 {% if site.teams_url %}
@@ -175,7 +177,7 @@ angular_controller: CompMode
 		<tr>
 			<th>Time</th>
 			<th>Match</th>
-			<th data-ng-repeat="arena in arenas" colspan="4" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
+			<th data-ng-repeat="arena in arenas" colspan="[[ num_corners ]]" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
 		</tr>
 	</thead>
 	<tbody>

@@ -12,15 +12,35 @@ description: >
   Student Robotics is an exciting annual competition challenging people aged
   16-18 to assemble a team and build fully autonomous robots.
 
-year: 2020
+year: 2021
 api_root: https://studentrobotics.org/comp-api
 
-competition_link: https://studentrobotics.org/events/sr2020/virtual-competition-knockouts/
-youtube_stream_link: https://www.youtube-nocookie.com/embed/xBPVqsb_Ydk
+competition_link: https://studentrobotics.org/events/sr2021/knockouts/
+youtube_stream_link: https://www.youtube-nocookie.com/embed/gxJM6ernMqo
 
 markdown: kramdown
 
 timezone: Etc/GMT
+
+social:
+  - title: GitHub
+    icon: github
+    link: https://github.com/srobo
+  - title: Twitter
+    icon: twitter
+    link: https://twitter.com/studentrobotics
+  - title: YouTube
+    icon: youtube-play
+    link: https://youtube.com/user/StudentRobotics
+  - title: Instagram
+    icon: instagram
+    link: https://www.instagram.com/student_robotics/
+  - title: Facebook
+    icon: facebook-official
+    link: https://facebook.com/StudentRobotics
+  - title: LinkedIn
+    icon: linkedin
+    link: https://www.linkedin.com/company/10969472/
 
 exclude:
   - README.md
