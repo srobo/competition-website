@@ -14,6 +14,24 @@ file '_local.yml' do
   touch '_local.yml'
 end
 
-task :dev => [:dependencies, :'_local.yml'] do
+[
+  'js/lib/angular-ui-select2/.git',
+  'js/lib/angular-storage/.git',
+  'js/lib/angularjs-ordinal-filter/.git',
+  '_sass/brand/.git',
+].each { |x|
+  file x do
+    sh('git submodule update --init')
+  end
+}
+
+task :submodules => [
+  'js/lib/angular-ui-select2/.git',
+  'js/lib/angular-storage/.git',
+  'js/lib/angularjs-ordinal-filter/.git',
+  '_sass/brand/.git',
+]
+
+task :dev => [:dependencies, :submodules, :'_local.yml'] do
   sh('bundle exec jekyll serve --drafts --config _config.yml,_local.yml')
 end
