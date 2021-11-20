@@ -54,3 +54,7 @@ exclude:
   - vendor/
   - run-tests
   - tests/
+  - js/lib/angular-storage/test/
+  - js/lib/angular-ui-select2/demo/
+  - js/lib/angular-ui-select2/docs/
+  - js/lib/angular-ui-select2/test/
