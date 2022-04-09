@@ -45,6 +45,8 @@ social:
     icon: linkedin
     link: https://www.linkedin.com/company/10969472/
 
+user_tracking: true
+
 exclude:
   - README.md
   - Rakefile
