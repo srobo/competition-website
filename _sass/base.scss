@@ -33,17 +33,11 @@ a {
 
 .main {
   @extend .row;
-  background: $sr-light-grey;
+  background: $sr-white;
   padding: $mobile-spacing $mobile-spacing 0;
 
   @include media-query("medium") {
     padding: $spacing 0 (3 * $spacing);
-  }
-}
-
-.home-main {
-  @include media-query("medium") {
-    padding-top: 0;
   }
 }
 
