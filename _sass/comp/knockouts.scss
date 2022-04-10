@@ -49,7 +49,7 @@
 
   div.match,
   /* Special case -- 4 items on the Quarters line since they're all in the same arena
-  * Needed to overrrle the `border: none;` in the 3n+1 below, not because it's
+  * Needed to overrule the `border: none;` in the 3n+1 below, not because it's
   * actually any different
   */
   div.round:nth-last-child(5) div.match:nth-child(4),
