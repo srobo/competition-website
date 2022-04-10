@@ -30,7 +30,7 @@ See the <a href="/comp/schedule">match schedule</a> for information about the cu
 
 <div id="knockouts-container">
     <div
-      class="round"
+      data-ng-class="{round: true, 'many-arenas': show_arena_title, 'single-arena': !show_arena_title}"
       data-ng-repeat="round in rounds"
       data-ng-init="isFinal = $last"
     >
