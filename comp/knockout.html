@@ -29,8 +29,11 @@ See the <a href="/comp/schedule">match schedule</a> for information about the cu
 </p>
 
 <div id="knockouts-container">
-    <div class="round" data-ng-repeat="round in rounds"
-                       data-ng-init="isFinal = $last">
+    <div
+      class="round"
+      data-ng-repeat="round in rounds"
+      data-ng-init="isFinal = $last"
+    >
         <div class="match"
              data-ng-repeat="match in round"
              data-ng-class="{current: match.num==current_match}"
