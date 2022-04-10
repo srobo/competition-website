@@ -25,9 +25,9 @@ angular_controller: CompMode
 		<a href="{{ site.baseurl }}/comp/points">more scores&hellip;</a>
 	</span>
 	<h4>
-		Latest Scores<span data-ng-if="previous_match">: [[ previous_match.display_name ]]</span>
+		Latest Scores<span data-ng-if="previous_match.exists">: [[ previous_match.display_name ]]</span>
 	</h4>
-	<span data-ng-if="!previous_match">No scores yet recorded.</span>
+	<p data-ng-if="!previous_match.exists">No scores yet recorded.</p>
 	<div class="game headings"
 	     data-ng-repeat-start="(arena, game) in previous_match.games"
 	     data-ng-class="{single: $first}"
