@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="{{ site.baseurl }}/js/controllers/{{ page.angular_controller }}.js"></script>
 </head>
 
-<body data-ng-controller="{{ page.angular_controller }}" class="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}">
+<body data-ng-controller="{{ page.angular_controller }}" class="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','-' }}">
 
 	{% include header.html %}
 
@@ -53,7 +53,7 @@
 				</ul>
 			</div>
 		</div>
-		<div id="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}" class="fixed-width">
+		<div id="content" class="fixed-width">
 			{{ content }}
 			<p></p>
 		</div>
