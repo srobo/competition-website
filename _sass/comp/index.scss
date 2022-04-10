@@ -13,10 +13,10 @@
   }
 
   #live-stream-wrapper {
-    text-align:  center;
+    text-align: center;
 
     & > * {
-      margin:  auto;
+      margin: auto;
     }
   }
 
@@ -26,16 +26,16 @@
   }
 
   .more-link-container {
-    position:  relative;
+    position: relative;
 
     h2 {
-      display:  inline-block;
+      display: inline-block;
     }
   }
   span.more-link {
     position: absolute;
-    top:  1.2rem;
-    margin-left:  1em;
+    top: 1.2rem;
+    margin-left: 1em;
   }
 
   div#leaderboard-container {
@@ -52,10 +52,10 @@
   }
 
   div#match-schedule-container {
-    clear:  both;
+    clear: both;
 
     table.schedule th:nth-child(n+3) {
-      width:  350px;
+      width: 350px;
     }
   }
 }
