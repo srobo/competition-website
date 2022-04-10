@@ -1,23 +1,23 @@
 .comp-schedule #content {
-	#schedule-filter {
-		float: right;
+  #schedule-filter {
+    float: right;
 
-		input[type=checkbox] {
-			margin-bottom: 2px;
-			vertical-align: bottom;
-		}
-	}
-	#full_schedule {
-		div.match-session {
-			clear: both;
-		}
+    input[type=checkbox] {
+      margin-bottom: 2px;
+      vertical-align: bottom;
+    }
+  }
+  #full_schedule {
+    div.match-session {
+      clear: both;
+    }
 
-		th[rowspan] {
-			vertical-align: middle;
-		}
+    th[rowspan] {
+      vertical-align: middle;
+    }
 
-		colgroup.arena {
-			width: 150px;
-		}
-	}
+    colgroup.arena {
+      width: 150px;
+    }
+  }
 }

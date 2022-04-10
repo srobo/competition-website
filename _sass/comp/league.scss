@@ -1,16 +1,16 @@
 .comp-league #content {
-	th {
-		padding: 0 5px;
-		vertical-align: middle;
-	}
+  th {
+    padding: 0 5px;
+    vertical-align: middle;
+  }
 
-	/* center all the number cols */
-	td {
-		text-align: center;
+  /* center all the number cols */
+  td {
+    text-align: center;
 
-		/* but not the team name */
-		&:last-child {
-			text-align: left;
-		}
-	}
+    /* but not the team name */
+    &:last-child {
+      text-align: left;
+    }
+  }
 }

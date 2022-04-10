@@ -3,117 +3,117 @@
 .main {
   padding-top: 0;
 
-	label {
-		display: block;
-		margin-bottom: 5px;
-		margin-top: 10px;
-	}
+  label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
 
-	input {
-		border: 1px solid silver;
-		background-color: white;
-		padding: 2px;
-		margin: 5px;
-	}
+  input {
+    border: 1px solid silver;
+    background-color: white;
+    padding: 2px;
+    margin: 5px;
+  }
 
-	li {
-		line-height: 1.5em;
-	}
+  li {
+    line-height: 1.5em;
+  }
 
-	table {
-		margin: 0 auto 1em;
+  table {
+    margin: 0 auto 1em;
 
-		th, td {
-			padding: 0.1em 0.5em;
-		}
+    th, td {
+      padding: 0.1em 0.5em;
+    }
 
-		thead th {
-			border-bottom: 2px solid $sr-blue;
-		}
+    thead th {
+      border-bottom: 2px solid $sr-blue;
+    }
 
-		tbody tr {
-			&:nth-child(odd) {
-				/* TODO: make darker */
-				background-color: #E8E8E8;
-			}
+    tbody tr {
+      &:nth-child(odd) {
+        /* TODO: make darker */
+        background-color: #E8E8E8;
+      }
 
-			&:hover {
-				background-color: #E0E0E0;
-			}
-		}
-	}
+      &:hover {
+        background-color: #E0E0E0;
+      }
+    }
+  }
 
-	table.schedule {
-		td:nth-child(4n+2),
-		tr:first-child th:nth-child(n+2) {
-			border-right: 10px solid transparent;
-		}
+  table.schedule {
+    td:nth-child(4n+2),
+    tr:first-child th:nth-child(n+2) {
+      border-right: 10px solid transparent;
+    }
 
-		td:nth-child(2) {
-			text-align: left;
-		}
+    td:nth-child(2) {
+      text-align: left;
+    }
 
-		td {
-			text-align: center;
-		}
+    td {
+      text-align: center;
+    }
 
-		td.no_match {
-			border: 0 none;
-			/* we still want it to take up space on the page,
-			* so use visibility instead of display.
-			*/
-			visibility: hidden;
-		}
-	}
-	table.schedule tbody tr.current,
-	div.match.current {
-		/* TODO: make darker */
-		background-color: #FFFFB0;
-	}
+    td.no_match {
+      border: 0 none;
+      /* we still want it to take up space on the page,
+      * so use visibility instead of display.
+      */
+      visibility: hidden;
+    }
+  }
+  table.schedule tbody tr.current,
+  div.match.current {
+    /* TODO: make darker */
+    background-color: #FFFFB0;
+  }
 
-	table.sortable {
-		th.sorter {
-			cursor: pointer;
+  table.sortable {
+    th.sorter {
+      cursor: pointer;
 
-			&:after {
-				content: " ◊";
-				margin-right: 2px;
-			}
-		}
+      &:after {
+        content: " ◊";
+        margin-right: 2px;
+      }
+    }
 
-		th.active:after {
-			content: " ▴";
-			position: relative;
-			top: -0.4em;
-		}
+    th.active:after {
+      content: " ▴";
+      position: relative;
+      top: -0.4em;
+    }
 
-		tr.reverse th.active:after {
-			content: " ▾";
-			top: 0;
-		}
-	}
+    tr.reverse th.active:after {
+      content: " ▾";
+      top: 0;
+    }
+  }
 
-	.comp-nav-wrapper {
-		background: $sr-light-grey;
-		margin: 0 0 20px;
-		padding: 20px 0;
-	}
+  .comp-nav-wrapper {
+    background: $sr-light-grey;
+    margin: 0 0 20px;
+    padding: 20px 0;
+  }
 
-	ul.comp-nav {
-		list-style: none;
-		overflow: hidden;
+  ul.comp-nav {
+    list-style: none;
+    overflow: hidden;
 
-		a {
-			cursor: pointer;
-		}
+    a {
+      cursor: pointer;
+    }
 
-		> li {
-			float: left;
-			padding: 0 1em;
-		}
+    > li {
+      float: left;
+      padding: 0 1em;
+    }
 
-		> li:not(:first-child) {
-			border-left: 1px solid silver;
-		}
-	}
+    > li:not(:first-child) {
+      border-left: 1px solid silver;
+    }
+  }
 }

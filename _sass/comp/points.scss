@@ -1,38 +1,38 @@
 .comp-points #content {
-	#match-chooser {
-		float: right;
-		margin-left: 50px;
+  #match-chooser {
+    float: right;
+    margin-left: 50px;
 
-		input {
-			width: 250px;
-		}
-	}
+    input {
+      width: 250px;
+    }
+  }
 
-	div.points {
-		text-align: center;
+  div.points {
+    text-align: center;
 
-		h4 {
-			margin: 0;
-		}
-	}
+    h4 {
+      margin: 0;
+    }
+  }
 
-	div.game {
-		display: inline-block;
-		padding: 0 10px;
+  div.game {
+    display: inline-block;
+    padding: 0 10px;
 
-		th {
-			padding: 0 5px;
-		}
+    th {
+      padding: 0 5px;
+    }
 
-		tbody {
-			th {
-				border-bottom-width: 1px;
-				text-align: right;
-			}
+    tbody {
+      th {
+        border-bottom-width: 1px;
+        text-align: right;
+      }
 
-			tr:last-child th {
-				border-bottom-width: 0px;
-			}
-		}
-	}
+      tr:last-child th {
+        border-bottom-width: 0px;
+      }
+    }
+  }
 }

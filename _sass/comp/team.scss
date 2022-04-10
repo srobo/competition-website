@@ -1,46 +1,46 @@
 @import "../brand/sass/srobo/variables/index";
 
 .comp-team #content {
-	#team-chooser {
-		float: right;
-	}
+  #team-chooser {
+    float: right;
+  }
 
-	#per-team-details {
-		text-align: center;
-	}
+  #per-team-details {
+    text-align: center;
+  }
 
-	div.matches {
-		display: inline-block;
-		margin: 0 50px;
-		vertical-align: top;
+  div.matches {
+    display: inline-block;
+    margin: 0 50px;
+    vertical-align: top;
 
-		.staging-signal {
-			color: red;
-			font-size: 1.8em;
-			font-weight: bold;
-		}
-		table th {
-			padding: 0 5px;
-		}
-	}
+    .staging-signal {
+      color: red;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    table th {
+      padding: 0 5px;
+    }
+  }
 
-	#upcoming-matches td:last-child {
-		text-align: left;
-	}
+  #upcoming-matches td:last-child {
+    text-align: left;
+  }
 
-	table.past {
-		td {
-			&:first-child {
-				border-right: 2px solid $sr-light-grey;
-			}
-			&:last-child {
-				padding-left: 15px;
-				text-align: left;
-			}
-		}
+  table.past {
+    td {
+      &:first-child {
+        border-right: 2px solid $sr-light-grey;
+      }
+      &:last-child {
+        padding-left: 15px;
+        text-align: left;
+      }
+    }
 
-		.position {
-			margin-left: 7px;
-		}
-	}
+    .position {
+      margin-left: 7px;
+    }
+  }
 }
