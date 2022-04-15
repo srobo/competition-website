@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<div class="hero">
+  <div class="fixed-width">
+    <a class="site-title" href="{{ site.url }}/">
+      <img class="logo" src="{{ '/images/logo-text-white.png' | prepend: site.baseurl }}" alt="Student Robotics" />
+    </a>
+    {% include navigation.html class="site-navigation home-navigation" %}
+  </div>
+  <div class="hero-container hero-homepage">
+    <div class="fixed-width">
+      <div class="hero-text">
+        <h1>An annual robotics competition for young people aged 16-19</h1>
+        <h2>Inspiring the next generation of engineers</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include comp-nav.html %}
+
+<div class="main">
+  <div id="content">
+    {{ content }}
+    <p></p>
+  </div>
+</div>
+
+{% include footer.html %}
