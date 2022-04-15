@@ -169,11 +169,8 @@ angular_controller: CompMode
 </div>
 
 <div id="match-schedule-container" class="panel">
-  <div class="more-link-container fixed-width">
-    <h2>Match Schedule</h2>
-    <span class="more-link">
-      <a href="{{ site.baseurl }}/comp/schedule">more&hellip;</a>
-    </span>
+  <div class="fixed-width">
+    <h2 class="text-center">Match Schedule</h2>
   </div>
 
   <table class="schedule">
@@ -212,6 +209,9 @@ angular_controller: CompMode
     </tbody>
   </table>
 
+  <p class="fixed-width text-center">
+    <a href="{{ site.baseurl }}/comp/schedule">See full schedule</a>
+  </p>
 </div>
 
 {% include non-comp-index.html %}
