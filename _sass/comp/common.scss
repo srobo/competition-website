@@ -1,117 +1,115 @@
 @import "../brand/sass/srobo/variables/index";
 
 .main {
-	label {
-		display: block;
-		margin-bottom: 5px;
-		margin-top: 10px;
-	}
+  padding-top: 0;
 
-	input {
-		border: 1px solid silver;
-		background-color: white;
-		padding: 2px;
-		margin: 5px;
-	}
+  label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
 
-	li {
-		line-height: 1.5em;
-	}
+  input {
+    border: 1px solid silver;
+    background-color: white;
+    padding: 2px;
+    margin: 5px;
+  }
 
-	table {
-		margin: 0 auto 1em;
+  li {
+    line-height: 1.5em;
+  }
 
-		th, td {
-			padding: 0.1em 0.5em;
-		}
+  table {
+    margin: 0 auto 1em;
 
-		thead th {
-			border-bottom: 2px solid $sr-blue;
-		}
+    th, td {
+      padding: 0.1em 0.5em;
+    }
 
-		tbody tr {
-			&:nth-child(odd) {
-				/* TODO: make darker */
-				background-color: #E8E8E8;
-			}
+    thead th {
+      border-bottom: 2px solid $sr-blue;
+    }
 
-			&:hover {
-				background-color: #E0E0E0;
-			}
-		}
-	}
+    tbody tr {
+      &:nth-child(odd) {
+        /* TODO: make darker */
+        background-color: #E8E8E8;
+      }
 
-	table.schedule {
-		td:nth-child(4n+2),
-		tr:first-child th:nth-child(n+2) {
-			border-right: 10px solid transparent;
-		}
+      &:hover {
+        background-color: #E0E0E0;
+      }
+    }
+  }
 
-		td:nth-child(2) {
-			text-align: left;
-		}
+  table.schedule {
+    td:nth-child(4n+2),
+    tr:first-child th:nth-child(n+2) {
+      border-right: 10px solid transparent;
+    }
 
-		td {
-			text-align: center;
-		}
+    td:nth-child(2) {
+      text-align: left;
+    }
 
-		td.no_match {
-			border: 0 none;
-			/* we still want it to take up space on the page,
-			* so use visibility instead of display.
-			*/
-			visibility: hidden;
-		}
-	}
-	table.schedule tbody tr.current,
-	div.match.current {
-		/* TODO: make darker */
-		background-color: #FFFFB0;
-	}
+    td {
+      text-align: center;
+    }
 
-	table.sortable {
-		th.sorter {
-			cursor: pointer;
+    td.no_match {
+      border: 0 none;
+      /* we still want it to take up space on the page,
+      * so use visibility instead of display.
+      */
+      visibility: hidden;
+    }
+  }
+  table.schedule tbody tr.current,
+  div.match.current {
+    /* TODO: make darker */
+    background-color: #FFFFB0;
+  }
 
-			&:after {
-				content: " ◊";
-				margin-right: 2px;
-			}
-		}
+  table.sortable {
+    th.sorter {
+      cursor: pointer;
 
-		th.active:after {
-			content: " ▴";
-			position: relative;
-			top: -0.4em;
-		}
+      &:after {
+        content: " ◊";
+        margin-right: 2px;
+      }
+    }
 
-		tr.reverse th.active:after {
-			content: " ▾";
-			top: 0;
-		}
-	}
+    th.active:after {
+      content: " ▴";
+      position: relative;
+      top: -0.4em;
+    }
 
-	.comp-nav-wrapper {
-		background: $sr-medium-grey;
-		margin: 0 0 20px;
-		padding: 20px 0;
-	}
+    tr.reverse th.active:after {
+      content: " ▾";
+      top: 0;
+    }
+  }
+}
 
-	ul.comp-nav {
-		list-style: none;
-		overflow: hidden;
+ul.comp-nav {
+  list-style: none;
+  margin: 1.25rem 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 
-		a {
-			cursor: pointer;
-		}
+  a {
+    cursor: pointer;
+  }
 
-		> li {
-			float: left;
-			padding: 0 1em;
-		}
+  > li {
+    padding: 0 1em;
+  }
 
-		> li:not(:first-child) {
-			border-left: 1px solid silver;
-		}
-	}
+  > li:not(:first-child) {
+    border-left: 1px solid silver;
+  }
 }

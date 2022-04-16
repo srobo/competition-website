@@ -10,10 +10,10 @@ $blue-bottom-colour: transparentize($sr-blue, 0.3);
 
 .panel {
   background-color: $sr-white;
-  padding: 3.5em $spacing;
+  padding: 1.5em $spacing;
 
   @include media-query("medium") {
-    padding: 3.5em 0;
+    padding: 1.5em 0;
   }
 
   p {
@@ -42,6 +42,10 @@ $blue-bottom-colour: transparentize($sr-blue, 0.3);
   }
 }
 
+.panel.panel-thin {
+  padding: 0;
+}
+
 img.image {
   background-color: white;
   border: 1px solid $sr-light-grey;
@@ -67,6 +71,10 @@ img.image {
 
 .panel-arena {
   @include gradient-background($blue-top-colour, $blue-bottom-colour, "#{$image-directory}/arena.jpg");
+}
+
+.panel-sponsor {
+  @include gradient-background($blue-top-colour, $blue-bottom-colour, "#{$image-directory}/sponsor-hero.jpg");
 }
 
 .panel-grandstand {

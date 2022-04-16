@@ -1,106 +1,113 @@
-#comp_index {
-	position: relative;
-	/* mostly to avoid the bumpy up & down as things load */
-	min-height: 350px;
+.comp-index {
+  .hero-container {
+    min-height: 0;
+  }
+  .hero-homepage {
+    padding: 2em 0 3em;
+  }
 
-	table.schedule td:nth-child(2) {
-		text-align: center;
-	}
+  #content {
+    position: relative;
+    /* mostly to avoid the bumpy up & down as things load */
+    min-height: 350px;
 
-	span.top-links {
-		position: absolute;
-		margin-top: 20px;
-	}
+    table.schedule td:nth-child(2) {
+      text-align: center;
+    }
 
-	#live-stream-wrapper {
-		text-align:  center;
+    span.top-links {
+      position: absolute;
+      margin-top: 20px;
+    }
 
-		& > * {
-			margin:  auto;
-		}
-	}
+    #live-stream-wrapper {
+      text-align: center;
 
-	span#more-link {
-		left: 0;
-		margin-left: 100px;
-	}
+      & > * {
+        margin: auto;
+      }
+    }
 
-	.more-link-container {
-		position:  relative;
+    span#more-link {
+      left: 0;
+      margin-left: 100px;
+    }
 
-		h2 {
-			display:  inline-block;
-		}
-	}
-	span.more-link {
-		position: absolute;
-		top:  1.2rem;
-		margin-left:  1em;
-	}
+    .more-link-container {
+      position: relative;
 
-	div#leaderboard-container {
-		float: right;
-		padding-right: 40px;
-		width: 330px;
-	}
-	div#leaderboard {
-		margin-right: 50px;
+      h2 {
+        display: inline-block;
+      }
+    }
+    span.more-link {
+      position: absolute;
+      top: 1.2rem;
+      margin-left: 1em;
+    }
 
-		th {
-			padding: 0 3px;
-		}
-	}
+    div#leaderboard-container {
+      float: right;
+      padding-right: 40px;
+      width: 330px;
+    }
+    div#leaderboard {
+      margin-right: 50px;
 
-	div#match-schedule-container {
-		clear:  both;
+      th {
+        padding: 0 3px;
+      }
+    }
 
-		table.schedule th:nth-child(n+3) {
-			width:  350px;
-		}
-	}
+    div#match-schedule-container {
+      table.schedule th:nth-child(n+3) {
+        width: 350px;
+      }
+    }
+  }
 }
 
 #match-info {
-	float: left;
-	text-align: center;
-	width: 600px;
+  float: left;
+  text-align: center;
+  width: 600px;
 
-	div.match {
-		padding: 5px 0;
+  div.match {
+    padding: 5px 0;
 
-		&:nth-child(3n+1) {
-			border: none;
-		}
-	}
+    &:nth-child(3n+1) {
+      border: none;
+    }
+  }
 
-	div.game {
-		display: inline-block;
+  div.game {
+    display: inline-block;
 
-		table tbody td {
-			min-width: 35px;
-		}
-		table tbody tr:not(:first-child) {
-			td, th {
-				padding-top: 3px;
-			}
-		}
-		&.headings {
-			/* Something causes an extra 4px of gap on the right.
-			* I've no idea what, but it's there in both Firefox & Chrome. */
-			margin: 0 1px 0 5px;
+    table tbody td {
+      min-width: 35px;
+    }
+    table tbody tr:not(:first-child) {
+      td, th {
+        padding-top: 3px;
+      }
+    }
+    &.headings {
+      /* Something causes an extra 4px of gap on the right.
+      * I've no idea what, but it's there in both Firefox & Chrome. */
+      margin: 0 1px 0 5px;
 
-			&.single th {
-				text-align: right;
-				padding-right: 5px;
-			}
-		}
-	}
+      &.single th {
+        text-align: right;
+        padding-right: 5px;
+      }
+    }
+  }
 
-	div.scored {
-		padding: 0;
+  div.scored {
+    padding: 0;
 
-		div.game.headings.single {
-			margin-left: -35px;
-		}
-	}
+    div.game.headings.single {
+      margin-left: -35px;
+    }
+  }
 }

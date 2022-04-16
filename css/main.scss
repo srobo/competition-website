@@ -5,12 +5,16 @@
 $baseurl: "{{ site.baseurl }}";
 
 @import
-        "../_sass/brand/sass/srobo/index",
+        "brand/sass/srobo/index",
+        "about",
         "base",
         "common",
         "layout",
         "navigation",
+        "hero",
         "panel",
+        "sponsors",
+        "testimonials",
         "footer"
 ;
 

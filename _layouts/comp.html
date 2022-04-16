@@ -1,66 +1,21 @@
-<!DOCTYPE html>
+---
+layout: default
+---
+{% include header.html %}
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" data-ng-app="app">
+<div class="header-card">
+  <div class="fixed-width">
+    <h1>Competition Live!</h1>
+  </div>
+</div>
 
-<head>
-	<title>{{ page.title | replace:'$YYYY',site.year }} | {{ site.title }}</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="keywords" content="{{ page.keywords }}" />
-	<meta name="description" content="{{ page.description }}" />
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css" />
-	<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/main.css" />
-	<link rel="shortcut icon" href="{{ site.baseurl }}/images/favicon.ico" />
+{% include comp-nav.html %}
 
-	<script type="text/javascript">
-		var API_ROOT = "{{ site.api_root }}";
-	</script>
+<div class="main">
+  <div id="content" class="fixed-width">
+    {{ content }}
+    <p></p>
+  </div>
+</div>
 
-	<script type="text/javascript" src="{{ site.baseurl }}/js/polyfill.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/competition-utils.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-resource.min.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/lib/angular-storage/ngStorage.min.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/lib/angular-ui-select2/src/select2.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/lib/angularjs-ordinal-filter/ordinal.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/competition-filters.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/competition-resources.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/controller-utils.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}/js/controllers/{{ page.angular_controller }}.js"></script>
-</head>
-
-<body data-ng-controller="{{ page.angular_controller }}" class="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}">
-
-	{% include header.html %}
-
-	<div class="header-card">
-		<div class="fixed-width">
-			<h1>We are Live!</h1>
-		</div>
-	</div>
-	<div class="main">
-		<div class="comp-nav-wrapper">
-			<div class="fixed-width">
-				<ul class="comp-nav">
-					<li><a href="{{ site.competition_link }}">Event Information</a></li>
-					<li><a href="{{ site.baseurl }}/comp/team">Team Information</a></li>
-					<li><a href="{{ site.baseurl }}/comp/knockout">Knockouts</a></li>
-					<li><a href="{{ site.baseurl }}/comp/league">League Status</a></li>
-					<li><a href="{{ site.baseurl }}/comp/points">Match Points</a></li>
-					<li><a href="{{ site.baseurl }}/comp/schedule">Match Schedule</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="{{ page.path|replace:'.md',''|replace:'.html',''|replace:'/','_' }}" class="fixed-width">
-			{{ content }}
-			<p></p>
-		</div>
-	</div>
-
-	{% include footer.html %}
-	{% include script.html %}
-</body>
-
-</html>
+{% include footer.html %}

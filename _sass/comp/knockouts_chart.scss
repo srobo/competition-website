@@ -1,25 +1,6 @@
-.comp_knockout-chart {
-  body & {
-    height: 1080px;
-    width: 1920px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-  }
-
-  .site-header,
-  .header-card,
-  .comp-nav-wrapper,
-  .site-footer, p {
-    display: none;
-  }
-
-  .fixed-width {
-    max-width: none !important;
-    width: 100%;
-    height: 100%;
-  }
-
-  .main {
-    padding: 0;
-  }
+body.comp-knockout-chart {
+  height: 1080px;
+  width: 1920px;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
