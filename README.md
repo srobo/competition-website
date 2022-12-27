@@ -13,6 +13,8 @@ the separate [SRComp suite][srcomp]. These instructions _only_ contain
 information about these pages; it is assumed that the reader will configure an
 SRComp-HTTP instance separately.
 
+0. [Clone this repo][clone-repo]
+
 1. [Install Ruby][install-ruby]
 
 2. Install Bundler (1.x) and Rake
@@ -33,3 +35,5 @@ SRComp-HTTP instance separately.
 [SR]: https://studentrobotics.org
 [srcomp]: https://github.com/PeterJCLaw/srcomp/wiki
 [install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
+[clone-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+
