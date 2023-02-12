@@ -12,12 +12,12 @@ description: >
   Student Robotics is an exciting annual competition challenging people aged
   16-19 to assemble a team and build fully autonomous robots.
 
-year: 2022
+year: 2023
 api_root: https://studentrobotics.org/comp-api
 
-competition_link: https://studentrobotics.org/events/sr2022/competition/
-youtube_stream_link: https://www.youtube-nocookie.com/embed/M3stcLPbHOU
-venue_layout_link: https://studentrobotics.org/resources/sr2022/venue-map.pdf
+competition_link: https://studentrobotics.org/events/sr2023/competition/
+youtube_stream_link: https://www.youtube-nocookie.com/embed/mTJGOhwmLPo
+# venue_layout_link: https://studentrobotics.org/resources/sr2023/venue-map.pdf
 
 links:
   donate: //link.justgiving.com/v1/charity/donate/charityId/3118662?tipScheme=TipJar2.1&isRecurring=false&amount=10.00&reference=givingcheckout_tj21
