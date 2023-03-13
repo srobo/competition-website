@@ -29,6 +29,10 @@ The positions of the teams within the league are used to seed the <a href="/comp
 Details of the scores for each individual match are available on the <a href="/comp/points">points page</a>.
 </p>
 
+<p>
+Teams which have not competed before are shown <span class="rookie-team">in italics</span>.
+</p>
+
 <p data-ng-if="latest_scored_match != null">
 Up to date with scores from match [[ latest_scored_match ]].
 </p>
@@ -65,7 +69,7 @@ No scores have been recorded yet.
         </td>
         <td>[[ item.scores.league ]]</td>
         <td>[[ item.scores.game ]]</td>
-        <td>
+        <td data-ng-class="{'rookie-team':item.rookie}">
 {% if site.teams_url %}
             <a href="{{ site.teams_url }}/[[ item.tla ]]"
                title="Find out more about team [[ item.tla ]]"
