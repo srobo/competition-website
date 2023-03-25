@@ -17,7 +17,7 @@ api_root: https://studentrobotics.org/comp-api
 
 competition_link: https://studentrobotics.org/events/sr2023/competition/
 youtube_stream_link: https://www.youtube-nocookie.com/embed/TxbfE9es-EY
-# venue_layout_link: https://studentrobotics.org/resources/sr2023/venue-map.pdf
+venue_layout_link: https://studentrobotics.org/resources/sr2023/venue-map.pdf
 
 links:
   donate: //link.justgiving.com/v1/charity/donate/charityId/3118662?tipScheme=TipJar2.1&isRecurring=false&amount=10.00&reference=givingcheckout_tj21
