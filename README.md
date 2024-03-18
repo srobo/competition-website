@@ -31,8 +31,18 @@ SRComp-HTTP instance separately.
 
 1. View the site at <http://localhost:4000/competition-website/comp/>
 
+## Deployment
+
+The site defined in this repo is deployed onto GitHub Pages (using GitHub
+Actions) and surfaced at <https://studentrobotics.org/comp/>.
+
+During competition events the main page is also used as a takeover of our
+website homepage. This is toggled via `enable_competition_homepage` in our
+[ansible][srobo-ansible] config.
+
 
 [SR]: https://studentrobotics.org
 [srcomp]: https://github.com/PeterJCLaw/srcomp/wiki
 [install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
 [clone-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+[srobo-ansible]: https://github.com/srobo/ansible/
