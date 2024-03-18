@@ -36,4 +36,3 @@ SRComp-HTTP instance separately.
 [srcomp]: https://github.com/PeterJCLaw/srcomp/wiki
 [install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
 [clone-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
-
