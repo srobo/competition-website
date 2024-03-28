@@ -9,13 +9,15 @@ angular_controller: CompMode
 -->
 
 {% if site.youtube_stream_link %}
-  <div id="live-stream-wrapper" class="panel">
-    <iframe width="760"
-        height="427"
-        src="{{ site.youtube_stream_link }}"
-        frameborder="0"
-        allowfullscreen>
-    </iframe>
+  <div class="panel">
+    <div id="live-stream-wrapper">
+      <iframe width="760"
+          height="427"
+          src="{{ site.youtube_stream_link }}"
+          frameborder="0"
+          allowfullscreen>
+      </iframe>
+    </div>
   </div>
 {% endif %}
 
