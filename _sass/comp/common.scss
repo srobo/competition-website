@@ -133,3 +133,20 @@ ul.comp-nav {
     }
   }
 }
+
+.floated-chooser {
+  float: right;
+  margin-left: 25px;
+  margin-bottom: 1em;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  & + * {
+    clear: both;
+    @include media-query("small") {
+      clear: none;
+    }
+  }
+}
