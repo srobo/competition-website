@@ -70,7 +70,7 @@ The current match is <a href="#match-[[ current_match ]]" data-proofer-ignore>[[
             <th data-ng-if="!session.show_arena_title">Time</th>
             <th data-ng-if="!session.show_arena_title">Match</th>
             <th data-ng-repeat="corner in session.all_corners track by $index">
-                Corner [[ corner.number ]]
+                {{ site.game_term_zone }} [[ corner.number ]]
             </th>
         </tr>
     </thead>

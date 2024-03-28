@@ -19,6 +19,9 @@ competition_link: https://studentrobotics.org/events/sr2024/virtual-competition/
 youtube_stream_link: https://www.youtube-nocookie.com/embed/jM8oSq_6jqs
 # venue_layout_link: https://studentrobotics.org/resources/sr2024/venue-map.pdf
 
+# Support branding the "zone" (what SRComp calls a "corner") in line with this year's game.
+game_term_zone: Planet
+
 links:
   donate: //link.justgiving.com/v1/charity/donate/charityId/3118662?tipScheme=TipJar2.1&isRecurring=false&amount=10.00&reference=givingcheckout_tj21
 
