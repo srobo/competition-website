@@ -17,10 +17,10 @@ SRComp-HTTP instance separately.
 
 1. [Install Ruby][install-ruby]
 
-1. Install Bundler (1.x) and Rake
+1. Install Bundler (2.x) and Rake
 
     ``` shell
-    $ gem install 'bundler:~>1' rake
+    $ gem install bundler rake
     ```
 
 1. Start the app in development mode

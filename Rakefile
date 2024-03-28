@@ -7,7 +7,8 @@ task :deep_clean => [:clean] do
 end
 
 task :dependencies do
-  sh('bundle install --path gems')
+  sh('bundle config set --local path "gems"')
+  sh('bundle install')
 
   # Fix pathutil on Ruby 3; works around https://github.com/envygeeks/pathutil/pull/5
   # as suggested by https://stackoverflow.com/a/73909894/67873
