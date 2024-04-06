@@ -61,9 +61,11 @@
     }
 
     div#leaderboard-container {
-      float: right;
-      padding-right: 40px;
-      width: 330px;
+      @include desktop-only {
+        float: right;
+        padding-right: 40px;
+        width: 330px;
+      }
     }
     div#leaderboard {
       margin-right: 50px;
@@ -82,9 +84,28 @@
 }
 
 #match-info {
-  float: left;
   text-align: center;
-  width: 600px;
+  @include desktop-only {
+    float: left;
+    width: 600px;
+  }
+
+  #more-scores {
+    position: absolute;
+    @include desktop-only {
+      margin-left: 50px;
+      left: 0;
+    }
+    @include mobile-only {
+      right: 0;
+    }
+  }
+
+  #latest-scores {
+    @include mobile-only {
+      text-align: left;
+    }
+  }
 
   div.match {
     padding: 5px 0;
@@ -122,6 +143,9 @@
 
     div.game.headings.single {
       margin-left: -35px;
+      @include mobile-only {
+        margin-left: -15px;
+      }
     }
   }
 }
