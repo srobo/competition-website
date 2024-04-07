@@ -109,7 +109,44 @@ ul.comp-nav {
     padding: 0 1em;
   }
 
-  > li:not(:first-child) {
-    border-left: 1px solid silver;
+  @include desktop-only {
+    > li:not(:first-child) {
+      border-left: 1px solid silver;
+    }
+  }
+
+  @include mobile-only {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    flex-direction: column;
+
+    a {
+      text-decoration: none;
+    }
+
+    > li:not(:last-child) > a {
+      display: block;
+      border-bottom: 1px solid silver;
+      padding-top: .1rem;
+      padding-bottom: .1rem;
+    }
+  }
+}
+
+.floated-chooser {
+  float: right;
+  margin-left: 25px;
+  margin-bottom: 1em;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  & + * {
+    clear: both;
+    @include media-query("small") {
+      clear: none;
+    }
   }
 }
