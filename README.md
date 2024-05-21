@@ -15,11 +15,16 @@ SRComp-HTTP instance separately.
 
 1. [Clone this repo][clone-repo]
 
-1. [Install Ruby][install-ruby]
+1. [Install Ruby 3][install-ruby]
 
-1. Install Bundler (2.x) and Rake
+   See `.ruby_version` for the precise version, though 3.3 or above will
+   probably be fine.
 
-    ``` shell
+1. Install Bundler (2.3 or above) and Rake.
+
+   Depending on how you have installed Ruby these may already be installed.
+
+    ``` console
     $ gem install bundler rake
     ```
 
