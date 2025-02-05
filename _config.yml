@@ -5,7 +5,7 @@ url: https://studentrobotics.org
 
 # We don't currently have teams-status pages, when they reappear uncomment
 # the following line
-teams_url: https://studentrobotics.org/teams
+# teams_url: https://studentrobotics.org/teams
 
 title: Student Robotics
 description: >
