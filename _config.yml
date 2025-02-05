@@ -5,7 +5,7 @@ url: https://studentrobotics.org
 
 # We don't currently have teams-status pages, when they reappear uncomment
 # the following line
- teams_url: https://studentrobotics.org/teams
+teams_url: https://studentrobotics.org/teams
 
 title: Student Robotics
 description: >
@@ -19,7 +19,7 @@ challenges_link: https://studentrobotics.org/docs/resources/2025/rulebook.html#c
 virtual_competition_link: https://studentrobotics.org/events/sr2025/virtual-competition/
 # competition_link: https://studentrobotics.org/events/sr2025/competition/
 youtube_stream_link: https://www.youtube-nocookie.com/live/p0KxrRNTGBs?si=7l6zofLFvdGQYW7t
- # venue_layout_link: https://studentrobotics.org/resources/sr2025/venue-map.pdf
+# venue_layout_link: https://studentrobotics.org/resources/sr2025/venue-map.pdf
 
 # Support branding the "zone" (what SRComp calls a "corner") in line with this year's game.
 game_term_zone: Corner
