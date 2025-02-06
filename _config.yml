@@ -17,7 +17,7 @@ api_root: https://studentrobotics.org/comp-api
 
 challenges_link: https://studentrobotics.org/docs/resources/2025/rulebook.html#challenges
 virtual_competition_link: https://studentrobotics.org/events/sr2025/virtual-competition/
-# competition_link: https://studentrobotics.org/events/sr2025/competition/
+competition_link: https://studentrobotics.org/events/sr2025/virtual-competition/
 youtube_stream_link: https://www.youtube-nocookie.com/live/p0KxrRNTGBs?si=7l6zofLFvdGQYW7t
 # venue_layout_link: https://studentrobotics.org/resources/sr2025/venue-map.pdf
 
