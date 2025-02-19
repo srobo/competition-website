@@ -55,39 +55,41 @@ The current match is <a href="#match-[[ current_match ]]" data-proofer-ignore>[[
 
 <h2>[[ session.description ]]</h2>
 
-<table class="schedule">
-    <colgroup class="meta" span="2" />
-    <colgroup class="arena" span="[[ corners.length ]]" data-ng-repeat="arena in session.arenas" />
-    <thead>
-        <tr data-ng-if="session.show_arena_title">
-            <th rowspan="2">Time  </th>
-            <th rowspan="2">Match </th>
-            <th data-ng-repeat="arena in session.arenas"
-                style="color: [[ arena.colour ]];"
-                colspan="4">Arena [[ arena.display_name ]]</th>
-        </tr>
-        <tr>
-            <th data-ng-if="!session.show_arena_title">Time</th>
-            <th data-ng-if="!session.show_arena_title">Match</th>
-            <th data-ng-repeat="corner in session.all_corners track by $index">
-                {{ site.game_term_zone }} [[ corner.number ]]
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr data-ng-repeat="match in session.matches|containsTeam:chosenTeam"
-            data-ng-class="{current: match.num==current_match}"
-            id="match-[[ match.num ]]">
-            <td>[[ match.time|date:'HH:mm:ss' ]]</td>
-            <td title="[[ match.display_name ]]">[[ match.num ]]</td>
-            <td data-ng-repeat="team in match.teams track by $index"
-                data-ng-class="{chosen_team_match: team==chosenTeam, no_match: !team}"
-                title="[[ team|teamInfo:teams|teamName ]]">
-                [[ team ]]
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="schedule-container">
+    <table class="schedule">
+        <colgroup class="meta" span="2" />
+        <colgroup class="arena" span="[[ corners.length ]]" data-ng-repeat="arena in session.arenas" />
+        <thead>
+            <tr data-ng-if="session.show_arena_title">
+                <th rowspan="2">Time  </th>
+                <th rowspan="2">Match </th>
+                <th data-ng-repeat="arena in session.arenas"
+                    style="color: [[ arena.colour ]];"
+                    colspan="4">Arena [[ arena.display_name ]]</th>
+            </tr>
+            <tr>
+                <th data-ng-if="!session.show_arena_title">Time</th>
+                <th data-ng-if="!session.show_arena_title">Match</th>
+                <th data-ng-repeat="corner in session.all_corners track by $index">
+                    {{ site.game_term_zone }} [[ corner.number ]]
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="match in session.matches|containsTeam:chosenTeam"
+                data-ng-class="{current: match.num==current_match}"
+                id="match-[[ match.num ]]">
+                <td>[[ match.time|date:'HH:mm:ss' ]]</td>
+                <td title="[[ match.display_name ]]">[[ match.num ]]</td>
+                <td data-ng-repeat="team in match.teams track by $index"
+                    data-ng-class="{chosen_team_match: team==chosenTeam, no_match: !team}"
+                    title="[[ team|teamInfo:teams|teamName ]]">
+                    [[ team ]]
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 </div>
 
