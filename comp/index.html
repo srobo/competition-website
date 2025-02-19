@@ -175,41 +175,43 @@ angular_controller: CompMode
     <h2 class="text-center">Match Schedule</h2>
   </div>
 
-  <table class="schedule">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Match</th>
-        <th data-ng-repeat="arena in arenas" colspan="[[ num_corners ]]" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        data-ng-repeat="match in matches|matchesEndingAfterNow:time_offset|limitTo:10"
-        data-ng-class="{current: match.num==current_match.num}"
-        id="match-[[ match.num ]]"
-      >
-        <td title="Begins at [[ match.time|date:'HH:mm:ss on EEEE, d MMMM' ]].">[[ match.time|date:'HH:mm' ]]</td>
-        <td title="[[ match.display_name ]]">[[ match.num ]]</td>
-        <td
-          data-ng-repeat="team in match.teams track by $index"
-          data-ng-class="{no_match: !team}"
-          title="[[ team|teamInfo:teams|teamName ]]"
+  <div class="schedule-container">
+    <table class="schedule">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Match</th>
+          <th data-ng-repeat="arena in arenas" colspan="[[ num_corners ]]" style="color: [[ arena.colour ]];">Arena [[ arena.display_name ]]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          data-ng-repeat="match in matches|matchesEndingAfterNow:time_offset|limitTo:10"
+          data-ng-class="{current: match.num==current_match.num}"
+          id="match-[[ match.num ]]"
         >
-          {% if site.teams_url %}
-            <!--- TODO: non-literal filtering, possibly based on the existence of the page -->
-            <a
-              data-ng-if="team && team != '-'"
-              href="{{ site.teams_url }}/[[ team ]]"
-            >[[ team ]]</a>
-            <span data-ng-if="team == '-'">[[ team ]]</span>
-          {% else %}
-            [[ team ]]
-          {% endif %}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <td title="Begins at [[ match.time|date:'HH:mm:ss on EEEE, d MMMM' ]].">[[ match.time|date:'HH:mm' ]]</td>
+          <td title="[[ match.display_name ]]">[[ match.num ]]</td>
+          <td
+            data-ng-repeat="team in match.teams track by $index"
+            data-ng-class="{no_match: !team}"
+            title="[[ team|teamInfo:teams|teamName ]]"
+          >
+            {% if site.teams_url %}
+              <!--- TODO: non-literal filtering, possibly based on the existence of the page -->
+              <a
+                data-ng-if="team && team != '-'"
+                href="{{ site.teams_url }}/[[ team ]]"
+              >[[ team ]]</a>
+              <span data-ng-if="team == '-'">[[ team ]]</span>
+            {% else %}
+              [[ team ]]
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <p class="fixed-width text-center">
     <a href="{{ site.baseurl }}/comp/schedule">See full schedule</a>
