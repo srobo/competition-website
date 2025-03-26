@@ -20,6 +20,11 @@ SRComp-HTTP instance separately.
    See `.ruby_version` for the precise version, though 3.3 or above will
    probably be fine.
 
+1. (Optional) Install [Node.js and npm][install-node].
+
+    This allows JS tests to be run locally.
+    Node is not required for the website to be built.
+
 1. Install Bundler (2.3 or above) and Rake.
 
    Depending on how you have installed Ruby these may already be installed.
@@ -49,5 +54,6 @@ website homepage. This is toggled via `enable_competition_homepage` in our
 [SR]: https://studentrobotics.org
 [srcomp]: https://github.com/PeterJCLaw/srcomp/wiki
 [install-ruby]: https://www.ruby-lang.org/en/documentation/installation/
+[install-node]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 [clone-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 [srobo-ansible]: https://github.com/srobo/ansible/
