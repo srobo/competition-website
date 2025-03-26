@@ -76,6 +76,9 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         // Set the time to the next match
         $scope.next_game = get_next_game($scope.games);
         if ($scope.next_game != null) {
+            // Capture timings for the next game. Values are template-ready
+            // strings or null if the time is in the past.
+
             $scope.time_to_next_game = describe_time_until($scope.next_game.game_time);
             $scope.time_to_next_slot = describe_time_until($scope.next_game.time);
 
