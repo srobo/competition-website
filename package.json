@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "jasmine-node tests/js"
+  },
+  "@comments": [
+    "These dependencies are only for testing the site.",
+    "The site is built with Jekyll so site dependencies should be in the Gemfile."
+  ],
+  "dependencies": {
+    "jasmine-node": "^3.0.0"
+  }
+}
