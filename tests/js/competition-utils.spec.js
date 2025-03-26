@@ -1,4 +1,6 @@
 
+var MATCH_TIMING_MODE = ''; // slot
+
 var utils = require('../../js/competition-utils.js');
 
 describe("The decision about whether we show an arena title", function() {
@@ -62,6 +64,10 @@ describe("The match schedule converter sorter helpers", function() {
 					'slot': {
 						'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
 						'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
+					},
+					'game': {
+						'end': 'Sat, 15 Mar 2014 00:04:00 GMT',
+						'start': 'Sat, 15 Mar 2014 00:01:00 GMT'
 					}
 				},
 				'num': 0,
@@ -73,6 +79,10 @@ describe("The match schedule converter sorter helpers", function() {
 					'slot': {
 						'end': 'Sat, 15 Mar 2014 00:05:00 GMT',
 						'start': 'Sat, 15 Mar 2014 00:00:00 GMT'
+					},
+					'game': {
+						'end': 'Sat, 15 Mar 2014 00:04:00 GMT',
+						'start': 'Sat, 15 Mar 2014 00:01:00 GMT'
 					}
 				},
 				'num': 0,
@@ -88,6 +98,20 @@ describe("The match schedule converter sorter helpers", function() {
 	});
 	it("should flatten and simplify match descriptions", function() {
 		var match = utils.match_converter(4, input, arenas);
+		expect(match).toEqual(expected);
+	});
+	it("should use slot timings when implicitly asked", function() {
+		var match = utils.match_converter(4, input, arenas, {unrelated: null});
+		expect(match).toEqual(expected);
+	});
+	it("should use slot timings when explicitly asked", function() {
+		var match = utils.match_converter(4, input, arenas, {match_timing_mode: 'slot'});
+		expect(match).toEqual(expected);
+	});
+	it("should use game timings when asked", function() {
+		var match = utils.match_converter(4, input, arenas, {match_timing_mode: 'game'});
+    expected.time = new Date('2014-03-15 00:01:00');
+    expected.end_time = new Date('2014-03-15 00:04:00');
 		expect(match).toEqual(expected);
 	});
 	it("should flatten and simplify the collection of matches", function() {

@@ -24,6 +24,12 @@ youtube_stream_link: https://www.youtube-nocookie.com/embed/p0KxrRNTGBs
 # Support branding the "zone" (what SRComp calls a "corner") in line with this year's game.
 game_term_zone: Corner
 
+# Whether to show match timings using the canonical "slot" timings or the
+# internal "game" timings. This does not affect the times at which a match is
+# shown as being the "current" match, only the times displayed in schedule
+# tables.
+match_timing_mode: game
+
 links:
   donate: //link.justgiving.com/v1/charity/donate/charityId/3118662?tipScheme=TipJar2.1&isRecurring=false&amount=10.00&reference=givingcheckout_tj21
 
