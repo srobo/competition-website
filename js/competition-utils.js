@@ -70,10 +70,10 @@ var hex_to_rgba = function() {
 }();
 
 var convert_matches = function() {
-    return function(num_corners, matches, arenas) {
+    return function(num_corners, matches, arenas, options) {
         var output = [];
         for (var i=0; i<matches.length; i++) {
-            output.push(match_converter(num_corners, matches[i], arenas));
+            output.push(match_converter(num_corners, matches[i], arenas, options));
         }
         return output;
     };
@@ -96,16 +96,43 @@ var ensure_whole_arena = function() {
     };
 }();
 
+var match_timings = function() {
+    var get_mode = function(options) {
+        // Allow an explicit value to be passed in, mostly for tests, use the
+        // global default if no value is given.
+        if (options && options.match_timing_mode !== undefined) {
+            return options.match_timing_mode;
+        }
+        // Not really happy with having to do this detection, but it seems
+        // better to do this than require every call-site to remember to pass
+        // the value in as that seems likely to lead to inconsistencies.
+        if (typeof window !== 'undefined') {
+            // Browser, template should set this
+            return MATCH_TIMING_MODE;
+        }
+        // Node JS for tests, this isn't set
+        return '';
+    }
+    return function(game, options) {
+        var times = get_mode(options) === 'game' ? game.times.game : game.times.slot;
+        return {
+            'start': new Date(times.start),
+            'end': new Date(times.end),
+        };
+    };
+}();
+
 var match_converter = function() {
-    return function(num_corners, match, arenas) {
+    return function(num_corners, match, arenas, options) {
         var output = { 'teams': [] };
         // Get initial data from the first game in the match
         for (var arena in match) {
             var detail = match[arena];
             output.num = detail.num;
             output.display_name = detail.display_name;
-            output.time = new Date(detail.times.slot.start);
-            output.end_time = new Date(detail.times.slot.end);
+            var times = match_timings(detail, options);
+            output.time = times.start;
+            output.end_time = times.end;
             break;
         }
         // Get teams data by iterating over the arenas, thus ensuring
@@ -282,7 +309,7 @@ var process_knockout_round = function() {
 
         return game_groups;
     };
-    return function(num_corners, round) {
+    return function(num_corners, round, options) {
 
         var game_groups = group_games(round);
 
@@ -296,7 +323,7 @@ var process_knockout_round = function() {
                 if (j == 0) {
                     number = game.num;
                     description = game.display_name;
-                    time = new Date(game.times.slot.start);
+                    time = match_timings(game, options).start;
                 }
                 game_details.push(build_game(num_corners, game));
             }
@@ -313,14 +340,14 @@ var process_knockout_round = function() {
 }();
 
 var process_knockouts = function() {
-    return function(num_corners, rounds, tiebreaker) {
+    return function(num_corners, rounds, tiebreaker, options) {
         var output = [];
         for (var i=0; i<rounds.length; i++) {
-            output.push(process_knockout_round(num_corners, rounds[i]));
+            output.push(process_knockout_round(num_corners, rounds[i], options));
         }
 
         if (tiebreaker) {
-            output.push(process_knockout_round(num_corners, [tiebreaker]));
+            output.push(process_knockout_round(num_corners, [tiebreaker], options));
         }
 
         return output;
@@ -332,6 +359,7 @@ if (typeof(exports) != 'undefined') {
     exports.should_show_arena_title = should_show_arena_title;
     exports.compute_offset = compute_offset;
     exports.apply_offset = apply_offset;
+    exports.match_timings = match_timings;
     exports.match_converter = match_converter;
     exports.convert_matches = convert_matches;
     exports.matches_for_team = matches_for_team;
