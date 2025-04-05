@@ -17,6 +17,10 @@ task :dependencies do
   File.write(pathutil_path, content)
 end
 
+task :js_dependencies do
+  sh('npm install')
+end
+
 file '_local.yml' do
   touch '_local.yml'
 end
@@ -47,7 +51,7 @@ task :build => [:dependencies, :submodules] do
   sh('bundle exec jekyll build')
 end
 
-task :validate => [:build] do
+task :validate_build => [:build] do
   # Explanation of arguments:
   # --assume-extension  # Tells html-proofer that `.html` files can be accessed without the `.html` part in the url.
   # --disable-external  # For speed. Ideally we'd check external links too, but ignoring for now.
@@ -56,3 +60,9 @@ task :validate => [:build] do
   # --url-swap          # Adjust for Jekyll's baseurl. See https://github.com/gjtorikian/html-proofer/issues/618 for more.
   sh('bundle exec htmlproofer _site --assume-extension --disable-external --empty-alt-ignore --allow-hash-href --url-swap "^/competition-website/:/"')
 end
+
+task :validate_js => [:js_dependencies] do
+  sh('./run-tests')
+end
+
+task :validate => [:validate_build, :validate_js]
