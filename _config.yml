@@ -25,7 +25,7 @@ venue_layout_link: https://studentrobotics.org/resources/sr2025/venue-map.pdf
 game_term_zone: Corner
 
 links:
-  donate: //link.justgiving.com/v1/charity/donate/charityId/3118662?tipScheme=TipJar2.1&isRecurring=false&amount=10.00&reference=givingcheckout_tj21
+  donate: https://checkout.justgiving.com/yb7fi9snns
 
 markdown: kramdown
 
@@ -75,11 +75,6 @@ sponsors:
     link: https://www.itdev.co.uk/
     image: /images/sponsors/itdev.png
     logo_width: 200px
-
-  - name: Bittele
-    link: https://www.7pcb.com/
-    image: /images/sponsors/bittele.svg
-    logo_width: default
 
   - name: Hexibox
     link: https://hexibox-events.co.uk/
