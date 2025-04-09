@@ -48,11 +48,11 @@ Teams who arrive late may forfeit the match.
 
 <p data-ng-if="next_game">
     <strong>Next: [[ next_game.display_name ]]</strong>
-    <!-- Time to the start of the slot -->
-    <span data-ng-if="time_to_next_slot && long_before_staging">
-        (starts in [[ time_to_next_slot ]])
+    <!-- Time to the advertised start of the match; shown far in advance -->
+    <span data-ng-if="time_to_next_advertised && long_before_staging">
+        (starts in [[ time_to_next_advertised ]])
     </span>
-    <!-- Time to the start of the actual game -->
+    <!-- Time to the start of the actual game; shown after staging has closed -->
     <span data-ng-if="time_to_next_game && !staging_closes">
         (starts in [[ time_to_next_game ]])
     </span>

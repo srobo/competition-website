@@ -57,7 +57,7 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         var now = Current.timeFromOffset($scope.time_offset);
         for (var i=0; i<scheduled_games.length; i++) {
             var game = scheduled_games[i];
-            game.time = new Date(game.times.slot.start);
+            game.time = match_timings(game, MATCH_TIMING_MODE).start;
 
             if (now < game.time &&
                 (next_game == null || game.time < next_game.time)) {
@@ -76,8 +76,11 @@ app.controller("TeamInformation", function($scope, $interval, $localStorage, gam
         // Set the time to the next match
         $scope.next_game = get_next_game($scope.games);
         if ($scope.next_game != null) {
+            // Capture timings for the next game. Values are template-ready
+            // strings or null if the time is in the past.
+
             $scope.time_to_next_game = describe_time_until($scope.next_game.game_time);
-            $scope.time_to_next_slot = describe_time_until($scope.next_game.time);
+            $scope.time_to_next_advertised = describe_time_until($scope.next_game.time);
 
             var staging_opens = $scope.next_game.staging_times['opens'];
             var opens_seconds = seconds_until(staging_opens);
