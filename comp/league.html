@@ -15,9 +15,11 @@ tied teams have earned in their league matches.
 
 <p>
   Teams can earn league points through a series of
-  <a href="{{ site.challenges_link }}">challenges</a>,
-  from league matches at the
+  <a href="{{ site.challenges_link }}">challenges</a>
+  {%- if site.virtual_competition_link -%}
+  , from league matches at the
   <a href="{{ site.virtual_competition_link }}">virtual competition</a>
+  {% endif %}
   and from the league matches at the in-person competition in April.
 </ul>
 
